@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        :root {
+            --aurora-1: #00d2ff;
+            --aurora-2: #3a7bd5;
+            --aurora-3: #6a11cb;
+            --glass-white: rgba(255, 255, 255, 0.08);
+            --border-light: rgba(255, 255, 255, 0.15);
+        }
+
+        body { 
+            margin: 0; 
+            background: #020617; /* Deep midnight blue */
+            font-family: 'Inter', -apple-system, sans-serif; 
+            color: white;
+            line-height: 1.6;
+        }
+
+        /* --- THE GLASS HEADER --- */
+        .header {
+            position: fixed;
+            top: 0; width: 100%;
+            display: flex; justify-content: space-between; align-items: center;
+            padding: 18px 24px;
+            box-sizing: border-box;
+            background: var(--glass-white);
+            backdrop-filter: blur(20px) saturate(180%);
+            -webkit-backdrop-filter: blur(20px) saturate(180%);
+            border-bottom: 1px solid var(--border-light);
+            z-index: 1000;
+        }
+
+        .logo { 
+            font-size: 1.3rem; 
+            font-weight: 800; 
+            letter-spacing: -0.5px;
+            background: linear-gradient(to right, #fff, #94a3b8);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .menu-trigger {
+            width: 30px;
+            display: flex; flex-direction: column; gap: 6px;
+        }
+        .menu-trigger span {
+            height: 2px; width: 100%; background: white; border-radius: 2px;
+        }
+
+        /* --- THE AURORA FOOTER --- */
+        .footer {
+            position: relative;
+            overflow: hidden; /* Clips the aurora glow */
+            padding: 60px 24px 30px;
+            background: rgba(15, 23, 42, 0.8);
+            border-top: 1px solid var(--border-light);
+        }
+
+        /* Aurora Glow Effects */
+        .footer::before, .footer::after {
+            content: "";
+            position: absolute;
+            width: 250px; height: 250px;
+            filter: blur(80px);
+            z-index: -1;
+            opacity: 0.4;
+        }
+        .footer::before {
+            background: var(--aurora-1);
+            top: -100px; left: -100px;
+        }
+        .footer::after {
+            background: var(--aurora-3);
+            bottom: -50px; right: -50px;
+        }
+
+        .footer-brand { margin-bottom: 40px; text-align: left; }
+        .footer-brand .logo { font-size: 1.5rem; }
+
+        /* Social Grid with Glass Cards */
+        .social-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 12px;
+            margin-bottom: 50px;
+        }
+
+        .social-card {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid var(--border-light);
+            padding: 15px;
+            border-radius: 12px;
+            text-decoration: none;
+            color: #94a3b8;
+            font-size: 14px;
+            display: flex;
+            align-items: center;
+            transition: 0.3s;
+        }
+        .social-card:active {
+            background: var(--glass-white);
+            transform: scale(0.97);
+        }
+        .social-card i { margin-right: 12px; font-style: normal; font-size: 18px; }
+
+        /* Legal Footer */
+        .legal {
+            font-size: 12px;
+            color: #64748b;
+        }
+        .legal-links {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            margin-bottom: 15px;
+        }
+        .legal-links a { color: #94a3b8; text-decoration: none; }
+
+    </style>
+</head>
+<body>
+
+    <header class="header">
+        <div class="logo">adsnot.com</div>
+        <div class="menu-trigger">
+            <span></span>
+            <span style="width: 70%; align-self: flex-end;"></span>
+        </div>
+    </header>
+
+    <div style="height: 100vh; padding: 100px 24px;">
+        <h1 style="font-size: 40px; margin-top: 50px;">Scale your Google Ads.</h1>
+        <p style="color: #94a3b8;">Premium management for high-growth brands.</p>
+    </div>
+
+    <footer class="footer">
+        <div class="footer-brand">
+            <div class="logo">adsnot.com</div>
+            <p style="color: #94a3b8; font-size: 14px;">Elevating digital presence through precision advertising.</p>
+        </div>
+
+        <div class="social-grid">
+            <a href="#" class="social-card"><i>📘</i> Facebook</a>
+            <a href="#" class="social-card"><i>📸</i> Instagram</a>
+            <a href="#" class="social-card"><i>💼</i> LinkedIn</a>
+            <a href="#" class="social-card"><i>🇽</i> Twitter/X</a>
+            <a href="#" class="social-card"><i>📺</i> YouTube</a>
+            <a href="#" class="social-card"><i>🎵</i> TikTok</a>
+            <a href="#" class="social-card"><i>📌</i> Pinterest</a>
+            <a href="#" class="social-card"><i>💬</i> WhatsApp</a>
+        </div>
+
+        <div class="legal">
+            <div class="legal-links">
+                <a href="#">Privacy Policy</a>
+                <a href="#">Terms & Conditions</a>
+            </div>
+            <div class="copyright">
+                © 2026 adsnot.com. Designed for Excellence.
+            </div>
+        </div>
+    </footer>
+
+</body>
+</html>
