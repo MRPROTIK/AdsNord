@@ -4,143 +4,89 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <style>
-        :root {
-            /* Extracted from your logo */
-            --google-blue: #4285F4;
-            --google-green: #34A853;
-            --google-yellow: #FBBC05;
-        }
-
         body {
             margin: 0;
             padding: 0;
-            background: #020617; /* Deep aurora base */
-            font-family: 'Inter', -apple-system, sans-serif;
-            color: white;
-            height: 300vh; /* For scrolling */
-            /* Aurora Mesh Background */
+            background: #020617; /* Deep midnight base */
+            font-family: 'Inter', sans-serif;
+            height: 300vh; /* For scroll testing */
+            /* Intense Aurora Background */
             background-image: 
-                radial-gradient(at 0% 0%, rgba(66, 133, 244, 0.2) 0px, transparent 50%),
-                radial-gradient(at 100% 0%, rgba(52, 168, 83, 0.2) 0px, transparent 50%);
+                radial-gradient(at 10% 20%, rgba(66, 133, 244, 0.4) 0px, transparent 50%),
+                radial-gradient(at 90% 10%, rgba(52, 168, 83, 0.4) 0px, transparent 50%),
+                radial-gradient(at 50% 50%, rgba(251, 188, 5, 0.2) 0px, transparent 50%);
             background-attachment: fixed;
         }
 
-        /* --- THE CONSTANT GLASS HEADER --- */
-        header.constant-glass-nav {
+        /* --- THE ULTRA-TRANSPARENT CONSTANT HEADER --- */
+        header.aurora-glass-nav {
             position: fixed;
-            top: 15px; /* Floating gap */
+            top: 20px;
             left: 50%;
             transform: translateX(-50%);
-            width: 94%;
-            max-width: 1100px;
-            background: rgba(255, 255, 255, 0.85); /* Strong white glass */
-            backdrop-filter: blur(25px) saturate(180%);
-            -webkit-backdrop-filter: blur(25px) saturate(180%);
-            border-radius: 25px; /* Rounded corners like your screenshot */
-            border: 1px solid rgba(255, 255, 255, 0.4);
-            padding: 15px 25px;
+            width: 92%;
+            max-width: 1200px;
+            
+            /* High Transparency + Strong Blur */
+            background: rgba(255, 255, 255, 0.3); 
+            backdrop-filter: blur(30px) saturate(200%);
+            -webkit-backdrop-filter: blur(30px) saturate(200%);
+            
+            border-radius: 30px;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            padding: 12px 20px;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            box-shadow: 0 15px 35px rgba(0,0,0,0.2);
             z-index: 10000;
+            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.3);
         }
 
-        .logo-box {
+        .logo-only {
             display: flex;
             align-items: center;
-            gap: 10px;
-            text-decoration: none;
         }
 
         .logo-img {
-            height: 35px; /* Match mobile scale */
+            height: 42px; /* Prominent icon size */
             width: auto;
         }
 
-        /* Bold black text for the glass effect */
-        .brand-text {
-            color: #000;
-            font-weight: 900;
-            font-size: 1.1rem;
-            letter-spacing: -0.5px;
-        }
-
-        .nav-links {
-            display: none; /* Hidden on mobile by default */
-        }
-
-        /* Mobile Menu Button */
-        .menu-btn {
-            background: #000;
-            color: #fff;
-            padding: 8px 18px;
+        /* Bold Black Menu Button from your reference */
+        .black-menu-btn {
+            background: #000000;
+            color: #ffffff;
+            padding: 10px 24px;
             border-radius: 50px;
-            font-weight: 700;
-            font-size: 14px;
+            font-weight: 800;
+            font-size: 15px;
+            letter-spacing: 0.5px;
             text-transform: uppercase;
+            border: none;
+            cursor: pointer;
         }
 
-        /* --- FOOTER (Scrollable with Body) --- */
-        .normal-footer {
-            margin-top: 100px;
-            padding: 40px 20px;
+        /* Hero Content */
+        .hero {
+            padding-top: 180px;
             text-align: center;
-            border-top: 1px solid rgba(255,255,255,0.1);
-        }
-
-        .social-grid {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 10px;
-            max-width: 400px;
-            margin: 20px auto;
-        }
-
-        .social-box {
-            background: rgba(255,255,255,0.05);
-            padding: 15px;
-            border-radius: 12px;
-            font-size: 20px;
-            text-decoration: none;
+            color: white;
         }
     </style>
 </head>
 <body>
 
-    <header class="constant-glass-nav">
-        <a href="#" class="logo-box">
-            <img src="my_new_logo_AdsNord.png" alt="AdsNord Logo" class="logo-img">
-            <span class="brand-text">adsnord.com</span>
-        </a>
-        <div class="menu-btn">Menu</div>
+    <header class="aurora-glass-nav">
+        <div class="logo-only">
+            <img src="my_new_logo_AdsNord.png" alt="AdsNord Icon" class="logo-img">
+        </div>
+        <button class="black-menu-btn">Menu</button>
     </header>
 
-    <main style="padding-top: 150px; text-align: center; padding-left: 20px; padding-right: 20px;">
-        <h1 style="font-size: 3rem;">Ads Nord</h1>
-        <p style="color: #94a3b8; font-size: 1.2rem;">Watch the header stay put while you scroll.</p>
-        
-        <div style="height: 1000px; margin-top: 50px; border-left: 2px dashed rgba(255,255,255,0.1);">
-            <p>Scrollable content area...</p>
-        </div>
+    <main class="hero">
+        <h1 style="font-size: 3.5rem; margin: 0;">Ads Nord</h1>
+        <p style="opacity: 0.7; font-size: 1.2rem;">Scroll down to see the aurora colors bleed through the glass.</p>
     </main>
-
-    <footer class="normal-footer">
-        <div class="social-grid">
-            <a href="#" class="social-box">📘</a>
-            <a href="#" class="social-box">📸</a>
-            <a href="#" class="social-box">💼</a>
-            <a href="#" class="social-box">🐦</a>
-            <a href="#" class="social-box">📺</a>
-            <a href="#" class="social-box">🎵</a>
-            <a href="#" class="social-box">📌</a>
-            <a href="#" class="social-box">💬</a>
-        </div>
-        <p style="font-size: 12px; color: #666; font-weight: bold;">
-            PRIVACY | TERMS | CONTACT <br>
-            © 2026 ADSNORD | ALL RIGHTS RESERVED
-        </p>
-    </footer>
 
 </body>
 </html>
