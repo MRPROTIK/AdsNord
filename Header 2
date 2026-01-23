@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ads Nord | Google Ads Experts</title>
+    <style>
+        :root {
+            --nord-black: #050a10;
+            --nord-blue: #00d2ff;
+            --nord-purple: #9d50bb;
+            --nord-teal: #3fffa2;
+            --glass: rgba(255, 255, 255, 0.05);
+            --border: rgba(255, 255, 255, 0.12);
+        }
+
+        body {
+            margin: 0;
+            background-color: var(--nord-black);
+            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            color: #ffffff;
+            overflow-x: hidden;
+        }
+
+        /* --- PREMIUM NORD HEADER --- */
+        .header {
+            position: fixed;
+            top: 0; width: 100%;
+            height: 70px;
+            display: flex; justify-content: space-between; align-items: center;
+            padding: 0 25px;
+            box-sizing: border-box;
+            background: rgba(5, 10, 16, 0.7); /* Deep transparent */
+            backdrop-filter: blur(15px) saturate(150%);
+            -webkit-backdrop-filter: blur(15px) saturate(150%);
+            border-bottom: 1px solid var(--border);
+            z-index: 1000;
+        }
+
+        .logo {
+            font-size: 20px;
+            font-weight: 800;
+            text-decoration: none;
+            color: white;
+            letter-spacing: -0.5px;
+            text-transform: lowercase;
+        }
+
+        .logo span {
+            color: var(--nord-blue); /* Highlights 'nord' */
+            font-weight: 900;
+        }
+
+        /* Animated Hamburger Menu */
+        .menu-btn {
+            display: flex; flex-direction: column; gap: 5px; cursor: pointer;
+        }
+        .menu-btn div {
+            width: 25px; height: 2px; background: white; border-radius: 5px;
+        }
+
+        /* --- NORDIC AURORA FOOTER --- */
+        .footer {
+            position: relative;
+            padding: 60px 25px 40px;
+            background: linear-gradient(to bottom, transparent, #0a111a);
+            border-top: 1px solid var(--border);
+            overflow: hidden;
+        }
+
+        /* Animated Aurora Glows */
+        .aurora-blur {
+            position: absolute;
+            width: 300px; height: 300px;
+            border-radius: 50%;
+            filter: blur(90px);
+            z-index: -1;
+            opacity: 0.3;
+            animation: drift 10s infinite alternate;
+        }
+        .glow-1 { background: var(--nord-blue); top: -50px; left: -50px; }
+        .glow-2 { background: var(--nord-purple); bottom: -50px; right: -50px; animation-delay: 2s; }
+
+        @keyframes drift {
+            from { transform: translate(0,0); }
+            to { transform: translate(30px, 50px); }
+        }
+
+        .footer-logo {
+            font-size: 24px;
+            font-weight: 800;
+            margin-bottom: 10px;
+        }
+
+        .social-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+            margin: 40px 0;
+        }
+
+        .social-link {
+            background: var(--glass);
+            border: 1px solid var(--border);
+            padding: 14px;
+            border-radius: 12px;
+            text-decoration: none;
+            color: #cfd8e3;
+            font-size: 14px;
+            display: flex; align-items: center;
+            transition: all 0.3s ease;
+        }
+
+        .social-link:active {
+            background: rgba(255,255,255,0.1);
+            transform: translateY(-2px);
+            border-color: var(--nord-blue);
+        }
+
+        .social-icon {
+            width: 24px; height: 24px; margin-right: 12px;
+            background: rgba(255,255,255,0.1);
+            border-radius: 6px;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 12px;
+        }
+
+        .legal-row {
+            margin-top: 40px;
+            padding-top: 25px;
+            border-top: 1px solid var(--border);
+            font-size: 13px;
+            color: #7f8ea3;
+        }
+
+        .legal-links { display: flex; gap: 20px; margin-bottom: 15px; }
+        .legal-links a { color: #cfd8e3; text-decoration: none; }
+
+    </style>
+</head>
+<body>
+
+    <header class="header">
+        <a href="/" class="logo">ads<span>nord</span>.com</a>
+        <div class="menu-btn">
+            <div></div>
+            <div style="width: 18px; align-self: flex-end;"></div>
+        </div>
+    </header>
+
+    <div style="height: 100vh; padding: 120px 25px;">
+        <h2 style="font-size: 32px; background: linear-gradient(to right, #fff, #70a1ff); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">Precision ads <br>for the modern web.</h2>
+        <p style="color: #7f8ea3;">Scaling adsnord.com to the next level.</p>
+    </div>
+
+    <footer class="footer">
+        <div class="aurora-blur glow-1"></div>
+        <div class="aurora-blur glow-2"></div>
+
+        <div class="footer-logo">ads<span>nord</span>.com</div>
+        <p style="color: #7f8ea3; font-size: 14px;">The North Star for Google Ads Management.</p>
+
+        <div class="social-container">
+            <a href="#" class="social-link"><span class="social-icon">f</span> Facebook</a>
+            <a href="#" class="social-link"><span class="social-icon">i</span> Instagram</a>
+            <a href="#" class="social-link"><span class="social-icon">l</span> LinkedIn</a>
+            <a href="#" class="social-link"><span class="social-icon">x</span> Twitter / X</a>
+            <a href="#" class="social-link"><span class="social-icon">y</span> YouTube</a>
+            <a href="#" class="social-link"><span class="social-icon">t</span> TikTok</a>
+            <a href="#" class="social-link"><span class="social-icon">p</span> Pinterest</a>
+            <a href="#" class="social-link"><span class="social-icon">w</span> WhatsApp</a>
+        </div>
+
+        <div class="legal-row">
+            <div class="legal-links">
+                <a href="#">Privacy Policy</a>
+                <a href="#">Terms & Conditions</a>
+            </div>
+            <div class="copyright">
+                © 2026 adsnord.com. All rights reserved.
+            </div>
+        </div>
+    </footer>
+
+</body>
+</html>
