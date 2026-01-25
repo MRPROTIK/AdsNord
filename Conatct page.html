@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact AdsNord | Hire a Google Ads Expert</title>
+    <style>
+        /* 1. BRAND THEME & RESET */
+        :root {
+            --adsnord-text: #0c1b3d;
+            --adsnord-secondary: #4b5563;
+            --adsnord-accent: #2563eb;
+            --adsnord-accent-hover: #1d4ed8;
+            --adsnord-border: rgba(12, 27, 61, 0.15);
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Inter', -apple-system, sans-serif;
+            background: transparent;
+            color: var(--adsnord-text);
+            line-height: 1.6;
+        }
+
+        .section-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 80px 20px;
+        }
+
+        /* 2. HERO SECTION */
+        .adsnord-hero {
+            display: flex;
+            justify-content: center;
+            padding: 120px 20px 100px 20px;
+        }
+
+        .hero-inner {
+            display: grid;
+            grid-template-columns: 1.1fr 0.9fr;
+            gap: 80px;
+            align-items: flex-start;
+        }
+
+        .hero-text-block h1 {
+            font-size: clamp(2.5rem, 5vw, 3.8rem);
+            line-height: 1.25 !important;
+            margin: 0 0 35px 0 !important;
+            font-weight: 800;
+        }
+
+        .hero-text-block p {
+            font-size: 1.25rem;
+            color: var(--adsnord-secondary);
+            margin-bottom: 40px; 
+        }
+
+        /* UPDATED HERO BUTTON COLOR */
+        .hero-cta-btn {
+            display: inline-block;
+            background-color: var(--adsnord-accent) !important; /* Force visibility */
+            color: #ffffff !important;                          /* Force high contrast */
+            padding: 18px 35px;
+            font-size: 1.1rem;
+            font-weight: 700;
+            text-decoration: none;
+            border-radius: 8px;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+            box-shadow: 0 4px 14px rgba(37, 99, 235, 0.3);
+            border: none;
+        }
+
+        .hero-cta-btn:hover {
+            background-color: var(--adsnord-accent-hover) !important;
+            transform: translateY(-2px);
+        }
+
+        /* 3. FORM SECTION */
+        .form-card {
+            background: transparent;
+            padding: 0;
+        }
+
+        .form-card h2 {
+            font-size: 2.2rem;
+            margin: 0 0 25px 0 !important;
+            padding-bottom: 15px;
+            border-bottom: 4px solid var(--adsnord-accent);
+            display: inline-block;
+        }
+
+        /* 4. PROCESS SECTION */
+        .process-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 50px;
+            margin-top: 60px;
+        }
+
+        .process-card {
+            background: transparent;
+            padding: 20px 20px 20px 30px;
+            position: relative;
+            border-left: 2px solid var(--adsnord-accent);
+        }
+
+        .number-bg {
+            position: absolute;
+            top: -10px;
+            right: 0;
+            font-size: 4.5rem;
+            font-weight: 900;
+            color: var(--adsnord-accent);
+            opacity: 0.08 !important;
+            z-index: 1;
+        }
+
+        .process-card h3 {
+            position: relative;
+            z-index: 2;
+            font-size: 1.6rem;
+            margin: 0 0 20px 0;
+        }
+
+        /* 5. FAQ SECTION - UPDATED COLORS */
+        .faq-header {
+            text-align: center;
+            font-size: 2.6rem;
+            margin-bottom: 70px !important;
+            display: block;
+        }
+
+        .accordion-container {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .faq-item {
+            background: #f8fafc !important; /* Added light background for visibility */
+            border-bottom: 1px solid var(--adsnord-border);
+            margin-bottom: 12px;
+            border-radius: 8px;
+        }
+
+        .faq-btn {
+            width: 100%;
+            padding: 30px 20px; /* Added horizontal padding */
+            background: transparent !important;
+            border: none;
+            text-align: left;
+            font-size: 1.25rem;
+            font-weight: 700;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            color: var(--adsnord-text) !important; /* Ensure dark text */
+        }
+
+        .faq-body {
+            max-height: 0;
+            padding: 0 20px;
+            overflow: hidden;
+            transition: all 0.4s ease-out;
+        }
+
+        .faq-item.active .faq-body {
+            max-height: 300px;
+            padding-bottom: 30px;
+        }
+
+        .faq-icon {
+            color: var(--adsnord-accent);
+            font-size: 1.5rem;
+            transition: 0.3s;
+        }
+
+        .faq-item.active .faq-icon { transform: rotate(45deg); }
+
+        /* 6. MOBILE RESPONSIVE */
+        @media (max-width: 900px) {
+            .hero-inner { grid-template-columns: 1fr; text-align: center; }
+            .hero-text-block h1 { font-size: 2.5rem; }
+            .faq-header { margin-bottom: 40px !important; }
+        }
+    </style>
+</head>
+<body>
+
+<div class="adsnord-hero">
+    <div class="hero-inner">
+        <div class="hero-text-block">
+            <h1>Hire a Google Ads Expert & Contact AdsNord</h1>
+            <p>I help businesses scale using data-driven strategies as a <strong>Professional Google Ads Contractor</strong>. Partner with us to unlock growth today.</p>
+            
+            <a href="#audit-form" class="hero-cta-btn">Hire a Google Ads Expert</a>
+        </div>
+
+        <div class="form-card" id="audit-form">
+            <h2>Request Your Free Audit</h2>
+            <p>Expect a custom reply within one business hour.</p>
+            [wpforms id="6662"]
+        </div>
+    </div>
+</div>
+
+<section class="section-container">
+    <h2 style="text-align: center; font-size: 2.5rem; color: var(--adsnord-text);">The Audit Process</h2>
+    <div class="process-grid">
+        <div class="process-card">
+            <div class="number-bg">01</div>
+            <h3>Data Deep Dive</h3>
+            <p>I personally analyze your account history and tracking to find wasted spend.</p>
+        </div>
+        <div class="process-card">
+            <div class="number-bg">02</div>
+            <h3>Strategy Call</h3>
+            <p>We jump on a 20-minute call to discuss the "Red Flags" found.</p>
+        </div>
+        <div class="process-card">
+            <div class="number-bg">03</div>
+            <h3>Growth Roadmap</h3>
+            <p>Receive a clear action plan to scale your ROI.</p>
+        </div>
+    </div>
+</section>
+
+<section class="section-container">
+    <h2 class="faq-header">Working with a Google Ads Expert</h2>
+    <div class="accordion-container">
+        
+        <div class="faq-item">
+            <button class="faq-btn" onclick="this.parentElement.classList.toggle('active')">
+                What happens after I request a Free Google Ads Audit? <span class="faq-icon">+</span>
+            </button>
+            <div class="faq-body">
+                <p>Once you <strong>request a Free Google Ads Audit</strong>, I dive into your account history to find red flags.</p>
+            </div>
+        </div>
+
+        <div class="faq-item">
+            <button class="faq-btn" onclick="this.parentElement.classList.toggle('active')">
+                Why should I hire a Google Ads Expert instead of an agency? <span class="faq-icon">+</span>
+            </button>
+            <div class="faq-body">
+                <p>When you <strong>hire a Google Ads Expert</strong>, you get direct access to me—no account managers or middlemen.</p>
+            </div>
+        </div>
+
+        <div class="faq-item">
+            <button class="faq-btn" onclick="this.parentElement.classList.toggle('active')">
+                What are the benefits of a Professional Google Ads Contractor? <span class="faq-icon">+</span>
+            </button>
+            <div class="faq-body">
+                <p>A <strong>Professional Google Ads Contractor</strong> works month-to-month to earn your business with results.</p>
+            </div>
+        </div>
+
+        <div class="faq-item">
+            <button class="faq-btn" onclick="this.parentElement.classList.toggle('active')">
+                Is it safe to request a Google Ads audit? <span class="faq-icon">+</span>
+            </button>
+            <div class="faq-body">
+                <p>Yes. When you <strong>request a Google Ads audit</strong>, you grant "Manager Access" safely.</p>
+            </div>
+        </div>
+
+        <div class="faq-item">
+            <button class="faq-btn" onclick="this.parentElement.classList.toggle('active')">
+                How much does it cost to contact adsnord for a quote? <span class="faq-icon">+</span>
+            </button>
+            <div class="faq-body">
+                <p>It is 100% free to <strong>contact adsnord</strong> or <strong>request a quote</strong> for your project.</p>
+            </div>
+        </div>
+
+    </div>
+</section>
+
+</body>
+</html>

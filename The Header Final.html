@@ -1,0 +1,228 @@
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+<style>
+    :root {
+        --g-blue: #4285F4; --g-red: #EA4335; --g-yellow: #FBBC05; --g-green: #34A853;
+        --transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+        --bg-body: #020617;
+        --text-main: #f1f5f9;
+        --text-muted: #94a3b8;
+        --glass-bg: rgba(10, 25, 47, 0.85);
+        --glass-border: rgba(255, 255, 255, 0.12);
+    }
+
+    [data-theme="light"] {
+        --bg-body: #ffffff;
+        --text-main: #000000; 
+        --text-muted: #475569;
+        --glass-bg: rgba(255, 255, 255, 0.9);
+        --glass-border: rgba(0, 0, 0, 0.1);
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: 'Inter', sans-serif; background: var(--bg-body); color: var(--text-main); transition: background 0.4s ease; overflow-x: hidden; }
+
+    /* Aurora Engine Background */
+    .aurora-container { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -1; filter: blur(100px); opacity: 0.6; pointer-events: none; transition: filter 0.4s ease; }
+    .blob { position: absolute; width: 60vw; height: 60vw; border-radius: 50%; mix-blend-mode: screen; animation: move 12s infinite alternate ease-in-out; }
+    .b-blue { background: var(--g-blue); top: -10%; left: -10%; }
+    .b-red { background: var(--g-red); top: 50%; right: -10%; animation-delay: -2s; }
+    .b-yellow { background: var(--g-yellow); bottom: -10%; left: 20%; animation-delay: -4s; }
+    .b-green { background: var(--g-green); top: 10%; right: 20%; animation-delay: -6s; }
+    @keyframes move { 0% { transform: translate(0, 0); } 100% { transform: translate(-40px, 80px) scale(0.9); } }
+
+    /* Header Styling */
+    .scroll-progress { position: fixed; top: 0; left: 0; width: 0%; height: 4px; background: var(--g-blue); z-index: 1001; }
+    .header-wrapper { position: fixed; top: 40px; left: 0; width: 100%; z-index: 1000; padding: 0 30px; }
+    header { background: var(--glass-bg); backdrop-filter: blur(25px); -webkit-backdrop-filter: blur(25px); border: 1px solid var(--glass-border); border-radius: 30px; padding: 18px 0; transition: var(--transition); max-width: 1300px; margin: 0 auto; }
+    .header-flex { display: flex; justify-content: space-between; align-items: center; padding: 0 35px; }
+
+    .logo-holder { display: flex; align-items: center; gap: 12px; text-decoration: none; }
+    .logo-text { font-size: 1.5rem; font-weight: 900; color: var(--g-blue); letter-spacing: -0.5px; }
+    .logo-text span { color: var(--g-yellow); }
+
+    .nav-links { display: flex; list-style: none; gap: 32px; align-items: center; }
+    .nav-links a { text-decoration: none; color: var(--text-main); font-weight: 600; font-size: 0.95rem; transition: 0.3s; }
+    .nav-links a:hover { color: var(--g-blue); }
+
+    .header-actions { display: flex; align-items: center; gap: 20px; }
+    .theme-toggle { background: rgba(255,255,255,0.1); border: none; cursor: pointer; width: 45px; height: 45px; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: var(--text-main); transition: 0.3s; }
+    
+    .menu-btn { display: none; background: none; border: none; cursor: pointer; padding: 5px; z-index: 2100; }
+    .menu-btn span { display: block; width: 25px; height: 2px; background: var(--text-main); margin: 6px 0; transition: var(--transition); }
+    .menu-btn.open span:nth-child(1) { transform: translateY(4px) rotate(45deg); }
+    .menu-btn.open span:nth-child(2) { transform: translateY(-4px) rotate(-45deg); }
+
+    /* Dropdowns Desktop */
+    .dropdown { position: relative; }
+    .dropdown-menu {
+        position: absolute; top: 100%; left: 0; background: var(--glass-bg); backdrop-filter: blur(20px); border: 1px solid var(--glass-border); border-radius: 12px; list-style: none; padding: 10px 0; min-width: 260px; opacity: 0; visibility: hidden; transform: translateY(10px); transition: var(--transition); z-index: 1001; box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+    }
+    .dropdown:hover .dropdown-menu { opacity: 1; visibility: visible; transform: translateY(0); }
+    .dropdown-menu li a { padding: 12px 20px; display: block; font-size: 0.85rem !important; color: var(--text-main); }
+    .dropdown-menu li a:hover { background: rgba(66, 133, 244, 0.1); color: var(--g-blue) !important; }
+
+    /* Mobile Overlay Styling */
+    .mobile-overlay { position: fixed; top: 0; right: -100%; width: 100%; height: 100dvh; background: var(--bg-body); z-index: 2005; display: flex; flex-direction: column; align-items: flex-start; justify-content: flex-start; padding: 110px 40px 60px; transition: 0.5s cubic-bezier(0.23, 1, 0.32, 1); overflow-y: auto; }
+    .mobile-overlay.active { right: 0; }
+    
+    .mobile-overlay a { text-decoration: none; font-size: 1.8rem; font-weight: 800; transition: 0.3s; margin-bottom: 12px; display: block; }
+    
+    /* Standard Links Color */
+    .m-link-main { color: var(--text-main); }
+    /* Category Header Color */
+    .m-link-parent { color: var(--g-blue); margin-top: 15px; }
+    
+    /* Sub-links Styling */
+    .mobile-sub-links { display: flex; flex-direction: column; padding-left: 15px; margin-bottom: 20px; border-left: 2px solid rgba(66, 133, 244, 0.3); }
+    .mobile-sub-links a { font-size: 0.95rem !important; margin-bottom: 10px !important; font-weight: 500 !important; color: var(--text-muted) !important; }
+    .mobile-sub-links a:hover { color: var(--g-blue) !important; }
+    .mobile-sub-links a::before { content: "•"; color: var(--g-yellow); margin-right: 8px; font-weight: bold; }
+
+    /* AI Launcher */
+    .chat-container { position: fixed; bottom: 30px; right: 30px; z-index: 999; }
+    .liquid-orb { width: 60px; height: 60px; background: linear-gradient(45deg, var(--g-blue), var(--g-red), var(--g-yellow), var(--g-green)); background-size: 400% 400%; border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%; animation: liquid 6s ease-in-out infinite; cursor: pointer; display: flex; align-items: center; justify-content: center; box-shadow: 0 10px 30px rgba(66, 133, 244, 0.4); }
+    .liquid-orb i { color: white; font-size: 1.4rem; }
+    @keyframes liquid { 0%, 100% { border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%; } 33% { border-radius: 70% 30% 50% 50% / 30% 30% 70% 70%; } 66% { border-radius: 30% 70% 30% 70% / 70% 30% 70% 30%; } }
+
+    @media (max-width: 1024px) {
+        .header-wrapper { top: 20px; padding: 0 15px; }
+    }
+
+    @media (max-width: 768px) { 
+        .nav-links { display: none; } 
+        .menu-btn { display: block; } 
+    }
+</style>
+
+<div class="scroll-progress" id="progressBar"></div>
+
+<div class="aurora-container">
+    <div class="blob b-blue"></div><div class="blob b-red"></div>
+    <div class="blob b-yellow"></div><div class="blob b-green"></div>
+</div>
+
+<div class="chat-container">
+    <div class="liquid-orb" onclick="alert('How can AdsNord help you scale today?')">
+        <i class="fa-solid fa-wand-magic-sparkles"></i>
+    </div>
+</div>
+
+<div class="header-wrapper">
+    <header>
+        <div class="header-flex">
+            <a href="https://adsnord.com/" class="logo-holder">
+                <img src="https://adsnord.com/wp-content/uploads/2026/01/my-new-logo-AdsNord-1.png" alt="AdsNord Logo" style="height: 38px; width: auto;">
+                <div class="logo-text">Ads<span>Nord</span></div>
+            </a>
+
+            <div class="header-actions">
+                <nav>
+                    <ul class="nav-links">
+                        <li><a href="https://adsnord.com/">Home</a></li>
+                        <li><a href="https://adsnord.com/contact">Contact</a></li>
+                        <li><a href="https://adsnord.com/about">About</a></li>
+                        
+                        <li class="dropdown">
+                            <a href="https://adsnord.com/services">Services <i class="fa-solid fa-chevron-down"></i></a>
+                            <ul class="dropdown-menu">
+                                <li><a href="https://adsnord.com/services/google-ads-managment">Google Ads Management</a></li>
+                                <li><a href="https://adsnord.com/ppc-keyword-research">Keyword research and planning</a></li>
+                                <li><a href="https://adsnord.com/services/conversion-rate-optimization">Landing page optimization</a></li>
+                                <li><a href="https://adsnord.com/services/ppc-audit-service">Ads audit and analysis</a></li>
+                            </ul>
+                        </li>
+
+                        <li class="dropdown">
+                            <a href="https://adsnord.com/blog">Blog <i class="fa-solid fa-chevron-down"></i></a>
+                            <ul class="dropdown-menu">
+                                <li><a href="https://adsnord.com/category/google-ads-optimization">Google Ads Optimization</a></li>
+                                <li><a href="https://adsnord.com/category/landing-page-optimization">Landing Page Optimization</a></li>
+                                <li><a href="https://adsnord.com/category/keyword-planning">Keyword planning</a></li>
+                                <li><a href="https://adsnord.com/category/google-ads-audit">Google Ads Audit</a></li>
+                            </ul>
+                        </li>
+
+                        <li class="dropdown">
+                            <a href="https://adsnord.com/case-studies">Case Studies <i class="fa-solid fa-chevron-down"></i></a>
+                            <ul class="dropdown-menu">
+                                <li><a href="https://adsnord.com/case-studies/google-ads-management">Google Ads Management</a></li>
+                                <li><a href="https://adsnord.com/case-studies/keyword-research-and-planning">Keyword research and Planning</a></li>
+                                <li><a href="https://adsnord.com/case-studies/landing-page-optimization">Landing page Optimization</a></li>
+                                <li><a href="https://adsnord.com/case-studies/ads-audit-and-analysis">Ads audit and Analysis</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </nav>
+                <button class="theme-toggle" id="tBtn"><i class="fa-solid fa-moon" id="tIcon"></i></button>
+                <button class="menu-btn" id="mToggle"><span></span><span></span></button>
+            </div>
+        </div>
+    </header>
+</div>
+
+<div class="mobile-overlay" id="mMenu">
+    <a href="https://adsnord.com/" class="m-link-main">Home</a>
+    <a href="https://adsnord.com/contact" class="m-link-main">Contact</a>
+    <a href="https://adsnord.com/about" class="m-link-main">About</a>
+    
+    <a href="https://adsnord.com/services" class="m-link-parent">Services</a>
+    <div class="mobile-sub-links">
+        <a href="https://adsnord.com/services/google-ads-managment">Google Ads Management</a>
+        <a href="https://adsnord.com/ppc-keyword-research">Keyword research and planning</a>
+        <a href="https://adsnord.com/services/conversion-rate-optimization">Landing page optimization</a>
+        <a href="https://adsnord.com/services/ppc-audit-service">Ads audit and analysis</a>
+    </div>
+
+    <a href="https://adsnord.com/blog" class="m-link-parent">Blog</a>
+    <div class="mobile-sub-links">
+        <a href="https://adsnord.com/category/google-ads-optimization">Google Ads Optimization</a>
+        <a href="https://adsnord.com/category/landing-page-optimization">Landing Page Optimization</a>
+        <a href="https://adsnord.com/category/keyword-planning">Keyword planning</a>
+        <a href="https://adsnord.com/category/google-ads-audit">Google Ads Audit</a>
+    </div>
+
+    <a href="https://adsnord.com/case-studies" class="m-link-parent">Case Studies</a>
+    <div class="mobile-sub-links">
+        <a href="https://adsnord.com/case-studies/google-ads-management">Google Ads Management</a>
+        <a href="https://adsnord.com/case-studies/keyword-research-and-planning">Keyword research and Planning</a>
+        <a href="https://adsnord.com/case-studies/landing-page-optimization">Landing page Optimization</a>
+        <a href="https://adsnord.com/case-studies/ads-audit-and-analysis">Ads audit and Analysis</a>
+    </div>
+</div>
+
+<script>
+    document.getElementById('tBtn').addEventListener('click', () => {
+        const body = document.documentElement;
+        const isD = body.getAttribute('data-theme') === 'dark';
+        body.setAttribute('data-theme', isD ? 'light' : 'dark');
+        document.getElementById('tIcon').className = isD ? 'fa-solid fa-sun' : 'fa-solid fa-moon';
+    });
+
+    const mToggle = document.getElementById('mToggle');
+    const mMenu = document.getElementById('mMenu');
+
+    mToggle.addEventListener('click', () => {
+        mMenu.classList.toggle('active');
+        mToggle.classList.toggle('open');
+        document.body.classList.toggle('menu-open');
+    });
+
+    document.querySelectorAll('.mobile-overlay a').forEach(link => {
+        link.addEventListener('click', () => {
+            mMenu.classList.remove('active');
+            mToggle.classList.remove('open');
+            document.body.classList.remove('menu-open');
+        });
+    });
+
+    window.addEventListener('scroll', () => {
+        const p = document.getElementById('progressBar');
+        const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+        const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+        const scrolled = (winScroll / height) * 100;
+        if(p) p.style.width = scrolled + "%";
+    });
+</script>
