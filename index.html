@@ -1,0 +1,1019 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>geminidigitalai — Google Ads Growth Agency (Next-Gen)</title>
+
+  <meta name="description" content="Performance-first Google Ads growth agency. High-converting landing pages, tracking, creatives, and automation to scale profitably." />
+  <meta name="keywords" content="Google Ads agency, PPC management, conversion tracking, landing page, performance marketing, AI marketing, geminidigitalai" />
+  <meta name="robots" content="index,follow" />
+  <link rel="canonical" href="https://example.com/" />
+
+  <meta property="og:title" content="geminidigitalai — Google Ads Growth Agency" />
+  <meta property="og:description" content="Reliable, performance-first PPC systems: ads + tracking + landing pages + optimization." />
+  <meta property="og:type" content="website" />
+  <meta name="theme-color" content="#0B1020" />
+
+  <link rel="preconnect" href="https://cdn.tailwindcss.com" crossorigin>
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['ui-sans-serif', 'system-ui', 'Inter', 'Segoe UI', 'Roboto', 'Helvetica Neue', 'Arial', 'Noto Sans'],
+            mono: ['ui-monospace','SFMono-Regular','Menlo','Monaco','Consolas','Liberation Mono','Courier New','monospace'],
+          },
+          colors: {
+            ink: { 900: '#070A12', 800: '#0B1020', 700: '#0E1630' },
+            neon: { blue: '#5CE1FF', purple: '#A78BFA', pink: '#FB7185' },
+          },
+          boxShadow: {
+            glow: '0 0 0 1px rgba(92,225,255,.15), 0 8px 40px rgba(167,139,250,.20)',
+            soft: '0 10px 40px rgba(0,0,0,.18)',
+          },
+          keyframes: {
+            floaty: { '0%,100%': { transform: 'translateY(0px)' }, '50%': { transform: 'translateY(-8px)' } },
+            shimmer: { '0%': { backgroundPosition: '0% 50%' }, '100%': { backgroundPosition: '100% 50%' } },
+            pulseRing: { '0%': { transform: 'scale(0.92)', opacity: '0.65' }, '100%': { transform: 'scale(1.18)', opacity: '0' } },
+            slideUp: { '0%': { opacity: 0, transform: 'translateY(14px)' }, '100%': { opacity: 1, transform: 'translateY(0)' } },
+          },
+          animation: {
+            floaty: 'floaty 5s ease-in-out infinite',
+            shimmer: 'shimmer 8s ease infinite',
+            pulseRing: 'pulseRing 1.6s ease-out infinite',
+            slideUp: 'slideUp .6s ease-out both',
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    :root{
+      --bg0: #0B1020;
+      --bg1: #070A12;
+      --card: rgba(255,255,255,.06);
+      --card2: rgba(255,255,255,.09);
+      --stroke: rgba(255,255,255,.12);
+      --text: rgba(255,255,255,.88);
+      --muted: rgba(255,255,255,.68);
+      --shadow: 0 10px 40px rgba(0,0,0,.25);
+      --focus: rgba(92,225,255,.35);
+
+      /* background gradients */
+      --gradA:
+        radial-gradient(900px 450px at 10% 10%, rgba(92,225,255,.18), transparent 60%),
+        radial-gradient(700px 420px at 90% 10%, rgba(167,139,250,.22), transparent 60%),
+        radial-gradient(900px 520px at 40% 100%, rgba(251,113,133,.12), transparent 60%);
+    }
+
+    .light{
+      --bg0: #F7F8FC;
+      --bg1: #FFFFFF;
+      --card: rgba(10,16,32,.06);
+      --card2: rgba(10,16,32,.08);
+      --stroke: rgba(10,16,32,.12);
+      --text: rgba(10,16,32,.90);
+      --muted: rgba(10,16,32,.68);
+      --shadow: 0 12px 40px rgba(10,16,32,.12);
+      --focus: rgba(92,225,255,.40);
+      --gradA:
+        radial-gradient(900px 450px at 10% 10%, rgba(92,225,255,.24), transparent 60%),
+        radial-gradient(700px 420px at 90% 10%, rgba(167,139,250,.22), transparent 60%),
+        radial-gradient(900px 520px at 40% 100%, rgba(251,113,133,.14), transparent 60%);
+    }
+
+    html { scroll-behavior: smooth; }
+    body{
+      background: var(--bg0);
+      color: var(--text);
+      text-rendering: optimizeLegibility;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+    ::selection{ background: rgba(167,139,250,.35); color: var(--text); }
+
+    /* ✅ Separate background layer (independent from content) */
+    .bg-layer{
+      position: fixed;
+      inset: 0;
+      z-index: -1;
+      background: var(--bg0);
+    }
+    .bg-layer:before{
+      content:"";
+      position:absolute;
+      inset:-40px;
+      background-image: var(--gradA);
+      filter: saturate(1.05);
+      opacity: .95;
+      pointer-events:none;
+    }
+    .bg-layer:after{
+      content:"";
+      position:absolute;
+      inset:0;
+      background:
+        radial-gradient(900px 500px at 50% 10%, rgba(255,255,255,.06), transparent 60%),
+        linear-gradient(to bottom, rgba(0,0,0,.15), rgba(0,0,0,.35));
+      pointer-events:none;
+      opacity: .9;
+    }
+
+    .glass{
+      background: color-mix(in srgb, var(--card) 85%, transparent);
+      border: 1px solid var(--stroke);
+      box-shadow: var(--shadow);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+    }
+    .glass-soft{
+      background: color-mix(in srgb, var(--card2) 80%, transparent);
+      border: 1px solid var(--stroke);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+    }
+
+    .chip{
+      border: 1px solid var(--stroke);
+      background: color-mix(in srgb, var(--card2) 70%, transparent);
+    }
+
+    .grad-text{
+      background: linear-gradient(90deg, #5CE1FF, #A78BFA, #FB7185);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+
+    .btn{
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: .5rem;
+      padding: .75rem 1rem;
+      border-radius: .9rem;
+      font-weight: 600;
+      transition: transform .15s ease, box-shadow .15s ease, background .15s ease, border-color .15s ease;
+      will-change: transform;
+      user-select: none;
+    }
+    .btn:active{ transform: translateY(1px); }
+    .btn-primary{
+      background: linear-gradient(120deg, rgba(92,225,255,.95), rgba(167,139,250,.95), rgba(251,113,133,.90));
+      color: #07101f;
+      box-shadow: 0 14px 40px rgba(167,139,250,.25);
+    }
+    .btn-primary:hover{ box-shadow: 0 18px 55px rgba(167,139,250,.35); transform: translateY(-1px); }
+    .btn-ghost{
+      border: 1px solid var(--stroke);
+      background: color-mix(in srgb, var(--card) 65%, transparent);
+      color: var(--text);
+    }
+    .btn-ghost:hover{ background: color-mix(in srgb, var(--card2) 75%, transparent); transform: translateY(-1px); }
+
+    .focus-ring:focus{
+      outline: none;
+      box-shadow: 0 0 0 4px var(--focus);
+      border-color: rgba(92,225,255,.45);
+    }
+
+    .nav-link{
+      color: var(--muted);
+      transition: color .15s ease, background .15s ease;
+      border-radius: .75rem;
+      padding: .5rem .75rem;
+    }
+    .nav-link:hover{ color: var(--text); background: color-mix(in srgb, var(--card2) 70%, transparent); }
+    .nav-link[aria-current="page"]{
+      color: var(--text);
+      background: color-mix(in srgb, var(--card2) 85%, transparent);
+      border: 1px solid var(--stroke);
+    }
+
+    .section{ display:none; }
+    .section.active{ display:block; animation: slideUp .55s ease-out both; }
+
+    .divider{
+      height: 1px;
+      background: linear-gradient(90deg, transparent, color-mix(in srgb, var(--stroke) 90%, transparent), transparent);
+    }
+
+    .skeleton{
+      background: linear-gradient(90deg,
+        color-mix(in srgb, var(--card2) 85%, transparent),
+        color-mix(in srgb, var(--card) 80%, transparent),
+        color-mix(in srgb, var(--card2) 85%, transparent)
+      );
+      background-size: 200% 100%;
+      animation: shimmer 1.4s linear infinite;
+      border: 1px solid var(--stroke);
+    }
+
+    /* Reduce motion */
+    @media (prefers-reduced-motion: reduce){
+      html{ scroll-behavior: auto; }
+      .section.active{ animation: none; }
+      .btn{ transition: none; }
+    }
+  </style>
+
+  <!-- Minimal schema -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "name": "geminidigitalai",
+    "url": "https://example.com/",
+    "description": "Performance-first Google Ads growth agency: tracking, landing pages, creatives, and optimization systems.",
+    "contactPoint": [{
+      "@type": "ContactPoint",
+      "contactType": "customer support",
+      "email": "hello@geminidigitalai.com"
+    }]
+  }
+  </script>
+</head>
+
+<body class="min-h-screen">
+  <!-- ✅ Separated background layer -->
+  <div class="bg-layer" aria-hidden="true"></div>
+
+  <a href="#main" class="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[80] focus:rounded-xl focus:bg-white/90 focus:px-4 focus:py-2 focus:text-black">Skip to content</a>
+
+  <!-- HEADER -->
+  <header class="sticky top-0 z-50">
+    <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 pt-4">
+      <div class="glass rounded-2xl">
+        <div class="flex items-center justify-between gap-3 px-4 py-3 sm:px-5">
+          <!-- Brand -->
+          <div class="flex items-center gap-3 min-w-0">
+            <div class="relative h-10 w-10 rounded-2xl overflow-hidden border border-white/10" aria-hidden="true">
+              <div class="absolute inset-0" style="background: linear-gradient(140deg, rgba(92,225,255,.9), rgba(167,139,250,.85), rgba(251,113,133,.75));"></div>
+              <div class="absolute inset-[2px] rounded-2xl bg-black/30"></div>
+              <div class="absolute inset-0 grid place-items-center text-[11px] font-mono font-bold tracking-wider text-white">GDAI</div>
+            </div>
+            <div class="min-w-0">
+              <div class="flex items-center gap-2">
+                <span class="font-semibold tracking-tight text-base sm:text-lg">geminidigitalai</span>
+                <span class="hidden sm:inline-flex chip rounded-full px-2 py-0.5 text-xs text-[color:var(--muted)]">Google Ads Growth</span>
+              </div>
+              <p class="hidden sm:block text-xs text-[color:var(--muted)]">Tracking • Landing Pages • PPC • CRO</p>
+            </div>
+          </div>
+
+          <!-- Desktop nav -->
+          <nav class="hidden lg:flex items-center gap-1" aria-label="Primary">
+            <a class="nav-link" href="#home" data-route="home">Home</a>
+            <a class="nav-link" href="#services" data-route="services">Services</a>
+            <a class="nav-link" href="#about" data-route="about">About</a>
+            <a class="nav-link" href="#case-studies" data-route="case-studies">Case Studies</a>
+            <a class="nav-link" href="#blog" data-route="blog">Blog</a>
+            <a class="nav-link" href="#contact" data-route="contact">Contact</a>
+          </nav>
+
+          <div class="flex items-center gap-2">
+            <!-- Theme toggle -->
+            <button id="themeToggle" class="btn btn-ghost focus-ring h-10 px-3" type="button" aria-label="Toggle dark/light mode">
+              <svg id="iconSun" class="hidden h-5 w-5" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                <path d="M12 18a6 6 0 1 0 0-12 6 6 0 0 0 0 12Z" stroke="currentColor" stroke-width="1.6"/>
+                <path d="M12 2v2M12 20v2M4 12H2M22 12h-2M5 5l1.5 1.5M17.5 17.5 19 19M19 5l-1.5 1.5M5 19l1.5-1.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>
+              </svg>
+              <svg id="iconMoon" class="h-5 w-5" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                <path d="M21 13.2A7.6 7.6 0 0 1 10.8 3a6.8 6.8 0 1 0 10.2 10.2Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/>
+              </svg>
+              <span class="hidden sm:inline text-sm text-[color:var(--muted)]" id="themeLabel">Dark</span>
+            </button>
+
+            <!-- Mobile menu -->
+            <button id="mobileMenuBtn" class="lg:hidden btn btn-ghost focus-ring h-10 px-3" type="button" aria-controls="mobileMenu" aria-expanded="false" aria-label="Open menu">
+              <svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                <path d="M4 7h16M4 12h16M4 17h16" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>
+              </svg>
+            </button>
+
+            <!-- CTA -->
+            <a class="hidden sm:inline-flex btn btn-primary focus-ring h-10 px-4" href="#contact" data-route="contact">
+              <span>Get Free Audit</span>
+              <svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                <path d="M7 17 17 7M17 7H9M17 7v8" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </a>
+          </div>
+        </div>
+
+        <!-- Mobile menu -->
+        <div id="mobileMenu" class="hidden border-t" style="border-color: var(--stroke);">
+          <div class="px-4 py-3 sm:px-5">
+            <div class="grid gap-1">
+              <a class="nav-link" href="#home" data-route="home">Home</a>
+              <a class="nav-link" href="#services" data-route="services">Services</a>
+              <a class="nav-link" href="#about" data-route="about">About</a>
+              <a class="nav-link" href="#case-studies" data-route="case-studies">Case Studies</a>
+              <a class="nav-link" href="#blog" data-route="blog">Blog</a>
+              <a class="nav-link" href="#contact" data-route="contact">Contact</a>
+            </div>
+            <div class="mt-3 flex gap-2">
+              <a class="btn btn-primary focus-ring w-full" href="#contact" data-route="contact">Get Free Audit</a>
+              <a class="btn btn-ghost focus-ring w-full" href="#services" data-route="services">View Services</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main id="main" class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 pb-20 pt-6 sm:pt-10">
+    <!-- HOME -->
+    <section id="home" class="section active" data-page="home" aria-label="Home page">
+      <div class="grid gap-6 lg:grid-cols-12 items-stretch">
+        <div class="lg:col-span-7">
+          <div class="glass rounded-3xl p-5 sm:p-7 lg:p-8 relative overflow-hidden">
+            <div class="absolute inset-0 opacity-70 pointer-events-none" aria-hidden="true"
+              style="background: radial-gradient(700px 300px at 20% 10%, rgba(92,225,255,.18), transparent 60%), radial-gradient(650px 360px at 90% 0%, rgba(167,139,250,.22), transparent 60%);"></div>
+
+            <div class="relative">
+              <div class="flex flex-wrap items-center gap-2">
+                <span class="chip rounded-full px-3 py-1 text-xs sm:text-sm text-[color:var(--muted)]">Performance-first Google Ads</span>
+                <span class="chip rounded-full px-3 py-1 text-xs sm:text-sm text-[color:var(--muted)]">Tracking + Landing Pages</span>
+                <span class="chip rounded-full px-3 py-1 text-xs sm:text-sm text-[color:var(--muted)]">CRO + Weekly Optimization</span>
+              </div>
+
+              <h1 class="mt-4 text-3xl sm:text-5xl font-semibold tracking-tight leading-[1.05]">
+                Scale profitably with <span class="grad-text">Google Ads</span> that actually converts.
+              </h1>
+
+              <p class="mt-4 text-base sm:text-lg text-[color:var(--muted)] max-w-2xl">
+                We run end-to-end PPC systems: conversion tracking, high-converting landing pages, ad creative testing,
+                and weekly optimization—so you get predictable leads & sales.
+              </p>
+
+              <div class="mt-6 flex flex-col sm:flex-row gap-3">
+                <a class="btn btn-primary focus-ring w-full sm:w-auto" href="#contact" data-route="contact">
+                  Get a Free Audit
+                  <svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                    <path d="M7 17 17 7M17 7H9M17 7v8" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>
+                </a>
+                <a class="btn btn-ghost focus-ring w-full sm:w-auto" href="#case-studies" data-route="case-studies">
+                  View Case Studies
+                  <svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                    <path d="M12 5v14M5 12h14" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+                  </svg>
+                </a>
+              </div>
+
+              <div class="mt-7 grid grid-cols-2 sm:grid-cols-4 gap-3">
+                <div class="glass-soft rounded-2xl p-3">
+                  <div class="text-xs text-[color:var(--muted)]">Launch time</div>
+                  <div class="mt-1 text-lg font-semibold">7–14 days</div>
+                </div>
+                <div class="glass-soft rounded-2xl p-3">
+                  <div class="text-xs text-[color:var(--muted)]">Optimization loop</div>
+                  <div class="mt-1 text-lg font-semibold">Weekly</div>
+                </div>
+                <div class="glass-soft rounded-2xl p-3">
+                  <div class="text-xs text-[color:var(--muted)]">Tracking</div>
+                  <div class="mt-1 text-lg font-semibold">GTM + GA4</div>
+                </div>
+                <div class="glass-soft rounded-2xl p-3">
+                  <div class="text-xs text-[color:var(--muted)]">Focus</div>
+                  <div class="mt-1 text-lg font-semibold">ROAS / CPL</div>
+                </div>
+              </div>
+
+              <div class="mt-6 glass-soft rounded-2xl p-4">
+                <div class="text-sm font-semibold">Trust signals (edit these)</div>
+                <div class="mt-2 flex flex-wrap gap-2 text-xs text-[color:var(--muted)]">
+                  <span class="chip rounded-full px-3 py-1">Transparent reporting</span>
+                  <span class="chip rounded-full px-3 py-1">No fake promises</span>
+                  <span class="chip rounded-full px-3 py-1">Data-driven decisions</span>
+                  <span class="chip rounded-full px-3 py-1">Privacy-aware setup</span>
+                </div>
+              </div>
+
+            </div>
+          </div>
+        </div>
+
+        <div class="lg:col-span-5">
+          <div class="glass rounded-3xl p-5 sm:p-7 h-full relative overflow-hidden">
+            <div class="absolute -right-10 -top-10 h-56 w-56 rounded-full opacity-30" aria-hidden="true" style="background: radial-gradient(circle at 30% 30%, rgba(92,225,255,.8), transparent 60%); filter: blur(2px);"></div>
+            <div class="absolute -left-12 -bottom-12 h-64 w-64 rounded-full opacity-30" aria-hidden="true" style="background: radial-gradient(circle at 30% 30%, rgba(167,139,250,.8), transparent 60%);"></div>
+
+            <div class="relative">
+              <div class="flex items-center justify-between gap-2">
+                <div>
+                  <h2 class="text-lg font-semibold">Google Ads System</h2>
+                  <p class="text-sm text-[color:var(--muted)]">From tracking → creative testing → scaling.</p>
+                </div>
+                <span class="chip rounded-full px-3 py-1 text-xs text-[color:var(--muted)] font-mono">v2.0</span>
+              </div>
+
+              <div class="mt-5 rounded-3xl border p-4 sm:p-5 relative overflow-hidden" style="border-color: var(--stroke); background: color-mix(in srgb, var(--card2) 70%, transparent);">
+                <div class="text-xs text-[color:var(--muted)] font-mono">/playbook/ppc-growth</div>
+
+                <div class="mt-4 grid gap-3">
+                  <div class="glass-soft rounded-2xl p-4">
+                    <div class="flex items-center justify-between">
+                      <div class="font-semibold">1) Tracking & Signals</div>
+                      <div class="text-xs text-[color:var(--muted)]">Foundation</div>
+                    </div>
+                    <p class="mt-2 text-sm text-[color:var(--muted)]">GA4, GTM, conversion events, phone/call tracking, quality checks.</p>
+                  </div>
+
+                  <div class="glass-soft rounded-2xl p-4 animate-floaty" style="animation: floaty 6s ease-in-out infinite;">
+                    <div class="flex items-center justify-between">
+                      <div class="font-semibold">2) Ads + Creative Testing</div>
+                      <div class="text-xs text-[color:var(--muted)]">Iteration</div>
+                    </div>
+                    <div class="mt-2 grid grid-cols-3 gap-2">
+                      <div class="skeleton h-8 rounded-xl"></div>
+                      <div class="skeleton h-8 rounded-xl"></div>
+                      <div class="skeleton h-8 rounded-xl"></div>
+                    </div>
+                    <p class="mt-2 text-sm text-[color:var(--muted)]">Angles, offers, hooks, and ad formats—tested fast.</p>
+                  </div>
+
+                  <div class="glass-soft rounded-2xl p-4">
+                    <div class="flex items-center justify-between">
+                      <div class="font-semibold">3) Landing Page + CRO</div>
+                      <div class="text-xs text-[color:var(--muted)]">Conversion</div>
+                    </div>
+                    <p class="mt-2 text-sm text-[color:var(--muted)]">Message-match pages, speed-first UX, lead forms, trust elements.</p>
+                  </div>
+                </div>
+              </div>
+
+              <div class="mt-5 flex flex-col sm:flex-row gap-3">
+                <a class="btn btn-ghost focus-ring w-full" href="#services" data-route="services">View Services</a>
+                <a class="btn btn-primary focus-ring w-full" href="#contact" data-route="contact">Request Proposal</a>
+              </div>
+
+              <div class="mt-5 glass-soft rounded-2xl p-4">
+                <div class="text-sm font-semibold">What you get (typical)</div>
+                <ul class="mt-2 space-y-2 text-sm text-[color:var(--muted)]">
+                  <li>• Account audit + action plan</li>
+                  <li>• Campaign structure + keywords</li>
+                  <li>• Ad copy + creative test plan</li>
+                  <li>• Conversion tracking & reporting</li>
+                </ul>
+              </div>
+
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Next section teaser -->
+      <div class="mt-8 glass rounded-3xl p-5 sm:p-7">
+        <div class="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-4">
+          <div>
+            <h2 class="text-2xl sm:text-3xl font-semibold tracking-tight">Services that drive measurable growth</h2>
+            <p class="mt-2 text-[color:var(--muted)] max-w-2xl">
+              Our approach is simple: clean tracking, clear offers, fast pages, continuous testing, and honest reporting.
+            </p>
+          </div>
+          <div class="flex gap-2">
+            <a class="btn btn-ghost focus-ring px-3 h-10" href="#services" data-route="services">Explore</a>
+            <a class="btn btn-primary focus-ring px-3 h-10" href="#contact" data-route="contact">Start</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SERVICES -->
+    <section id="services" class="section" data-page="services" aria-label="Services page">
+      <div class="glass rounded-3xl p-5 sm:p-7 lg:p-8">
+        <div class="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-4">
+          <div>
+            <span class="chip rounded-full px-3 py-1 text-xs text-[color:var(--muted)]">Services</span>
+            <h1 class="mt-4 text-3xl sm:text-5xl font-semibold tracking-tight">Google Ads services built for scale</h1>
+            <p class="mt-3 text-[color:var(--muted)] max-w-2xl">Pick one or combine into a complete PPC growth system.</p>
+          </div>
+          <div class="flex flex-col sm:flex-row gap-3">
+            <a class="btn btn-ghost focus-ring" href="#case-studies" data-route="case-studies">See Results</a>
+            <a class="btn btn-primary focus-ring" href="#contact" data-route="contact">Get a proposal</a>
+          </div>
+        </div>
+
+        <div class="mt-6 grid gap-4 md:grid-cols-2 lg:grid-cols-3">
+          <div class="glass-soft rounded-3xl p-5">
+            <div class="font-semibold text-lg">Google Ads Management</div>
+            <p class="mt-2 text-sm text-[color:var(--muted)]">Search / Performance Max / Remarketing with weekly optimization.</p>
+            <div class="mt-3 flex flex-wrap gap-2 text-xs text-[color:var(--muted)]">
+              <span class="chip rounded-full px-3 py-1">Campaign structure</span>
+              <span class="chip rounded-full px-3 py-1">Negative keywords</span>
+              <span class="chip rounded-full px-3 py-1">Bid strategy</span>
+            </div>
+          </div>
+
+          <div class="glass-soft rounded-3xl p-5">
+            <div class="font-semibold text-lg">Tracking & Analytics (GA4 + GTM)</div>
+            <p class="mt-2 text-sm text-[color:var(--muted)]">Reliable conversion tracking so decisions are data-backed.</p>
+            <div class="mt-3 flex flex-wrap gap-2 text-xs text-[color:var(--muted)]">
+              <span class="chip rounded-full px-3 py-1">Events</span>
+              <span class="chip rounded-full px-3 py-1">Enhanced conversions</span>
+              <span class="chip rounded-full px-3 py-1">QA + audits</span>
+            </div>
+          </div>
+
+          <div class="glass-soft rounded-3xl p-5">
+            <div class="font-semibold text-lg">Landing Page + CRO</div>
+            <p class="mt-2 text-sm text-[color:var(--muted)]">Message-match pages that load fast and convert more.</p>
+            <div class="mt-3 flex flex-wrap gap-2 text-xs text-[color:var(--muted)]">
+              <span class="chip rounded-full px-3 py-1">Speed</span>
+              <span class="chip rounded-full px-3 py-1">Trust blocks</span>
+              <span class="chip rounded-full px-3 py-1">A/B ideas</span>
+            </div>
+          </div>
+
+          <div class="glass-soft rounded-3xl p-5">
+            <div class="font-semibold text-lg">Creative & Copy Testing</div>
+            <p class="mt-2 text-sm text-[color:var(--muted)]">Hooks, angles, and creatives tested systematically.</p>
+            <div class="mt-3 flex flex-wrap gap-2 text-xs text-[color:var(--muted)]">
+              <span class="chip rounded-full px-3 py-1">Ad variants</span>
+              <span class="chip rounded-full px-3 py-1">Offer angles</span>
+              <span class="chip rounded-full px-3 py-1">Iteration</span>
+            </div>
+          </div>
+
+          <div class="glass-soft rounded-3xl p-5">
+            <div class="font-semibold text-lg">Remarketing & Funnels</div>
+            <p class="mt-2 text-sm text-[color:var(--muted)]">Recover lost visitors and improve lead quality.</p>
+            <div class="mt-3 flex flex-wrap gap-2 text-xs text-[color:var(--muted)]">
+              <span class="chip rounded-full px-3 py-1">Segments</span>
+              <span class="chip rounded-full px-3 py-1">Nurture</span>
+              <span class="chip rounded-full px-3 py-1">Lead scoring</span>
+            </div>
+          </div>
+
+          <div class="glass-soft rounded-3xl p-5">
+            <div class="font-semibold text-lg">Audit & Growth Roadmap</div>
+            <p class="mt-2 text-sm text-[color:var(--muted)]">If you’re unsure where to start, begin with clarity.</p>
+            <div class="mt-3 flex flex-wrap gap-2 text-xs text-[color:var(--muted)]">
+              <span class="chip rounded-full px-3 py-1">Account audit</span>
+              <span class="chip rounded-full px-3 py-1">Quick wins</span>
+              <span class="chip rounded-full px-3 py-1">90-day plan</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="mt-6 divider"></div>
+
+        <div class="mt-6 glass-soft rounded-3xl p-5 sm:p-6">
+          <h2 class="text-xl font-semibold">How we work (simple & reliable)</h2>
+          <div class="mt-4 grid gap-3 md:grid-cols-3">
+            <div class="rounded-2xl border p-4" style="border-color: var(--stroke); background: color-mix(in srgb, var(--card2) 70%, transparent);">
+              <div class="font-semibold">1) Audit</div>
+              <p class="mt-2 text-sm text-[color:var(--muted)]">We identify tracking issues, wasted spend, and quick wins.</p>
+            </div>
+            <div class="rounded-2xl border p-4" style="border-color: var(--stroke); background: color-mix(in srgb, var(--card2) 70%, transparent);">
+              <div class="font-semibold">2) Build</div>
+              <p class="mt-2 text-sm text-[color:var(--muted)]">Fix tracking, structure campaigns, and launch creative tests.</p>
+            </div>
+            <div class="rounded-2xl border p-4" style="border-color: var(--stroke); background: color-mix(in srgb, var(--card2) 70%, transparent);">
+              <div class="font-semibold">3) Optimize</div>
+              <p class="mt-2 text-sm text-[color:var(--muted)]">Weekly optimization + reporting you can trust.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ABOUT -->
+    <section id="about" class="section" data-page="about" aria-label="About page">
+      <div class="glass rounded-3xl p-5 sm:p-7 lg:p-8 relative overflow-hidden">
+        <div class="absolute inset-0 opacity-70 pointer-events-none" aria-hidden="true"
+          style="background: radial-gradient(900px 400px at 15% 10%, rgba(167,139,250,.22), transparent 60%), radial-gradient(800px 380px at 90% 30%, rgba(92,225,255,.18), transparent 60%);"></div>
+
+        <div class="relative grid gap-6 lg:grid-cols-12">
+          <div class="lg:col-span-7">
+            <span class="chip rounded-full px-3 py-1 text-xs text-[color:var(--muted)]">About</span>
+            <h1 class="mt-4 text-3xl sm:text-5xl font-semibold tracking-tight leading-[1.05]">
+              We don’t sell hype—only <span class="grad-text">systems</span> that perform.
+            </h1>
+            <p class="mt-4 text-[color:var(--muted)] text-base sm:text-lg max-w-2xl">
+              geminidigitalai is built around reliability: clean tracking, honest reporting, and disciplined testing.
+              Our job is to help you scale with confidence.
+            </p>
+
+            <div class="mt-6 grid gap-3 sm:grid-cols-2">
+              <div class="glass-soft rounded-2xl p-5">
+                <div class="text-sm text-[color:var(--muted)]">What we measure</div>
+                <div class="mt-1 font-semibold text-lg">CPL, ROAS, CAC</div>
+                <p class="mt-2 text-sm text-[color:var(--muted)]">No vanity metrics. We focus on what matters.</p>
+              </div>
+              <div class="glass-soft rounded-2xl p-5">
+                <div class="text-sm text-[color:var(--muted)]">What we protect</div>
+                <div class="mt-1 font-semibold text-lg">Brand + budget</div>
+                <p class="mt-2 text-sm text-[color:var(--muted)]">Guardrails, QA, and transparency.</p>
+              </div>
+            </div>
+
+            <div class="mt-6 flex flex-col sm:flex-row gap-3">
+              <a class="btn btn-primary focus-ring w-full sm:w-auto" href="#contact" data-route="contact">Talk to us</a>
+              <a class="btn btn-ghost focus-ring w-full sm:w-auto" href="#case-studies" data-route="case-studies">See case studies</a>
+            </div>
+          </div>
+
+          <div class="lg:col-span-5">
+            <div class="glass-soft rounded-3xl p-5 sm:p-6">
+              <h2 class="text-xl font-semibold">Trust & process</h2>
+              <ul class="mt-4 grid gap-2 text-sm text-[color:var(--muted)]">
+                <li>• Clear scope & deliverables</li>
+                <li>• Tracking QA before scaling</li>
+                <li>• Weekly reporting (what changed, why)</li>
+                <li>• Documented learnings and next tests</li>
+              </ul>
+
+              <div class="mt-6 divider"></div>
+
+              <div class="mt-6 rounded-2xl border p-4" style="border-color: var(--stroke); background: color-mix(in srgb, var(--card2) 70%, transparent);">
+                <div class="font-semibold">Want a quick plan?</div>
+                <p class="mt-2 text-sm text-[color:var(--muted)]">We can review your account and send a priority checklist.</p>
+                <a class="mt-4 btn btn-primary focus-ring w-full" href="#contact" data-route="contact">Request audit</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CASE STUDIES -->
+    <section id="case-studies" class="section" data-page="case-studies" aria-label="Case Studies page">
+      <div class="glass rounded-3xl p-5 sm:p-7 lg:p-8">
+        <div class="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-4">
+          <div>
+            <span class="chip rounded-full px-3 py-1 text-xs text-[color:var(--muted)]">Case Studies</span>
+            <h1 class="mt-4 text-3xl sm:text-5xl font-semibold tracking-tight">Proof & outcomes (replace with your real data)</h1>
+            <p class="mt-3 text-[color:var(--muted)] max-w-2xl">
+              নিচের স্টাডিগুলো ডেমো। তুমি তোমার আসল CPL/ROAS, ইন্ডাস্ট্রি, এবং screenshots বসিয়ে দেবে।
+            </p>
+          </div>
+          <a class="btn btn-primary focus-ring" href="#contact" data-route="contact">Get results like this</a>
+        </div>
+
+        <div class="mt-6 grid gap-4 md:grid-cols-2 lg:grid-cols-3">
+          <div class="glass-soft rounded-3xl p-5">
+            <div class="text-xs text-[color:var(--muted)]">Local Service Business</div>
+            <div class="mt-1 text-lg font-semibold">CPL ↓ 38% in 30 days</div>
+            <p class="mt-2 text-sm text-[color:var(--muted)]">Fixed tracking, rebuilt campaign structure, added landing page trust blocks.</p>
+            <div class="mt-3 flex flex-wrap gap-2 text-xs text-[color:var(--muted)]">
+              <span class="chip rounded-full px-3 py-1">GA4/GTM</span>
+              <span class="chip rounded-full px-3 py-1">Search</span>
+              <span class="chip rounded-full px-3 py-1">CRO</span>
+            </div>
+          </div>
+
+          <div class="glass-soft rounded-3xl p-5">
+            <div class="text-xs text-[color:var(--muted)]">Ecommerce</div>
+            <div class="mt-1 text-lg font-semibold">ROAS ↑ 1.6×</div>
+            <p class="mt-2 text-sm text-[color:var(--muted)]">Product feed cleanup + creative testing + remarketing segmentation.</p>
+            <div class="mt-3 flex flex-wrap gap-2 text-xs text-[color:var(--muted)]">
+              <span class="chip rounded-full px-3 py-1">PMax</span>
+              <span class="chip rounded-full px-3 py-1">Remarketing</span>
+              <span class="chip rounded-full px-3 py-1">Creative</span>
+            </div>
+          </div>
+
+          <div class="glass-soft rounded-3xl p-5">
+            <div class="text-xs text-[color:var(--muted)]">B2B Lead Gen</div>
+            <div class="mt-1 text-lg font-semibold">Qualified leads ↑ 52%</div>
+            <p class="mt-2 text-sm text-[color:var(--muted)]">Offer messaging + landing page + negative keywords + weekly testing.</p>
+            <div class="mt-3 flex flex-wrap gap-2 text-xs text-[color:var(--muted)]">
+              <span class="chip rounded-full px-3 py-1">Search</span>
+              <span class="chip rounded-full px-3 py-1">LP</span>
+              <span class="chip rounded-full px-3 py-1">Reporting</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="mt-6 divider"></div>
+
+        <div class="mt-6 glass-soft rounded-3xl p-5 sm:p-6">
+          <h2 class="text-xl font-semibold">What we document (so it’s reliable)</h2>
+          <div class="mt-3 grid gap-3 md:grid-cols-3 text-sm text-[color:var(--muted)]">
+            <div class="rounded-2xl border p-4" style="border-color: var(--stroke);">• What changed</div>
+            <div class="rounded-2xl border p-4" style="border-color: var(--stroke);">• Why it changed</div>
+            <div class="rounded-2xl border p-4" style="border-color: var(--stroke);">• What we test next</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- BLOG -->
+    <section id="blog" class="section" data-page="blog" aria-label="Blog page">
+      <div class="glass rounded-3xl p-5 sm:p-7 lg:p-8">
+        <div class="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-4">
+          <div>
+            <span class="chip rounded-full px-3 py-1 text-xs text-[color:var(--muted)]">Blog</span>
+            <h1 class="mt-4 text-3xl sm:text-5xl font-semibold tracking-tight">Google Ads playbooks & practical guides</h1>
+            <p class="mt-3 text-[color:var(--muted)] max-w-2xl">Short, clear guides you can actually apply.</p>
+          </div>
+          <a class="btn btn-primary focus-ring" href="#contact" data-route="contact">Ask for a strategy</a>
+        </div>
+
+        <div class="mt-6 grid gap-4 md:grid-cols-2 lg:grid-cols-3">
+          <article class="glass-soft rounded-3xl p-5">
+            <div class="text-xs text-[color:var(--muted)]">Guide • 6 min</div>
+            <h3 class="mt-2 text-lg font-semibold">GA4 + GTM Tracking Checklist</h3>
+            <p class="mt-2 text-sm text-[color:var(--muted)]">A practical checklist to ensure conversion data is reliable.</p>
+          </article>
+          <article class="glass-soft rounded-3xl p-5">
+            <div class="text-xs text-[color:var(--muted)]">How-to • 7 min</div>
+            <h3 class="mt-2 text-lg font-semibold">How to Lower CPL Without Killing Volume</h3>
+            <p class="mt-2 text-sm text-[color:var(--muted)]">A step-by-step optimization loop used by performance teams.</p>
+          </article>
+          <article class="glass-soft rounded-3xl p-5">
+            <div class="text-xs text-[color:var(--muted)]">Playbook • 8 min</div>
+            <h3 class="mt-2 text-lg font-semibold">Landing Page Message-Match Formula</h3>
+            <p class="mt-2 text-sm text-[color:var(--muted)]">Turn clicks into leads with clearer offer + trust + speed.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- CONTACT -->
+    <section id="contact" class="section" data-page="contact" aria-label="Contact page">
+      <div class="glass rounded-3xl p-5 sm:p-7 lg:p-8">
+        <div class="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-4">
+          <div>
+            <span class="chip rounded-full px-3 py-1 text-xs text-[color:var(--muted)]">Contact</span>
+            <h1 class="mt-4 text-3xl sm:text-5xl font-semibold tracking-tight">Get a free Google Ads audit</h1>
+            <p class="mt-3 text-[color:var(--muted)] max-w-2xl">Tell us your goal, budget range, and market. We’ll reply with a clear plan.</p>
+          </div>
+          <div class="flex flex-col sm:flex-row gap-3">
+            <a class="btn btn-ghost focus-ring" href="mailto:hello@geminidigitalai.com">hello@geminidigitalai.com</a>
+            <a class="btn btn-primary focus-ring" target="_blank" rel="noopener" href="https://wa.me/15551234567?text=Hi%20geminidigitalai%2C%20I%27d%20like%20a%20Google%20Ads%20audit." aria-label="Chat on WhatsApp">
+              WhatsApp
+            </a>
+          </div>
+        </div>
+
+        <div class="mt-6 grid gap-4 lg:grid-cols-12">
+          <div class="lg:col-span-7">
+            <div class="glass-soft rounded-3xl p-5 sm:p-6">
+              <h2 class="text-xl font-semibold">Contact form (demo)</h2>
+              <p class="mt-2 text-sm text-[color:var(--muted)]">Elementor-এ বসালে তুমি এটা Form plugin দিয়ে করতে পারবে।</p>
+
+              <form id="contactForm" class="mt-5 grid gap-3" novalidate>
+                <div class="grid gap-3 sm:grid-cols-2">
+                  <label class="grid gap-1">
+                    <span class="text-sm text-[color:var(--muted)]">Full name</span>
+                    <input class="focus-ring w-full rounded-2xl border bg-transparent px-4 py-3 text-sm" style="border-color: var(--stroke);" name="name" autocomplete="name" required placeholder="Your name" />
+                  </label>
+                  <label class="grid gap-1">
+                    <span class="text-sm text-[color:var(--muted)]">Work email</span>
+                    <input class="focus-ring w-full rounded-2xl border bg-transparent px-4 py-3 text-sm" style="border-color: var(--stroke);" name="email" autocomplete="email" required type="email" placeholder="you@company.com" />
+                  </label>
+                </div>
+
+                <label class="grid gap-1">
+                  <span class="text-sm text-[color:var(--muted)]">Goal</span>
+                  <select class="focus-ring w-full rounded-2xl border bg-transparent px-4 py-3 text-sm" style="border-color: var(--stroke);" name="need" required>
+                    <option value="">Select a topic</option>
+                    <option>Google Ads Management</option>
+                    <option>Tracking Setup (GA4 + GTM)</option>
+                    <option>Landing Page + CRO</option>
+                    <option>Remarketing / Funnel</option>
+                    <option>Audit + Strategy</option>
+                  </select>
+                </label>
+
+                <label class="grid gap-1">
+                  <span class="text-sm text-[color:var(--muted)]">Project details</span>
+                  <textarea class="focus-ring w-full rounded-2xl border bg-transparent px-4 py-3 text-sm min-h-[130px]" style="border-color: var(--stroke);" name="message" required placeholder="Goal, budget range, niche, location, timeframe..."></textarea>
+                </label>
+
+                <div class="flex flex-col sm:flex-row gap-3">
+                  <button class="btn btn-primary focus-ring w-full sm:w-auto" type="submit">Send</button>
+                  <button class="btn btn-ghost focus-ring w-full sm:w-auto" type="button" id="contactDemoFill">Fill sample</button>
+                </div>
+
+                <div id="contactToast" class="hidden rounded-2xl border p-4 text-sm" style="border-color: var(--stroke); background: color-mix(in srgb, var(--card2) 80%, transparent);"></div>
+                <p class="text-xs text-[color:var(--muted)]">Demo only (local save). Production-এ server/form provider ব্যবহার করবে।</p>
+              </form>
+            </div>
+          </div>
+
+          <div class="lg:col-span-5">
+            <div class="glass-soft rounded-3xl p-5 sm:p-6">
+              <h2 class="text-xl font-semibold">Quick links</h2>
+              <div class="mt-4 grid gap-3">
+                <a class="btn btn-ghost focus-ring w-full justify-between" href="#services" data-route="services">
+                  <span>Services</span>
+                  <span class="text-xs text-[color:var(--muted)]">What we offer</span>
+                </a>
+                <a class="btn btn-ghost focus-ring w-full justify-between" href="#case-studies" data-route="case-studies">
+                  <span>Case Studies</span>
+                  <span class="text-xs text-[color:var(--muted)]">Results</span>
+                </a>
+                <a class="btn btn-ghost focus-ring w-full justify-between" href="#blog" data-route="blog">
+                  <span>Blog</span>
+                  <span class="text-xs text-[color:var(--muted)]">Guides</span>
+                </a>
+              </div>
+
+              <div class="mt-6 divider"></div>
+
+              <div class="mt-6 rounded-3xl border p-5" style="border-color: var(--stroke); background: linear-gradient(135deg, rgba(92,225,255,.10), rgba(167,139,250,.10), rgba(251,113,133,.08));">
+                <div class="font-semibold">Reliability promise</div>
+                <p class="mt-2 text-sm text-[color:var(--muted)]">
+                  We’ll tell you what’s working, what’s not, and what we’ll test next. No confusing reports.
+                </p>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="mt-10">
+      <div class="glass rounded-3xl p-5 sm:p-7">
+        <div class="grid gap-6 md:grid-cols-12">
+          <div class="md:col-span-5">
+            <div class="font-semibold text-lg">geminidigitalai</div>
+            <p class="mt-2 text-sm text-[color:var(--muted)]">
+              Google Ads growth systems: tracking, landing pages, creative testing, and optimization.
+            </p>
+            <div class="mt-4 flex flex-wrap gap-2 text-xs text-[color:var(--muted)]">
+              <span class="chip rounded-full px-3 py-1">Transparent reporting</span>
+              <span class="chip rounded-full px-3 py-1">Weekly optimization</span>
+              <span class="chip rounded-full px-3 py-1">Data-first decisions</span>
+            </div>
+          </div>
+
+          <div class="md:col-span-3">
+            <div class="text-sm font-semibold">Menu</div>
+            <div class="mt-3 grid gap-2 text-sm text-[color:var(--muted)]">
+              <a class="nav-link w-fit" href="#home" data-route="home">Home</a>
+              <a class="nav-link w-fit" href="#services" data-route="services">Services</a>
+              <a class="nav-link w-fit" href="#about" data-route="about">About</a>
+              <a class="nav-link w-fit" href="#case-studies" data-route="case-studies">Case Studies</a>
+              <a class="nav-link w-fit" href="#blog" data-route="blog">Blog</a>
+              <a class="nav-link w-fit" href="#contact" data-route="contact">Contact</a>
+            </div>
+          </div>
+
+          <div class="md:col-span-4">
+            <div class="text-sm font-semibold">Legal & Social</div>
+
+            <div class="mt-3 grid gap-2 text-sm text-[color:var(--muted)]">
+              <!-- ✅ Replace these URLs -->
+              <a class="nav-link w-fit" href="/terms" target="_blank" rel="noopener">Terms & Conditions</a>
+              <a class="nav-link w-fit" href="/privacy" target="_blank" rel="noopener">Privacy Policy</a>
+            </div>
+
+            <div class="mt-4 text-xs text-[color:var(--muted)]">Social links (replace URLs):</div>
+            <div class="mt-2 flex flex-wrap gap-2">
+              <a class="btn btn-ghost focus-ring h-10 px-4" href="https://facebook.com/" target="_blank" rel="noopener">Facebook</a>
+              <a class="btn btn-ghost focus-ring h-10 px-4" href="https://instagram.com/" target="_blank" rel="noopener">Instagram</a>
+              <a class="btn btn-ghost focus-ring h-10 px-4" href="https://linkedin.com/" target="_blank" rel="noopener">LinkedIn</a>
+              <a class="btn btn-ghost focus-ring h-10 px-4" href="https://youtube.com/" target="_blank" rel="noopener">YouTube</a>
+              <a class="btn btn-ghost focus-ring h-10 px-4" href="https://tiktok.com/" target="_blank" rel="noopener">TikTok</a>
+              <a class="btn btn-ghost focus-ring h-10 px-4" href="https://twitter.com/" target="_blank" rel="noopener">X</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="mt-6 divider"></div>
+
+        <div class="mt-5 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
+          <p class="text-xs text-[color:var(--muted)]">© <span id="year"></span> geminidigitalai. All rights reserved.</p>
+          <p class="text-xs text-[color:var(--muted)]">Built with modern UX, performance & conversion-first structure.</p>
+        </div>
+      </div>
+    </footer>
+  </main>
+
+  <script>
+    // ---------- Theme ----------
+    const root = document.documentElement;
+    const themeToggle = document.getElementById('themeToggle');
+    const themeLabel = document.getElementById('themeLabel');
+    const iconSun = document.getElementById('iconSun');
+    const iconMoon = document.getElementById('iconMoon');
+
+    function applyTheme(mode){
+      if(mode === 'light'){
+        root.classList.add('light');
+        root.classList.remove('dark');
+        iconSun.classList.remove('hidden');
+        iconMoon.classList.add('hidden');
+        themeLabel.textContent = 'Light';
+        document.querySelector('meta[name="theme-color"]').setAttribute('content', '#F7F8FC');
+      } else {
+        root.classList.remove('light');
+        root.classList.add('dark');
+        iconSun.classList.add('hidden');
+        iconMoon.classList.remove('hidden');
+        themeLabel.textContent = 'Dark';
+        document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0B1020');
+      }
+      localStorage.setItem('gdai_theme', mode);
+    }
+
+    function initTheme(){
+      const saved = localStorage.getItem('gdai_theme');
+      if(saved) return applyTheme(saved);
+      const prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+      applyTheme(prefersDark ? 'dark' : 'light');
+    }
+
+    themeToggle.addEventListener('click', () => {
+      const isLight = root.classList.contains('light');
+      applyTheme(isLight ? 'dark' : 'light');
+    });
+
+    initTheme();
+
+    // ---------- SPA-like routing ----------
+    const sections = Array.from(document.querySelectorAll('.section'));
+    const mobileMenu = document.getElementById('mobileMenu');
+    const mobileBtn = document.getElementById('mobileMenuBtn');
+
+    const pageTitles = {
+      home: 'geminidigitalai — Google Ads Growth Agency',
+      services: 'Services — geminidigitalai',
+      about: 'About — geminidigitalai',
+      'case-studies': 'Case Studies — geminidigitalai',
+      blog: 'Blog — geminidigitalai',
+      contact: 'Contact — geminidigitalai'
+    };
+
+    function setActiveRoute(route){
+      sections.forEach(s => s.classList.toggle('active', s.dataset.page === route));
+      document.querySelectorAll('a[data-route]').forEach(a =>
+        a.setAttribute('aria-current', a.dataset.route === route ? 'page' : 'false')
+      );
+      if(mobileMenu && !mobileMenu.classList.contains('hidden')) toggleMobileMenu(false);
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+      document.title = pageTitles[route] || pageTitles.home;
+    }
+
+    function routeFromHash(){
+      const h = (location.hash || '#home').replace('#','').trim();
+      const allowed = ['home','services','about','case-studies','blog','contact'];
+      const route = allowed.includes(h) ? h : 'home';
+      setActiveRoute(route);
+    }
+
+    window.addEventListener('hashchange', routeFromHash);
+
+    document.addEventListener('click', (e) => {
+      const a = e.target.closest('a[data-route]');
+      if(!a) return;
+      e.preventDefault();
+      const route = a.dataset.route;
+      history.pushState(null, '', `#${route}`);
+      routeFromHash();
+    });
+
+    window.addEventListener('popstate', routeFromHash);
+
+    function toggleMobileMenu(force){
+      const open = typeof force === 'boolean' ? force : mobileMenu.classList.contains('hidden');
+      mobileMenu.classList.toggle('hidden', !open);
+      mobileBtn.setAttribute('aria-expanded', open ? 'true' : 'false');
+    }
+    mobileBtn.addEventListener('click', () => toggleMobileMenu());
+
+    // Footer year
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    // Contact demo
+    const toastEl = document.getElementById('contactToast');
+    function showInlineToast(msg){
+      toastEl.textContent = msg;
+      toastEl.classList.remove('hidden');
+      setTimeout(() => toastEl.classList.add('hidden'), 4200);
+    }
+
+    document.getElementById('contactDemoFill').addEventListener('click', () => {
+      const form = document.getElementById('contactForm');
+      form.name.value = 'Jordan Lee';
+      form.email.value = 'jordan@company.com';
+      form.need.value = 'Google Ads Management';
+      form.message.value = 'Hi — I want to scale leads using Google Ads. Budget: $1k–$3k/month. Niche: Local services. Timeline: 2–4 weeks.';
+    });
+
+    document.getElementById('contactForm').addEventListener('submit', (e) => {
+      e.preventDefault();
+      showInlineToast('Message sent (demo). Production-এ form integration লাগবে।');
+      e.target.reset();
+    });
+
+    // Ensure route on load
+    if(!location.hash) history.replaceState(null, '', '#home');
+    routeFromHash();
+  </script>
+</body>
+</html>
