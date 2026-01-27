@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Google Ads Management Services for Businesses | Hire a Google Ads Expert</title>
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&display=swap" rel="stylesheet">
+
+    <style>
+        /* 1. MASTER THEME VARIABLES */
+        :root {
+            --bg-master: #ffffff; 
+            --text-main: #0f172a;    
+            --text-muted: #475569;   
+            --accent: #ff9900; 
+            --accent-hover: #e68a00;
+            --g-blue: #1A73E8; 
+            --card-glass: rgba(255, 255, 255, 0.9);
+            --card-border: rgba(0, 0, 0, 0.1);
+            --blob-opacity: 0.15;
+            --transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+        }
+
+        /* Responsive to your header toggle class */
+        body.dark-mode {
+            --bg-master: #0f172a;
+            --text-main: #f8fafc;
+            --text-muted: #cbd5e1;
+            --card-glass: rgba(30, 41, 59, 0.7);
+            --card-border: rgba(255, 255, 255, 0.1);
+            --blob-opacity: 0.3;
+        }
+
+        /* 2. GLOBAL RESET */
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { 
+            background-color: var(--bg-master); 
+            font-family: 'Inter', sans-serif; 
+            color: var(--text-main);
+            transition: background-color 0.4s ease, color 0.4s ease;
+            overflow-x: hidden;
+            line-height: 1.6;
+        }
+
+        /* AURORA BACKGROUND */
+        .aurora-container { position: fixed; inset: 0; z-index: 0; pointer-events: none; opacity: var(--blob-opacity); filter: blur(100px); }
+        .blob { position: absolute; width: 60vw; height: 60vw; border-radius: 50%; }
+        .b-orange { background: var(--accent); top: -10%; left: -10%; }
+        .b-blue { background: var(--g-blue); bottom: -10%; right: -10%; }
+
+        section { position: relative; z-index: 10; width: 100%; padding: 80px 24px; max-width: 1200px; margin: 0 auto; clear: both; }
+
+        /* 3. HERO SECTION */
+        .hero-section { min-height: 70vh; display: flex; align-items: center; }
+        .hero-eyebrow { display: inline-block; background: rgba(255, 153, 0, 0.1); color: var(--accent); padding: 8px 16px; border-radius: 50px; font-weight: 700; margin-bottom: 20px; text-transform: uppercase; font-size: 14px; }
+        .hero-content h1 { font-size: clamp(2.2rem, 6vw, 3.8rem); font-weight: 900; line-height: 1.1; margin-bottom: 25px; }
+        .hero-content h1 strong { color: var(--accent); }
+        .hero-content p { font-size: 1.2rem; color: var(--text-muted); max-width: 700px; margin-bottom: 30px; }
+        
+        .hero-cta-group { display: flex; gap: 15px; flex-wrap: wrap; }
+        .btn-primary { background:#0000FF; color: var(--bg-master); padding: 18px 32px; border-radius: 12px; text-decoration: none; font-weight: 700; transition: transform 0.2s; text-align: center;}
+        .btn-secondary { border: 2px solid var(--card-border);background:#34AD3E; padding: 18px 32px; border-radius: 12px; text-decoration: none; font-weight: 700; color: var(--text-main); text-align: center; }
+        .btn-primary:hover { transform: translateY(-3px); background: var(--accent); color: white; }
+
+        /* EXTERNAL LINK STYLES */
+        .external-link-box { margin-top: 30px; font-size: 0.95rem; color: var(--text-muted); }
+        .external-link-box a { color: var(--g-blue); font-weight: 700; text-decoration: none; border-bottom: 1px solid transparent; }
+        .external-link-box a:hover { border-bottom: 1px solid var(--g-blue); }
+
+        /* 4. SERVICE GRID (Cards) */
+        .service-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 25px; margin-top: 40px; }
+        .service-card { background: var(--card-glass); border: 1px solid var(--card-border); padding: 40px; border-radius: 24px; backdrop-filter: blur(10px); transition: var(--transition); display: flex; flex-direction: column; }
+        .service-card:hover { transform: translateY(-10px); border-color: var(--accent); box-shadow: 0 20px 40px rgba(0,0,0,0.05); }
+        .service-card h3 { margin-bottom: 15px; font-weight: 800; line-height: 1.3; }
+        .service-card p { flex-grow: 1; color: var(--text-muted); }
+        .card-link { color: var(--accent); text-decoration: none; font-weight: 700; margin-top: 20px; }
+
+        /* 5. PROCESS SECTION */
+        .section-title { font-size: 2.5rem; font-weight: 800; margin-bottom: 15px; text-align: center; }
+        .process-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 40px; margin-top: 50px; }
+        .process-item { position: relative; padding: 30px; background: var(--card-glass); border-radius: 20px; border-left: 5px solid var(--accent); }
+        .step-num { font-size: 3rem; font-weight: 900; opacity: 0.1; color: var(--text-main); position: absolute; top: 10px; right: 20px; }
+
+        /* 6. COMPARISON TABLE */
+        .table-wrapper { overflow-x: auto; border-radius: 24px; border: 1px solid var(--card-border); background: var(--card-glass); margin-top: 30px; }
+        table { width: 100%; border-collapse: collapse; text-align: left; min-width: 600px; }
+        th, td { padding: 22px; border-bottom: 1px solid var(--card-border); }
+        .highlight-col { background: rgba(255, 153, 0, 0.05) !important; color: var(--accent) !important; font-weight: 800; text-align: center; }
+
+        /* 7. FINAL CTA */
+        .cta-box { background: #0f172a; color: white; border-radius: 35px; padding: 70px 40px; text-align: center; }
+        .btn-green { background: #34AD3E; color: white; padding: 20px 45px; border-radius: 12px; display: inline-block; text-decoration: none; font-weight: 800; font-size: 1.2rem; margin-top: 30px; transition: transform 0.2s; }
+        .btn-green:hover { transform: scale(1.05); background: #2e9a37; }
+
+        /* 8. FAQ SECTION */
+        .faq-container { max-width: 850px; margin: 0 auto; }
+        .faq-item { background: var(--card-glass); border: 1px solid var(--card-border); border-radius: 16px; margin-bottom: 12px; transition: var(--transition); }
+        .faq-question { width: 100%; padding: 22px; text-align: left; background: none; border: none; font-weight: 800; color: var(--text-main); cursor: pointer; display: flex; justify-content: space-between; align-items: center; font-size: 1.1rem; }
+        .faq-answer { max-height: 0; overflow: hidden; transition: 0.4s ease; padding: 0 22px; color: var(--text-muted); }
+        .faq-item.active .faq-answer { max-height: 500px; padding-bottom: 25px; }
+
+        @media (max-width: 768px) { 
+            section { padding: 60px 20px; }
+            .hero-cta-group { flex-direction: column; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="aurora-container">
+        <div class="blob b-orange"></div>
+        <div class="blob b-blue"></div>
+    </div>
+
+    <section class="hero-section">
+        <div class="hero-content">
+            <span class="hero-eyebrow">Professional Google Ads Contractor</span>
+            <h1>Stop Guessing. Start Growing with <strong>Google Ads Management Services for Businesses</strong></h1>
+            <p>Tired of low-quality leads and wasted spend? <strong>Hire a Google Ads Expert</strong> who focuses on your bottom line, not just clicks.</p>
+            <div class="hero-cta-group">
+                <a href="https://adsnord.com/contact/" class="btn-primary">Request a Free Google Ads Audit</a>
+                <a href="https://adsnord.com/contact/" class="btn-secondary">Request a Quote</a>
+            </div>
+            <div class="external-link-box">
+                <i class="fa-solid fa-circle-info"></i> Learn more about advertising success metrics in the 
+                <a href="https://support.google.com/google-ads/answer/6146252" target="_blank" rel="noopener">Official Google Ads Documentation →</a>
+            </div>
+        </div>
+    </section>
+
+    <section>
+        <div class="section-header" style="text-align: center;">
+            <h2 class="section-title">Specialized <span>Solutions</span></h2>
+            <p style="color: var(--text-muted);">Explore the core pillars of my high-performance ad management.</p>
+        </div>
+        <div class="service-grid">
+            <div class="service-card">
+                <h3>Google Ads Management</h3>
+                <p>Full-funnel management for brands ready to scale ROI. I handle strategy, bidding, and technical execution.</p>
+                <a href="https://adsnord.com/services/google-ads-managment" class="card-link">View Management →</a>
+            </div>
+            <div class="service-card">
+                <h3>Keyword Research</h3>
+                <p>Data-driven planning to identify high-intent search terms your competitors are missing.</p>
+                <a href="https://adsnord.com/ppc-keyword-research" class="card-link">Start Planning →</a>
+            </div>
+            <div class="service-card">
+                <h3>Landing Page Optimization</h3>
+                <p>Don't let a bad website kill your performance. I optimize your post-click experience for conversions.</p>
+                <a href="https://adsnord.com/services/conversion-rate-optimization" class="card-link">Optimize Now →</a>
+            </div>
+            <div class="service-card">
+                <h3>Ads Audit & Analysis</h3>
+                <p>Stop the budget bleed. I perform a deep technical analysis to find immediate growth opportunities.</p>
+                <a href="https://adsnord.com/services/ppc-audit-service" class="card-link">Get My Audit →</a>
+            </div>
+        </div>
+    </section>
+
+    <section>
+        <h2 class="section-title">The adsnord Method</h2>
+        <div class="process-grid">
+            <div class="process-item"><span class="step-num">01</span><h3>Technical Audit</h3><p>We perform a <strong>free Google Ads audit</strong> to find budget leaks before we scale.</p></div>
+            <div class="process-item"><span class="step-num">02</span><h3>Strategic Scaling</h3><p>As your <strong>professional Google Ads contractor</strong>, I build custom bidding maps to capture buyers.</p></div>
+            <div class="process-item"><span class="step-num">03</span><h3>Constant Optimization</h3><p>We refine and adjust daily to keep your CPA low and your ROAS climbing continuously.</p></div>
+        </div>
+    </section>
+
+    <section>
+        <h2 class="section-title">Why Expert vs. Agency?</h2>
+        <div class="table-wrapper">
+            <table>
+                <thead>
+                    <tr><th>Feature</th><th>Standard Agency</th><th class="highlight-col">adsnord (Expert)</th></tr>
+                </thead>
+                <tbody>
+                    <tr><td><strong>Management</strong></td><td>Junior Staff / Interns</td><td class="highlight-col">Senior Specialist</td></tr>
+                    <tr><td><strong>Communication</strong></td><td>Account Managers</td><td class="highlight-col">Direct to Technician</td></tr>
+                    <tr><td><strong>Strategy</strong></td><td>One-Size-Fits-All</td><td class="highlight-col">Custom Profit-Driven</td></tr>
+                    <tr><td><strong>Contract</strong></td><td>6-12 Months</td><td class="highlight-col">Month-to-Month</td></tr>
+                </tbody>
+            </table>
+        </div>
+    </section>
+
+    <section>
+        <div class="cta-box">
+            <h2>Ready to Scale Your Revenue?</h2>
+            <p>Stop wasting budget on clicks that don't convert. Get your growth roadmap today.</p>
+            <a href="https://adsnord.com/contact/" class="btn-green">Request a Free Google Ads Audit</a>
+            <p style="margin-top: 20px; font-size: 0.9rem; opacity: 0.7;">No long-term contracts. Just results.</p>
+        </div>
+    </section>
+
+    <section>
+        <div class="faq-container">
+            <h2 class="section-title">Frequently Asked Inquiries</h2>
+            <div class="faq-list">
+                <div class="faq-item">
+                    <button class="faq-question" onclick="toggleFaq(this)">Why hire a Google Ads expert over an agency? <span>+</span></button>
+                    <div class="faq-answer"><p>When you <strong>hire a Google Ads expert</strong>, you get direct access to the specialist pulling the levers. At <strong>adsnord</strong>, you skip the agency overhead and junior account managers.</p></div>
+                </div>
+                <div class="faq-item">
+                    <button class="faq-question" onclick="toggleFaq(this)">How do I request a free Google Ads audit? <span>+</span></button>
+                    <div class="faq-answer"><p>Simply click the "Audit" button on this page or visit the <strong>contact page</strong> to request your deep-dive <strong>Ads audit and analysis</strong>.</p></div>
+                </div>
+                <div class="faq-item">
+                    <button class="faq-question" onclick="toggleFaq(this)">What specific marketing services do you offer? <span>+</span></button>
+                    <div class="faq-answer"><p>My <strong>google ads marketing services</strong> cover Search, Performance Max, and YouTube Ads management focused on high-quality lead generation.</p></div>
+                </div>
+                <div class="faq-item">
+                    <button class="faq-question" onclick="toggleFaq(this)">Do you manage small business budgets? <span>+</span></button>
+                    <div class="faq-answer"><p>Yes, I provide <strong>google ads management services for businesses</strong> of all sizes, ensuring even smaller budgets are optimized for maximum efficiency.</p></div>
+                </div>
+                <div class="faq-item">
+                    <button class="faq-question" onclick="toggleFaq(this)">How can I contact adsnord for a quote? <span>+</span></button>
+                    <div class="faq-answer"><p>To <strong>contact adsnord</strong>, click the <strong>request a quote</strong> button. I'll provide a transparent pricing plan based on your monthly ad spend.</p></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        // FAQ TOGGLE LOGIC
+        function toggleFaq(btn) {
+            const item = btn.parentElement;
+            const allItems = document.querySelectorAll('.faq-item');
+            
+            // Close other items
+            allItems.forEach(i => {
+                if (i !== item) {
+                    i.classList.remove('active');
+                    i.querySelector('span').innerText = '+';
+                }
+            });
+
+            // Toggle current
+            item.classList.toggle('active');
+            btn.querySelector('span').innerText = item.classList.contains('active') ? '-' : '+';
+        }
+    </script>
+</body>
+</html>

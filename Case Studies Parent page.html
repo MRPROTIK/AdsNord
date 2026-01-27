@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PPC Case Studies & Customer Success Stories | AdsNord</title>
+    <style>
+        /* RESET & OVERLAP PREVENTION */
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body { 
+            font-family: Arial, sans-serif; 
+            line-height: 1.6; 
+            color: #333; 
+            background-color: #fff;
+            overflow-x: hidden;
+        }
+        .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; width: 100%; }
+
+        /* HERO SECTION */
+        .hero { padding: 100px 0; background: linear-gradient(135deg, #f5f7fa 0%, #ffffff 100%); text-align: center; }
+        h1 { font-size: clamp(32px, 5vw, 48px); line-height: 1.3 !important; margin-bottom: 25px !important; color: #111; font-weight: 800; }
+        .hero-p { font-size: 20px; color: #555; max-width: 800px; margin: 0 auto; line-height: 1.6; }
+
+        /* CASE STUDIES GRID */
+        .case-grid-section { padding: 80px 0; background: #fff; }
+        .case-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 25px; }
+        .case-card { border: 1px solid #eee; border-radius: 15px; transition: 0.3s ease; display: flex; flex-direction: column; text-decoration: none; color: inherit; background: #fff; }
+        .case-card:hover { transform: translateY(-10px); box-shadow: 0 20px 40px rgba(0,0,0,0.08); border-color: #007bff; }
+        .case-content { padding: 30px; flex-grow: 1; }
+        .case-tag { color: #007bff; font-weight: bold; font-size: 14px; text-transform: uppercase; margin-bottom: 10px; display: block; }
+        .case-card h3 { font-size: 20px; margin-bottom: 15px !important; line-height: 1.4 !important; color: #111; }
+        .case-stats { border-top: 1px solid #eee; padding-top: 15px; margin-top: auto; }
+        .stat-value { display: block; font-size: 22px; font-weight: 800; color: #2ecc71; }
+
+        /* METHODOLOGY SECTION */
+        .method-section { padding: 100px 0; background: #fbfbfb; border-top: 1px solid #eee; }
+        h2 { font-size: clamp(28px, 4vw, 36px); line-height: 1.3 !important; margin-bottom: 30px !important; color: #111; }
+        .method-p { font-size: 18px; line-height: 1.8; color: #555; margin-bottom: 50px !important; }
+
+        /* RESULTS CHART/TABLE */
+        .table-container { overflow-x: auto; border-radius: 12px; border: 1px solid #ddd; margin-top: 40px; box-shadow: 0 4px 12px rgba(0,0,0,0.05); }
+        table { width: 100%; border-collapse: collapse; text-align: left; background: #fff; }
+        th { padding: 18px; background: #d9e6f2; font-weight: bold; border-bottom: 2px solid #fff; }
+        td { padding: 18px; border-bottom: 1px solid #eee; }
+
+        /* ABOUT SECTION */
+        .about-link-section { padding: 80px 0; background: #fff; border-top: 1px solid #eee; }
+
+        /* FINAL CTA - Background Removed */
+        .final-cta { padding: 100px 0; text-align: center; background: #fff; border-top: 1px solid #eee; }
+        .btn-blue { background: #007bff; color: #fff; padding: 18px 45px; text-decoration: none; border-radius: 6px; font-weight: bold; display: inline-block; font-size: 18px; transition: 0.3s; }
+        .btn-blue:hover { background: #0056b3; transform: scale(1.05); }
+
+        /* FAQ SECTION - Background Removed */
+        .faq-section { padding: 100px 0; background: #fff; border-top: 1px solid #eee; }
+        .faq-container { max-width: 900px; margin: 0 auto; }
+        .accordion-item { background: #fff; border: 1px solid #eee; border-radius: 8px; margin-bottom: 15px; overflow: hidden; }
+        .accordion-header { width: 100%; padding: 25px; background: #fff; border: none; text-align: left; cursor: pointer; display: flex; justify-content: space-between; align-items: center; }
+        .accordion-header h4 { margin: 0; font-size: 18px; color: #111; }
+        .accordion-header:after { content: '+'; font-size: 24px; color: #007bff; }
+        .accordion-header.active:after { content: '−'; }
+        .accordion-content { padding: 0 25px; max-height: 0; overflow: hidden; transition: 0.3s ease-out; }
+        .accordion-content p { padding: 20px 0; color: #555; line-height: 1.7; }
+
+        @media (max-width: 768px) { .case-grid { grid-template-columns: 1fr; } }
+    </style>
+    <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "CollectionPage",
+  "name": "PPC Case Studies & Customer Success Stories | AdsNord",
+  "url": "https://adsnord.com/case-studies/",
+  "description": "Explore our data-driven PPC Case Studies and verified Customer Success Stories. See how AdsNord delivers elite PPC Results through a proven 4-step methodology.",
+  "mainEntity": [
+    {
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "Are these PPC results typical?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "While results vary by niche, these PPC Results reflect our commitment to technical excellence and data-driven optimization."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How do you verify Success Stories?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Every case is backed by direct data from Google Ads and Analytics, focusing on verified performance trends."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Can I get a custom analysis?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Yes. We offer professional audits to identify if your brand can match the growth seen in our PPC Case Studies."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "What industries do you specialize in?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "We have delivered successes in SaaS, B2C Telehealth, E-commerce, and B2B Logistics, as shown in our methodology chart."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How long does it take to see ROAS increases?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Most brands see significant scaling within 3 to 6 months of implementing our 4-step framework."
+          }
+        }
+      ]
+    }
+  ],
+  "hasPart": [
+    {
+      "@type": "CreativeWork",
+      "name": "Google Ads Management Success",
+      "url": "https://adsnord.com/case-studies/google-ads-management"
+    },
+    {
+      "@type": "CreativeWork",
+      "name": "Keyword Research & Planning",
+      "url": "https://adsnord.com/case-studies/keyword-research-and-planning"
+    },
+    {
+      "@type": "CreativeWork",
+      "name": "Landing Page Optimization",
+      "url": "https://adsnord.com/case-studies/landing-page-optimization"
+    },
+    {
+      "@type": "CreativeWork",
+      "name": "Ads Audit & Analysis",
+      "url": "https://adsnord.com/case-studies/ads-audit-and-analysis"
+    }
+  ]
+}
+</script>
+</head>
+<body>
+
+    <section class="hero">
+        <div class="container">
+            <h1>Proven <strong>PPC Case Studies</strong> & Successes</h1>
+            <p class="hero-p">Explore our <strong>Customer Success Stories</strong> to see how we deliver elite <strong>PPC Results</strong> across diverse industries.</p>
+        </div>
+    </section>
+
+    <section class="case-grid-section">
+        <div class="container">
+            <div class="case-grid">
+                <a href="https://adsnord.com/case-studies/google-ads-management" class="case-card">
+                    <div class="case-content">
+                        <span class="case-tag">Management</span>
+                        <h3>Google Ads Management</h3>
+                        <p>Scaling a global E-commerce brand with ROI-focused optimization.</p>
+                        <div class="case-stats"><span class="stat-value">+120% ROAS</span></div>
+                    </div>
+                </a>
+                <a href="https://adsnord.com/case-studies/keyword-research-and-planning" class="case-card">
+                    <div class="case-content">
+                        <span class="case-tag">Research</span>
+                        <h3>Keyword Research & Planning</h3>
+                        <p>Finding high-intent clusters that captured 32% more profit.</p>
+                        <div class="case-stats"><span class="stat-value">32% Profit Lift</span></div>
+                    </div>
+                </a>
+                <a href="https://adsnord.com/case-studies/landing-page-optimization" class="case-card">
+                    <div class="case-content">
+                        <span class="case-tag">CRO</span>
+                        <h3>Landing Page Optimization</h3>
+                        <p>Complete page overhauls that turned clicks into customers.</p>
+                        <div class="case-stats"><span class="stat-value">+58% Conv. Rate</span></div>
+                    </div>
+                </a>
+                <a href="https://adsnord.com/case-studies/ads-audit-and-analysis" class="case-card">
+                    <div class="case-content">
+                        <span class="case-tag">Audit</span>
+                        <h3>Ads Audit & Analysis</h3>
+                        <p>Eliminating wasted budget for a major SaaS enterprise.</p>
+                        <div class="case-stats"><span class="stat-value">$15k Saved Monthly</span></div>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <section class="method-section">
+        <div class="container">
+            <h2>Our Proven 4-Step Methodology: Trust the Process</h2>
+            <p class="method-p">We engineer every campaign as a systematic process for profitable growth. This framework ensures reliable <strong>PPC Results</strong> regardless of the current challenge.</p>
+            
+            <div class="table-container">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Focus</th>
+                            <th>Client Challenge</th>
+                            <th>Outcome</th>
+                            <th>Service</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr style="background:#f0f7ff;">
+                            <td><a href="https://adsnord.com/case-studies/landing-page-optimization" style="color:#007bff; text-decoration:none; font-weight:bold;">Landing Page Optimization</a></td>
+                            <td>B2C Telehealth Platform (Low CVR)</td>
+                            <td><strong>58% Increase</strong></td>
+                            <td>Landing Page Optimization</td>
+                        </tr>
+                        <tr style="background:#ffffcc;">
+                            <td><a href="https://adsnord.com/case-studies/keyword-research-and-planning" style="color:#007bff; text-decoration:none; font-weight:bold;">Keyword Research</a></td>
+                            <td>B2B Logistics (Missing segments)</td>
+                            <td><strong>32% Growth</strong></td>
+                            <td>Keyword Planning</td>
+                        </tr>
+                        <tr style="background:#fce8e8;">
+                            <td><a href="https://adsnord.com/case-studies/ads-audit-and-analysis" style="color:#007bff; text-decoration:none; font-weight:bold;">Ads Audit & Analysis</a></td>
+                            <td>SaaS Platform (Wasted spend)</td>
+                            <td><strong>Saved $15,000 Monthly</strong></td>
+                            <td>Audit & Analysis</td>
+                        </tr>
+                        <tr style="background:#e6f2ff;">
+                            <td><a href="https://adsnord.com/case-studies/google-ads-management" style="color:#007bff; text-decoration:none; font-weight:bold;">Google Ads Management</a></td>
+                            <td>E-commerce Brand (Plateaued)</td>
+                            <td><strong>120% ROAS Increase</strong></td>
+                            <td>Ads Management</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </section>
+
+    <section class="about-link-section">
+        <div class="container">
+            <h2>Transparency and Professional Standards</h2>
+            <p style="font-size: 18px; color: #555; max-width: 900px; margin-bottom: 25px;">All <strong>Customer Success Stories</strong> featured here comply with <a href="https://support.google.com/adspolicy/answer/6008942" target="_blank" rel="noopener">Google’s Advertising Policies</a>. We believe in data transparency, ensuring every metric shared is a verified result from active campaigns. You can learn more about our commitment to excellence on our dedicated <a href="https://adsnord.com/about">About Page</a>.</p>
+        </div>
+    </section>
+
+    <section class="final-cta">
+        <div class="container">
+            <h2>Ready to become our next success story?</h2>
+            <p style="margin-bottom: 40px; font-size: 1.1rem; color: #555;">Start with a professional performance audit and unlock your hidden growth potential.</p>
+            <a href="https://adsnord.com/contact/" class="btn-blue">Get Your Free Strategy Audit</a>
+        </div>
+    </section>
+
+    <section class="faq-section">
+        <div class="container faq-container">
+            <h2 style="text-align:center; margin-bottom:50px;">Case Study Insights</h2>
+            
+            <div class="accordion-item">
+                <button class="accordion-header"><h4>Are these PPC results typical?</h4></button>
+                <div class="accordion-content"><p>While results vary by niche, these <strong>PPC Results</strong> reflect our commitment to technical excellence and data-driven optimization.</p></div>
+            </div>
+            <div class="accordion-item">
+                <button class="accordion-header"><h4>How do you verify Success Stories?</h4></button>
+                <div class="accordion-content"><p>Every case is backed by direct data from Google Ads and Analytics, focusing on verified performance trends.</p></div>
+            </div>
+            <div class="accordion-item">
+                <button class="accordion-header"><h4>Can I get a custom analysis?</h4></button>
+                <div class="accordion-content"><p>Yes. We offer professional audits to identify if your brand can match the growth seen in our <strong>PPC Case Studies</strong>.</p></div>
+            </div>
+            <div class="accordion-item">
+                <button class="accordion-header"><h4>What industries do you specialize in?</h4></button>
+                <div class="accordion-content"><p>We have delivered successes in SaaS, B2C Telehealth, E-commerce, and B2B Logistics, as shown in our methodology chart.</p></div>
+            </div>
+            <div class="accordion-item">
+                <button class="accordion-header"><h4>How long does it take to see ROAS increases?</h4></button>
+                <div class="accordion-content"><p>Most brands see significant scaling within 3 to 6 months of implementing our 4-step framework.</p></div>
+            </div>
+        </div>
+    </section>
+
+<script>
+    const acc = document.getElementsByClassName("accordion-header");
+    for (let i = 0; i < acc.length; i++) {
+        acc[i].addEventListener("click", function() {
+            this.classList.toggle("active");
+            const panel = this.nextElementSibling;
+            if (panel.style.maxHeight) { panel.style.maxHeight = null; } 
+            else { panel.style.maxHeight = panel.scrollHeight + "px"; } 
+        });
+    }
+</script>
+
+</body>
+</html>
