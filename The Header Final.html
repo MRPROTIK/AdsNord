@@ -1,6 +1,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;900&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
 <!-- Google Tag Manager -->
 <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
 new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
@@ -10,430 +11,475 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <!-- End Google Tag Manager -->
 
 <style>
-    :root {
-        --g-blue: #4285F4; --g-red: #EA4335; --g-yellow: #FBBC05; --g-green: #34A853;
-        --transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
-        /* Fixed to Light Theme Values */
-        --bg-body: #ffffff;
-        --text-main: #000000; 
-        --text-muted: #475569;
-        --glass-bg: rgba(255, 255, 255, 0.9);
-        --glass-border: rgba(0, 0, 0, 0.1);
-    }
+  :root {
+    --g-blue: #4285F4; --g-red: #EA4335; --g-yellow: #FBBC05; --g-green: #34A853;
+    --transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
 
-    * { margin: 0; padding: 0; box-sizing: border-box; }
-    body { font-family: 'Inter', sans-serif; background: var(--bg-body); color: var(--text-main); overflow-x: hidden; }
+    /* Light theme */
+    --bg-body: #ffffff;
+    --text-main: #0f172a;
+    --text-muted: #475569;
+    --glass-border: rgba(0, 0, 0, 0.10);
 
-    /* Aurora Engine Background */
-    .aurora-container { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -1; filter: blur(100px); opacity: 0.3; pointer-events: none; }
-    .blob { position: absolute; width: 60vw; height: 60vw; border-radius: 50%; mix-blend-mode: multiply; animation: move 12s infinite alternate ease-in-out; }
-    .b-blue { background: var(--g-blue); top: -10%; left: -10%; }
-    .b-red { background: var(--g-red); top: 50%; right: -10%; animation-delay: -2s; }
-    .b-yellow { background: var(--g-yellow); bottom: -10%; left: 20%; animation-delay: -4s; }
-    .b-green { background: var(--g-green); top: 10%; right: 20%; animation-delay: -6s; }
-    @keyframes move { 0% { transform: translate(0, 0); } 100% { transform: translate(-40px, 80px) scale(0.9); } }
+    /* Next-Zen glass */
+    --zen-hue: 205;
+    --zen-blur: 18px;
+    --zen-sat: 145%;
+    --zen-alpha: .14;
+    --zen-shadow: .14;
+    --zen-stroke: .10;
+  }
 
-    /* Header Styling */
-    .scroll-progress { position: fixed; top: 0; left: 0; width: 0%; height: 4px; background: var(--g-blue); z-index: 1001; }
-    .header-wrapper { position: fixed; top: 40px; left: 0; width: 100%; z-index: 1000; padding: 0 30px; }
-    header { background: var(--glass-bg); backdrop-filter: blur(25px); -webkit-backdrop-filter: blur(25px); border: 1px solid var(--glass-border); border-radius: 30px; padding: 18px 0; transition: var(--transition); max-width: 1300px; margin: 0 auto; }
-    .header-flex { display: flex; justify-content: space-between; align-items: center; padding: 0 35px; }
+  * { margin: 0; padding: 10; box-sizing: border-box; }
+  body { font-family: 'Inter', sans-serif; background: var(--bg-body); color: var(--text-main); overflow-x: hidden; }
 
-    .logo-holder { display: flex; align-items: center; gap: 12px; text-decoration: none; }
-    .logo-text { font-size: 1.5rem; font-weight: 900; color: var(--g-blue); letter-spacing: -0.5px; }
-    .logo-text span { color: var(--g-yellow); }
+  /* Progress bar */
+  .scroll-progress { position: fixed; top: 0; left: 0; width: 0%; height: 4px; background: var(--g-blue); z-index: 1001; }
 
-    .nav-links { display: flex; list-style: none; gap: 32px; align-items: center; }
-    .nav-links a { text-decoration: none; color: var(--text-main); font-weight: 600; font-size: 0.95rem; transition: 0.3s; }
-    .nav-links a:hover { color: var(--g-blue); }
+  /* ✅ FIX #2: header top spacing on mobile + safe area */
+  .header-wrapper{
+    position: fixed;
+    top: 18px;                  /* was 40px */
+    left: 0;
+    width: 100%;
+    z-index: 1000;
+    padding: 0 18px;
+    padding-top: env(safe-area-inset-top);
+  }
 
-    .header-actions { display: flex; align-items: center; gap: 20px; }
-    
-    .menu-btn { display: none; background: none; border: none; cursor: pointer; padding: 5px; z-index: 2100; }
-    .menu-btn span { display: block; width: 25px; height: 2px; background: var(--text-main); margin: 6px 0; transition: var(--transition); }
-    .menu-btn.open span:nth-child(1) { transform: translateY(4px) rotate(45deg); }
-    .menu-btn.open span:nth-child(2) { transform: translateY(-4px) rotate(-45deg); }
+  header{
+    max-width: 1300px;
+    margin: 0 auto;
+    border-radius: 30px;
+    padding: 16px 0;
+    transition: var(--transition);
+    overflow: hidden;
+    position: relative;
 
-    /* Dropdowns Desktop */
-    .dropdown { position: relative; }
-    .dropdown-menu {
-        position: absolute; top: 100%; left: 0; background: var(--glass-bg); backdrop-filter: blur(20px); border: 1px solid var(--glass-border); border-radius: 12px; list-style: none; padding: 10px 0; min-width: 260px; opacity: 0; visibility: hidden; transform: translateY(10px); transition: var(--transition); z-index: 1001; box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-    }
-    .dropdown:hover .dropdown-menu { opacity: 1; visibility: visible; transform: translateY(0); }
-    .dropdown-menu li a { padding: 12px 20px; display: block; font-size: 0.85rem !important; color: var(--text-main); }
-    .dropdown-menu li a:hover { background: rgba(66, 133, 244, 0.1); color: var(--g-blue) !important; }
+    /* ✅ FIX #2: remove border line + Next-Zen glass */
+    border: none !important;
+    background: linear-gradient(
+      135deg,
+      rgba(92,225,255, calc(var(--zen-alpha) + .02)),
+      rgba(167,139,250, var(--zen-alpha))
+    ) !important;
 
-    /* Mobile Overlay Styling */
-    .mobile-overlay { position: fixed; top: 0; right: -100%; width: 100%; height: 100dvh; background: var(--bg-body); z-index: 2005; display: flex; flex-direction: column; align-items: flex-start; justify-content: flex-start; padding: 110px 40px 60px; transition: 0.5s cubic-bezier(0.23, 1, 0.32, 1); overflow-y: auto; }
-    .mobile-overlay.active { right: 0; }
-    .mobile-overlay a { text-decoration: none; font-size: 1.8rem; font-weight: 800; transition: 0.3s; margin-bottom: 12px; display: block; }
-    .m-link-main { color: var(--text-main); }
-    .m-link-parent { color: var(--g-blue); margin-top: 15px; }
-    .mobile-sub-links { display: flex; flex-direction: column; padding-left: 15px; margin-bottom: 20px; border-left: 2px solid rgba(66, 133, 244, 0.3); }
-    .mobile-sub-links a { font-size: 0.95rem !important; margin-bottom: 10px !important; font-weight: 500 !important; color: var(--text-muted) !important; }
-    .mobile-sub-links a:hover { color: var(--g-blue) !important; }
+    backdrop-filter: blur(var(--zen-blur)) saturate(var(--zen-sat)) !important;
+    -webkit-backdrop-filter: blur(var(--zen-blur)) saturate(var(--zen-sat)) !important;
 
-    /* AI Launcher */
-    .chat-container { position: fixed; bottom: 30px; right: 30px; z-index: 999; }
-    .liquid-orb { width: 60px; height: 60px; background: linear-gradient(45deg, var(--g-blue), var(--g-red), var(--g-yellow), var(--g-green)); background-size: 400% 400%; border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%; animation: liquid 6s ease-in-out infinite; cursor: pointer; display: flex; align-items: center; justify-content: center; box-shadow: 0 10px 30px rgba(66, 133, 244, 0.2); }
-    .liquid-orb i { color: white; font-size: 1.4rem; }
-    @keyframes liquid { 0%, 100% { border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%; } 33% { border-radius: 70% 30% 50% 50% / 30% 30% 70% 70%; } 66% { border-radius: 30% 70% 30% 70% / 70% 30% 70% 30%; } }
+    box-shadow:
+      0 16px 40px rgba(0,0,0, var(--zen-shadow)),
+      inset 0 -1px 0 rgba(255,255,255, var(--zen-stroke)) !important;
+  }
 
-    @media (max-width: 1024px) { .header-wrapper { top: 20px; padding: 0 15px; } }
-    @media (max-width: 768px) { .nav-links { display: none; } .menu-btn { display: block; } }
-	/* ===============================
-   HEADER MENU COLOR FIX (SAFE)
-   =============================== */
+  .header-flex { display:flex; justify-content:space-between; align-items:center; padding: 0 22px; }
+  .logo-holder { display:flex; align-items:center; gap:12px; text-decoration:none; }
+  .logo-text { font-size:1.5rem; font-weight:900; color: var(--g-blue); letter-spacing:-0.5px; }
+  .logo-text span { color: var(--g-yellow); }
 
-/* Desktop menu text */
-.header-wrapper .nav-links a,
-.header-wrapper .nav-links a i {
-    color: #0f172a !important;   /* dark readable text */
+  .nav-links { display:flex; list-style:none; gap: 32px; align-items:center; }
+  .nav-links a { text-decoration:none; color: var(--text-main); font-weight: 600; font-size: .95rem; transition: .3s; }
+  .nav-links a:hover { color: var(--g-blue); }
+
+  .header-actions { display:flex; align-items:center; gap: 20px; }
+
+  .menu-btn { display:none; background:none; border:none; cursor:pointer; padding: 6px; z-index: 2100; }
+  .menu-btn span { display:block; width: 26px; height: 2px; background: var(--text-main); margin: 6px 0; transition: var(--transition); }
+  .menu-btn.open span:nth-child(1) { transform: translateY(4px) rotate(45deg); }
+  .menu-btn.open span:nth-child(2) { transform: translateY(-4px) rotate(-45deg); }
+
+  /* Dropdown desktop */
+  .dropdown { position: relative; }
+  .dropdown-menu{
+    position:absolute; top:100%; left:0;
+    background: rgba(255,255,255,.92);
+    backdrop-filter: blur(18px) saturate(150%);
+    -webkit-backdrop-filter: blur(18px) saturate(150%);
+    border: 1px solid rgba(0,0,0,.08);
+    border-radius: 12px;
+    list-style:none;
+    padding: 10px 0;
+    min-width: 260px;
+    opacity:0; visibility:hidden;
+    transform: translateY(10px);
+    transition: var(--transition);
+    z-index: 1001;
+    box-shadow: 0 10px 30px rgba(0,0,0,.10);
+  }
+  .dropdown:hover .dropdown-menu { opacity:1; visibility:visible; transform: translateY(0); }
+  .dropdown-menu li a { padding: 12px 20px; display:block; font-size: .85rem !important; color: var(--text-main); }
+  .dropdown-menu li a:hover { background: rgba(66,133,244,.10); color: var(--g-blue) !important; }
+
+  /* ✅ Micro highlight line (header) */
+  header::after{
+    content:"";
+    position:absolute;
+    left:16px; right:16px; top:0;
+    height:1px; pointer-events:none;
+    background: linear-gradient(
+      90deg,
+      transparent,
+      hsla(var(--zen-hue), 95%, 70%, .55),
+      hsla(calc(var(--zen-hue) + 35), 95%, 72%, .50),
+      hsla(calc(var(--zen-hue) + 75), 95%, 72%, .40),
+      transparent
+    );
+    opacity:0;
+    transform: translateY(-2px);
+    transition: opacity .25s ease, transform .25s ease;
+  }
+
+  /* Mobile overlay */
+  .mobile-overlay{
+    position: fixed;
+    top: 0; right: -100%;
+    width: 100%;
+    height: 100dvh;
+    z-index: 2005;
+    display:flex;
+    flex-direction:column;
+    align-items:flex-start;
+    justify-content:flex-start;
+    padding: calc(90px + env(safe-area-inset-top)) 22px 40px;
+    transition: .5s cubic-bezier(.23,1,.32,1);
+    overflow-y:auto;
+
+    /* ✅ FIX #3: same Next-Zen glass, not plain white */
+    background: linear-gradient(
+      135deg,
+      rgba(255,255,255,.92),
+      rgba(255,255,255,.82)
+    );
+    backdrop-filter: blur(18px) saturate(150%);
+    -webkit-backdrop-filter: blur(18px) saturate(150%);
+  }
+  .mobile-overlay.active { right: 0; }
+
+  /* ✅ FIX #3: force mobile menu readability */
+  .mobile-overlay a{
+    text-decoration:none;
+    font-weight: 900;
+    letter-spacing: .2px;
     opacity: 1 !important;
-}
-
-/* Dropdown menu items */
-.header-wrapper .dropdown-menu li a {
+  }
+  .m-link-main{
     color: #0f172a !important;
-}
-
-/* Hover state */
-.header-wrapper .nav-links a:hover {
+    font-size: 1.55rem !important;
+    margin-bottom: 14px !important;
+  }
+  .m-link-parent{
     color: var(--g-blue) !important;
-}
+    font-size: 1.65rem !important;
+    margin-top: 18px !important;
+    margin-bottom: 10px !important;
+  }
+  .mobile-sub-links{
+    display:flex; flex-direction:column;
+    padding-left: 14px;
+    margin-bottom: 18px;
+    border-left: 2px solid rgba(66,133,244,.30);
+  }
+  .mobile-sub-links a{
+    font-size: 1.05rem !important;
+    font-weight: 700 !important;
+    color: #334155 !important;
+    margin-bottom: 10px !important;
+  }
 
-/* Mobile hamburger icon */
-.header-wrapper .menu-btn span {
-    background-color: #0f172a !important;
-}
+  /* Responsive */
+  @media (max-width: 1024px){
+    .header-wrapper { top: 14px; padding: 0 12px; }
+  }
+  @media (max-width: 768px){
+    .nav-links{ display:none; }
+    .menu-btn{ display:block; }
+    .header-flex{ padding: 0 16px; }
+  }
 
-	
+  /* Scroll enhancement */
+  body.is-scrolled{
+    --zen-blur: 24px;
+    --zen-sat: 165%;
+    --zen-alpha: .18;
+    --zen-shadow: .18;
+    --zen-stroke: .12;
+  }
+  body.is-scrolled header::after{ opacity: .95; transform: translateY(0); }
+
+  @media (prefers-reduced-motion: reduce){
+    header::after{ transition:none !important; }
+  }
 </style>
 
 <div class="scroll-progress" id="progressBar"></div>
 
-<div class="aurora-container">
-    <div class="blob b-blue"></div><div class="blob b-red"></div>
-    <div class="blob b-yellow"></div><div class="blob b-green"></div>
-</div>
-
-<div class="chat-container">
-    <div class="liquid-orb" onclick="toggleAdsNordAI()" style="background: linear-gradient(45deg, #4285F4, #EA4335, #FBBC05, #34A853);">
-        <i class="fa-solid fa-wand-magic-sparkles"></i>
-    </div>
-</div>
-
-<div id="adsnord-ai-window" style="display:none; position:fixed; bottom:100px; right:30px; width:350px; height:500px; background:rgba(255, 255, 255, 0.95); backdrop-filter:blur(25px); border:1px solid rgba(0,0,0,0.1); border-radius:24px; box-shadow:0 20px 40px rgba(0,0,0,0.15); flex-direction:column; z-index:9999; overflow:hidden; font-family:'Inter', sans-serif;">
-    <div style="background:#4285F4; color:white; padding:18px; font-weight:900; display:flex; justify-content:space-between; align-items:center;">
-        <div style="display:flex; align-items:center; gap:8px;"><i class="fa-solid fa-robot"></i><span>AdsNord AI</span></div>
-        <span onclick="toggleAdsNordAI()" style="cursor:pointer; font-size:24px;">&times;</span>
-    </div>
-    <div id="adsnord-ai-messages" style="flex:1; padding:20px; overflow-y:auto; font-size:14px; display:flex; flex-direction:column; gap:12px; color:#0f172a;"></div>
-    <div style="padding:10px; display:flex; gap:8px; background:rgba(0,0,0,0.02); border-top:1px solid rgba(0,0,0,0.05);">
-        <button onclick="window.open('https://adsnord.com/contact/', '_blank')" style="white-space:nowrap; background:#FBBC05; color:black; border:none; padding:8px 14px; border-radius:20px; font-size:11px; font-weight:800; cursor:pointer;">📊 Free Audit</button>
-        <button onclick="window.open('https://wa.me/46764304702')" style="white-space:nowrap; background:#25D366; color:white; border:none; padding:8px 14px; border-radius:20px; font-size:11px; font-weight:800; cursor:pointer;"><i class="fa-brands fa-whatsapp"></i> WhatsApp</button>
-    </div>
-    <div style="padding:15px; border-top:1px solid rgba(0,0,0,0.05); display:flex; gap:10px; background:white;">
-        <input type="text" id="adsnord-ai-input" placeholder="Ask about Google Ads..." style="flex:1; border:1px solid #e2e8f0; padding:12px; border-radius:12px; outline:none;">
-        <button onclick="sendAdsNordAIMsg()" style="background:#4285F4; color:white; border:none; width:44px; height:44px; border-radius:12px; cursor:pointer;"><i class="fa-solid fa-paper-plane"></i></button>
-    </div>
-</div>
-
-<script>
-    const WORKER_URL = 'https://adsnordai.md-motiur52.workers.dev';
-    let welcomeSent = false;
-
-    function toggleAdsNordAI() {
-        const win = document.getElementById('adsnord-ai-window');
-        const isOpening = (win.style.display === 'none' || win.style.display === '');
-        win.style.display = isOpening ? 'flex' : 'none';
-        if (isOpening && !welcomeSent) {
-            welcomeSent = true;
-            setTimeout(() => {
-                const box = document.getElementById('adsnord-ai-messages');
-                box.innerHTML += `<div style="background:rgba(66,133,244,0.1); padding:12px; border-radius:15px; align-self:flex-start;"><b>AdsNord AI:</b> Welcome! I'm here to help you scale. Would you like to <b>Request a Free Audit</b> or discuss a strategy?</div>`;
-            }, 800);
-        }
-    }
-
-    async function sendAdsNordAIMsg() {
-        const input = document.getElementById('adsnord-ai-input');
-        const box = document.getElementById('adsnord-ai-messages');
-        const userMsg = input.value.trim();
-        if(!userMsg) return;
-        box.innerHTML += `<div style="background:#4285F4; color:white; padding:12px; border-radius:15px; align-self:flex-end; max-width:85%;">\${userMsg}</div>`;
-        input.value = '';
-        const loadingId = "loading-" + Date.now();
-        box.innerHTML += `<div id="\${loadingId}" style="color:#94a3b8; font-size:12px;">Typing...</div>`;
-        try {
-            const res = await fetch(WORKER_URL, { method: 'POST', body: JSON.stringify({ message: userMsg }) });
-            const data = await res.json();
-            document.getElementById(loadingId).remove();
-            // Check if the trigger command is at the very end of the message
-if (data.reply.trim().endsWith("[SHOW_FORM]")) {
-    const cleanReply = data.reply.replace("[SHOW_FORM]", "").trim();
-    box.innerHTML += `<div style="background:rgba(0,0,0,0.05); padding:12px; border-radius:15px; align-self:flex-start; max-width:85%; border:1px solid rgba(0,0,0,0.05); margin-bottom:10px;"><b>AI:</b> ${cleanReply}</div>`;
-    showLeadForm(); 
-} else {
-    // Show normal message without triggering the form
-    box.innerHTML += `<div style="background:rgba(0,0,0,0.05); padding:12px; border-radius:15px; align-self:flex-start; max-width:85%; border:1px solid rgba(0,0,0,0.05); margin-bottom:10px;"><b>AI:</b> ${data.reply}</div>`;
-}
-        } catch { document.getElementById(loadingId).innerHTML = "Error."; }
-        box.scrollTop = box.scrollHeight;
-    }
-
-    // Replace your old showLeadForm function with this one
-function showLeadForm() {
-    const box = document.getElementById('adsnord-ai-messages');
-    const formHtml = `
-        <div id="audit-form-container" style="background:white; border:1px solid #4285F4; padding:15px; border-radius:15px; margin-top:10px; box-shadow:0 4px 15px rgba(0,0,0,0.1);">
-            <form id="adsnord-lead-form">
-                <input type="hidden" name="subject" value="🚨 AdsNord Lead: New Audit Request">
-                <p style="margin:0 0 10px 0; font-size:14px; color:#4285F4; font-weight:bold;">📧 Get your Free Audit Report</p>
-                
-                <input type="text" name="website" id="lead-website-input" 
-                    placeholder="Your Website (e.g. adsnord.com)" 
-                    required 
-                    pattern="^(https?://)?([a-zA-Z0-9]([a-zA-Z0-9\\\\-]{0,61}[a-zA-Z0-9])?\\\\.)+[a-zA-Z]{2,6}$"
-                    style="width:100%; padding:10px; border:1px solid #ddd; border-radius:8px; margin-bottom:10px; font-size:14px;">
-                
-                <input type="email" name="email" id="lead-email-input" placeholder="Your Email Address" required 
-                    style="width:100%; padding:10px; border:1px solid #ddd; border-radius:8px; margin-bottom:10px; font-size:14px;">
-                
-                <button type="submit" id="submit-btn" style="width:100%; background:#4285F4; color:white; border:none; padding:10px; border-radius:8px; font-weight:bold; cursor:pointer;">Get My Audit</button>
-            </form>
-        </div>
-    `;
-    box.innerHTML += formHtml;
-    box.scrollTop = box.scrollHeight;
-
-    const form = document.getElementById('adsnord-lead-form');
-    form.addEventListener('submit', async function(e) {
-        e.preventDefault(); 
-        const website = document.getElementById('lead-website-input').value;
-        const email = document.getElementById('lead-email-input').value;
-        const btn = document.getElementById('submit-btn');
-        btn.innerText = "Sending...";
-        btn.disabled = true;
-
-        try {
-            const response = await fetch('https://formspree.io/f/xvzaeokv', {
-                method: 'POST',
-                body: JSON.stringify({ email, website, subject: "🚨 AdsNord Lead: New Audit Request" }),
-                headers: { 'Accept': 'application/json', 'Content-Type': 'application/json' }
-            });
-
-            if (response.ok) {
-                document.getElementById('audit-form-container').innerHTML = 
-                    "<p style='color:#28a745; font-weight:bold; margin:0; text-align:center;'>✅ Success! Check your email soon.</p>";
-            } else {
-                btn.innerText = "Get My Audit";
-                btn.disabled = false;
-                alert("Something went wrong. Please check your internet.");
-            }
-        } catch (error) {
-            console.error(error);
-        }
-    });
-}
-
-    async function submitLead(id) {
-        const email = document.getElementById('e-'+id).value;
-        const cont = document.getElementById('c-'+id);
-        if(!email.includes('@')) return alert("Please enter a valid email.");
-        cont.innerHTML = "Sending...";
-        await fetch('https://formspree.io/f/xvzaeokv', { method: 'POST', headers: {'Content-Type': 'application/json'}, body: JSON.stringify({email: email, message: "Lead from AI Chat"}) });
-        cont.innerHTML = `<p style="color:#34A853; font-weight:700; font-size:12px;">✅ Success! We will contact you within 24 hours.</p>`;
-    }
-
-    document.getElementById('adsnord-ai-input').addEventListener('keypress', (e) => { if (e.key === 'Enter') sendAdsNordAIMsg(); });
-</script>
-
-<div id="adsnord-ai-window" style="display:none; position:fixed; bottom:100px; right:30px; width:350px; height:500px; background:rgba(255, 255, 255, 0.95); backdrop-filter:blur(25px); border:1px solid rgba(0,0,0,0.1); border-radius:24px; box-shadow:0 20px 40px rgba(0,0,0,0.15); flex-direction:column; z-index:9999; overflow:hidden; font-family:'Inter', sans-serif;">
-    <div style="background:#4285F4; color:white; padding:18px; font-weight:900; display:flex; justify-content:space-between; align-items:center;">
-        <div style="display:flex; align-items:center; gap:8px;">
-            <i class="fa-solid fa-robot"></i>
-            <span>AdsNord AI</span>
-        </div>
-        <span onclick="toggleAdsNordAI()" style="cursor:pointer; font-size:24px;">&times;</span>
-    </div>
-    
-    <div id="adsnord-ai-messages" style="flex:1; padding:20px; overflow-y:auto; font-size:14px; display:flex; flex-direction:column; gap:12px; color:#0f172a;">
-        <div style="background:rgba(66,133,244,0.1); padding:12px; border-radius:15px; border-bottom-left-radius:2px; align-self:flex-start;">
-            Hi! I'm **AdsNord AI**. How can I help you scale your Google Ads today?
-        </div>
-    </div>
-
-    <div style="padding:10px; display:flex; gap:8px; overflow-x:auto; background:rgba(0,0,0,0.02); border-top:1px solid rgba(0,0,0,0.05);">
-        <button onclick="window.open('https://adsnord.com/contact/', '_blank')" style="white-space:nowrap; background:#FBBC05; color:black; border:none; padding:8px 14px; border-radius:20px; font-size:11px; font-weight:800; cursor:pointer;">📊 Free Audit</button>
-        <button onclick="window.open('https://wa.me/46764304702')" style="white-space:nowrap; background:#25D366; color:white; border:none; padding:8px 14px; border-radius:20px; font-size:11px; font-weight:800; cursor:pointer;"><i class="fa-brands fa-whatsapp"></i> WhatsApp</button>
-    </div>
-
-    <div style="padding:15px; border-top:1px solid rgba(0,0,0,0.05); display:flex; gap:10px; background:white;">
-        <input type="text" id="adsnord-ai-input" placeholder="Ask about Google Ads..." style="flex:1; border:1px solid #e2e8f0; padding:12px; border-radius:12px; outline:none; font-family:'Inter';">
-        <button onclick="sendAdsNordAIMsg()" style="background:#4285F4; color:white; border:none; width:44px; height:44px; border-radius:12px; cursor:pointer;"><i class="fa-solid fa-paper-plane"></i></button>
-    </div>
-</div>
-
-<style>
-/* Mobile Optimization */
-@media (max-width: 480px) {
-    #adsnord-ai-window {
-        width: 90% !important;
-        right: 5% !important;
-        left: 5% !important;
-        bottom: 90px !important;
-        height: 65vh !important;
-    }
-}
-</style>
-
-<script>
-    const WORKER_URL = 'https://adsnordai.md-motiur52.workers.dev';
-
-    function toggleAdsNordAI() {
-        const win = document.getElementById('adsnord-ai-window');
-        win.style.display = (win.style.display === 'none' || win.style.display === '') ? 'flex' : 'none';
-    }
-
-    async function sendAdsNordAIMsg() {
-        const input = document.getElementById('adsnord-ai-input');
-        const box = document.getElementById('adsnord-ai-messages');
-        const userMsg = input.value.trim();
-        if(!userMsg) return;
-
-        box.innerHTML += `<div style="background:#4285F4; color:white; padding:12px; border-radius:15px; border-bottom-right-radius:2px; align-self:flex-end; max-width:85%; margin-bottom:10px;">\${userMsg}</div>`;
-        input.value = '';
-        box.scrollTop = box.scrollHeight;
-
-        const loadingId = "loading-" + Date.now();
-        box.innerHTML += `<div id="\${loadingId}" style="color:#94a3b8; font-size:12px; align-self:flex-start; margin-bottom:10px;">AdsNord AI is typing...</div>`;
-
-        try {
-            const response = await fetch(WORKER_URL, {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ message: userMsg })
-            });
-            const data = await response.json();
-            document.getElementById(loadingId).remove();
-            box.innerHTML += `<div style="background:rgba(0,0,0,0.05); padding:12px; border-radius:15px; border-bottom-left-radius:2px; align-self:flex-start; max-width:85%; border:1px solid rgba(0,0,0,0.05); margin-bottom:10px;"><b>AI:</b> \${data.reply}</div>`;
-        } catch (err) {
-            document.getElementById(loadingId).innerHTML = "Connection error. Please try again.";
-        }
-        box.scrollTop = box.scrollHeight;
-    }
-
-    document.getElementById('adsnord-ai-input').addEventListener('keypress', (e) => {
-        if (e.key === 'Enter') sendAdsNordAIMsg();
-    });
-</script>
-
 <div class="header-wrapper">
-    <header>
-        <div class="header-flex">
-            <a href="https://adsnord.com/" class="logo-holder">
-                <img src="https://adsnord.com/wp-content/uploads/2026/01/my-new-logo-AdsNord-1.png" alt="AdsNord Logo" style="height: 38px; width: auto;">
-                <div class="logo-text">Ads<span>Nord</span></div>
-            </a>
+  <header>
+    <div class="header-flex">
+      <a href="https://adsnord.com/" class="logo-holder">
+        <img src="https://adsnord.com/wp-content/uploads/2026/01/my-new-logo-AdsNord-1.png" alt="AdsNord Logo" style="height: 38px; width: auto;">
+        <div class="logo-text">Ads<span>Nord</span></div>
+      </a>
 
-            <div class="header-actions">
-                <nav>
-                    <ul class="nav-links">
-                        <li><a href="https://adsnord.com/">Home</a></li>
-                        <li><a href="https://adsnord.com/contact">Contact</a></li>
-                        <li><a href="https://adsnord.com/about">About</a></li>
-                        
-                        <li class="dropdown">
-                            <a href="https://adsnord.com/services">Services <i class="fa-solid fa-chevron-down"></i></a>
-                            <ul class="dropdown-menu">
-                                <li><a href="https://adsnord.com/services/google-ads-management/">Google Ads Management</a></li>
-                                <li><a href="https://adsnord.com/services/ppc-keyword-research/">Keyword research and planning</a></li>
-                                <li><a href="https://adsnord.com/services/conversion-rate-optimization/">Landing page optimization</a></li>
-                                <li><a href="https://adsnord.com/services/ppc-audit-service/">Ads audit and analysis</a></li>
-                            </ul>
-                        </li>
+      <div class="header-actions">
+        <nav>
+          <ul class="nav-links">
+            <li><a href="https://adsnord.com/">Home</a></li>
+            <li><a href="https://adsnord.com/contact">Contact</a></li>
+            <li><a href="https://adsnord.com/about">About</a></li>
 
-                        <li class="dropdown">
-                            <a href="https://adsnord.com/blog">Blog <i class="fa-solid fa-chevron-down"></i></a>
-                            <ul class="dropdown-menu">
-                                <li><a href="https://adsnord.com/category/google-ads-optimization">Google Ads Optimization</a></li>
-                                <li><a href="https://adsnord.com/category/landing-page-optimization">Landing Page Optimization</a></li>
-                                <li><a href="https://adsnord.com/category/keyword-planning">Keyword planning</a></li>
-                                <li><a href="https://adsnord.com/category/google-ads-audit">Google Ads Audit</a></li>
-                            </ul>
-                        </li>
+            <li class="dropdown">
+              <a href="https://adsnord.com/services">Services <i class="fa-solid fa-chevron-down"></i></a>
+              <ul class="dropdown-menu">
+                <li><a href="https://adsnord.com/services/google-ads-management/">Google Ads Management</a></li>
+                <li><a href="https://adsnord.com/services/ppc-keyword-research/">Keyword research and planning</a></li>
+                <li><a href="https://adsnord.com/services/conversion-rate-optimization/">Landing page optimization</a></li>
+                <li><a href="https://adsnord.com/services/ppc-audit-service/">Ads audit and analysis</a></li>
+              </ul>
+            </li>
 
-                        <li class="dropdown">
-                            <a href="https://adsnord.com/case-studies">Case Studies <i class="fa-solid fa-chevron-down"></i></a>
-                            <ul class="dropdown-menu">
-                                <li><a href="https://adsnord.com/case-studies/google-ads-management/">Google Ads Management</a></li>
-                                <li><a href="https://adsnord.com/case-studies/keyword-research-and-planning/">Keyword research and Planning</a></li>
-                                <li><a href="https://adsnord.com/case-studies/landing-page-optimization/">Landing page Optimization</a></li>
-                                <li><a href="https://adsnord.com/case-studies/ads-audit-and-analysis/">Ads audit and Analysis</a></li>
-                            </ul>
-                        </li>
-                    </ul>
-                </nav>
-                <button class="menu-btn" id="mToggle"><span></span><span></span></button>
-            </div>
-        </div>
-    </header>
+            <li class="dropdown">
+              <a href="https://adsnord.com/blog">Blog <i class="fa-solid fa-chevron-down"></i></a>
+              <ul class="dropdown-menu">
+                <li><a href="https://adsnord.com/category/google-ads-optimization">Google Ads Optimization</a></li>
+                <li><a href="https://adsnord.com/category/landing-page-optimization">Landing Page Optimization</a></li>
+                <li><a href="https://adsnord.com/category/keyword-planning">Keyword planning</a></li>
+                <li><a href="https://adsnord.com/category/google-ads-audit">Google Ads Audit</a></li>
+              </ul>
+            </li>
+
+            <li class="dropdown">
+              <a href="https://adsnord.com/case-studies">Case Studies <i class="fa-solid fa-chevron-down"></i></a>
+              <ul class="dropdown-menu">
+                <li><a href="https://adsnord.com/case-studies/google-ads-management/">Google Ads Management</a></li>
+                <li><a href="https://adsnord.com/case-studies/keyword-research-and-planning/">Keyword research and Planning</a></li>
+                <li><a href="https://adsnord.com/case-studies/landing-page-optimization/">Landing page Optimization</a></li>
+                <li><a href="https://adsnord.com/case-studies/ads-audit-and-analysis/">Ads audit and Analysis</a></li>
+              </ul>
+            </li>
+          </ul>
+        </nav>
+
+        <button class="menu-btn" id="mToggle"><span></span><span></span></button>
+      </div>
+    </div>
+  </header>
 </div>
 
 <div class="mobile-overlay" id="mMenu">
-    <a href="https://adsnord.com/" class="m-link-main">Home</a>
-    <a href="https://adsnord.com/contact" class="m-link-main">Contact</a>
-    <a href="https://adsnord.com/about" class="m-link-main">About</a>
-    
-    <a href="https://adsnord.com/services" class="m-link-parent">Services</a>
-    <div class="mobile-sub-links">
-        <a href="https://adsnord.com/services/google-ads-management/">Google Ads Management</a>
-        <a href="https://adsnord.com/services/ppc-keyword-research/">Keyword research and planning</a>
-        <a href="https://adsnord.com/services/conversion-rate-optimization/">Landing page optimization</a>
-        <a href="https://adsnord.com/services/ppc-audit-service/">Ads audit and analysis</a>
-    </div>
+  <a href="https://adsnord.com/" class="m-link-main">Home</a>
+  <a href="https://adsnord.com/contact" class="m-link-main">Contact</a>
+  <a href="https://adsnord.com/about" class="m-link-main">About</a>
 
-    <a href="https://adsnord.com/blog" class="m-link-parent">Blog</a>
-    <div class="mobile-sub-links">
-        <a href="https://adsnord.com/category/google-ads-optimization">Google Ads Optimization</a>
-        <a href="https://adsnord.com/category/landing-page-optimization">Landing Page Optimization</a>
-        <a href="https://adsnord.com/category/keyword-planning">Keyword planning</a>
-        <a href="https://adsnord.com/category/google-ads-audit">Google Ads Audit</a>
-    </div>
+  <a href="https://adsnord.com/services" class="m-link-parent">Services</a>
+  <div class="mobile-sub-links">
+    <a href="https://adsnord.com/services/google-ads-management/">Google Ads Management</a>
+    <a href="https://adsnord.com/services/ppc-keyword-research/">Keyword research and planning</a>
+    <a href="https://adsnord.com/services/conversion-rate-optimization/">Landing page optimization</a>
+    <a href="https://adsnord.com/services/ppc-audit-service/">Ads audit and analysis</a>
+  </div>
 
-    <a href="https://adsnord.com/case-studies" class="m-link-parent">Case Studies</a>
-    <div class="mobile-sub-links">
-        <a href="https://adsnord.com/case-studies/google-ads-management/">Google Ads Management</a>
-        <a href="https://adsnord.com/case-studies/keyword-research-and-planning/">Keyword research and Planning</a>
-        <a href="https://adsnord.com/case-studies/landing-page-optimization/">Landing page Optimization</a>
-        <a href="https://adsnord.com/case-studies/ads-audit-and-analysis/">Ads audit and Analysis</a>
-    </div>
+  <a href="https://adsnord.com/blog" class="m-link-parent">Blog</a>
+  <div class="mobile-sub-links">
+    <a href="https://adsnord.com/category/google-ads-optimization">Google Ads Optimization</a>
+    <a href="https://adsnord.com/category/landing-page-optimization">Landing Page Optimization</a>
+    <a href="https://adsnord.com/category/keyword-planning">Keyword planning</a>
+    <a href="https://adsnord.com/category/google-ads-audit">Google Ads Audit</a>
+  </div>
+
+  <a href="https://adsnord.com/case-studies" class="m-link-parent">Case Studies</a>
+  <div class="mobile-sub-links">
+    <a href="https://adsnord.com/case-studies/google-ads-management/">Google Ads Management</a>
+    <a href="https://adsnord.com/case-studies/keyword-research-and-planning/">Keyword research and Planning</a>
+    <a href="https://adsnord.com/case-studies/landing-page-optimization/">Landing page Optimization</a>
+    <a href="https://adsnord.com/case-studies/ads-audit-and-analysis/">Ads audit and Analysis</a>
+  </div>
+</div>
+<!-- =========================
+     PASTE ADSNORD AI HTML + CSS HERE
+     ========================= -->
+
+<style>
+  .chat-container{position:fixed;bottom:30px;right:30px;z-index:9999}
+  .liquid-orb{
+    width:60px;height:60px;
+    background:linear-gradient(45deg,#4285F4,#EA4335,#FBBC05,#34A853);
+    background-size:400% 400%;
+    border-radius:30% 70% 70% 30% / 30% 30% 70% 70%;
+    animation:liquid 6s ease-in-out infinite;
+    cursor:pointer;display:flex;align-items:center;justify-content:center;
+    box-shadow:0 10px 30px rgba(66,133,244,.2)
+  }
+  .liquid-orb i{color:#fff;font-size:1.4rem}
+  @keyframes liquid{
+    0%,100%{border-radius:30% 70% 70% 30% / 30% 30% 70% 70%}
+    33%{border-radius:70% 30% 50% 50% / 30% 30% 70% 70%}
+    66%{border-radius:30% 70% 30% 70% / 70% 30% 70% 30%}
+  }
+  #adsnord-ai-window{
+    display:none;position:fixed;bottom:100px;right:30px;
+    width:350px;height:500px;background:rgba(255,255,255,.95);
+    backdrop-filter:blur(25px);border:1px solid rgba(0,0,0,.1);
+    border-radius:24px;box-shadow:0 20px 40px rgba(0,0,0,.15);
+    flex-direction:column;z-index:99999;overflow:hidden;
+    font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif
+  }
+  @media (max-width:480px){
+    #adsnord-ai-window{width:90%!important;right:5%!important;left:5%!important;bottom:90px!important;height:65vh!important}
+  }
+</style>
+
+<div class="chat-container">
+  <div class="liquid-orb" onclick="toggleAdsNordAI()">
+    <i class="fa-solid fa-wand-magic-sparkles"></i>
+  </div>
 </div>
 
+<div id="adsnord-ai-window">
+  <div style="background:#4285F4;color:#fff;padding:18px;font-weight:900;display:flex;justify-content:space-between;align-items:center">
+    <div style="display:flex;align-items:center;gap:8px">
+      <i class="fa-solid fa-robot"></i><span>AdsNord AI</span>
+    </div>
+    <span onclick="toggleAdsNordAI()" style="cursor:pointer;font-size:24px">&times;</span>
+  </div>
+
+  <div id="adsnord-ai-messages" style="flex:1;padding:20px;overflow-y:auto;font-size:14px;display:flex;flex-direction:column;gap:12px;color:#0f172a"></div>
+
+  <div style="padding:10px;display:flex;gap:8px;overflow-x:auto;background:rgba(0,0,0,.02);border-top:1px solid rgba(0,0,0,.05)">
+    <button onclick="window.open('https://adsnord.com/contact/','_blank')" style="white-space:nowrap;background:#FBBC05;color:#000;border:none;padding:8px 14px;border-radius:20px;font-size:11px;font-weight:800;cursor:pointer">📊 Free Audit</button>
+    <button onclick="window.open('https://wa.me/46764304702')" style="white-space:nowrap;background:#25D366;color:#fff;border:none;padding:8px 14px;border-radius:20px;font-size:11px;font-weight:800;cursor:pointer"><i class="fa-brands fa-whatsapp"></i> WhatsApp</button>
+  </div>
+
+  <div style="padding:15px;border-top:1px solid rgba(0,0,0,.05);display:flex;gap:10px;background:#fff">
+    <input type="text" id="adsnord-ai-input" placeholder="Ask about Google Ads..." style="flex:1;border:1px solid #e2e8f0;padding:12px;border-radius:12px;outline:none">
+    <button onclick="sendAdsNordAIMsg()" style="background:#4285F4;color:#fff;border:none;width:44px;height:44px;border-radius:12px;cursor:pointer">
+      <i class="fa-solid fa-paper-plane"></i>
+    </button>
+  </div>
+</div>
+
+
 <script>
-    const mToggle = document.getElementById('mToggle');
-    const mMenu = document.getElementById('mMenu');
+  const mToggle = document.getElementById('mToggle');
+  const mMenu = document.getElementById('mMenu');
 
-    mToggle.addEventListener('click', () => {
-        mMenu.classList.toggle('active');
-        mToggle.classList.toggle('open');
-        document.body.classList.toggle('menu-open');
-    });
+  mToggle.addEventListener('click', () => {
+    mMenu.classList.toggle('active');
+    mToggle.classList.toggle('open');
+    document.body.classList.toggle('menu-open');
+  });
 
-    document.querySelectorAll('.mobile-overlay a').forEach(link => {
-        link.addEventListener('click', () => {
-            mMenu.classList.remove('active');
-            mToggle.classList.remove('open');
-            document.body.classList.remove('menu-open');
-        });
+  document.querySelectorAll('.mobile-overlay a').forEach(link => {
+    link.addEventListener('click', () => {
+      mMenu.classList.remove('active');
+      mToggle.classList.remove('open');
+      document.body.classList.remove('menu-open');
     });
+  });
+
+  // progress bar
+  window.addEventListener('scroll', () => {
+    const p = document.getElementById('progressBar');
+    const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+    const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+    const scrolled = (winScroll / height) * 100;
+    if(p) p.style.width = scrolled + "%";
+  }, { passive: true });
+
+  // is-scrolled + synced hue drift only after scroll
+  (function(){
+    const prefersReduced = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    let ticking = false;
+
+    function updateScrollState(){
+      ticking = false;
+      const y = window.scrollY || document.documentElement.scrollTop || 0;
+      document.body.classList.toggle('is-scrolled', y > 8);
+    }
 
     window.addEventListener('scroll', () => {
-        const p = document.getElementById('progressBar');
-        const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
-        const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
-        const scrolled = (winScroll / height) * 100;
-        if(p) p.style.width = scrolled + "%";
-    });
+      if(!ticking){ ticking = true; requestAnimationFrame(updateScrollState); }
+    }, { passive: true });
+
+    updateScrollState();
+    if (prefersReduced) return;
+
+    let hue = 205;
+    const speed = 0.25, tickMs = 220, startAfterPx = 12;
+    let timer = null;
+
+    function applyHue(){ document.documentElement.style.setProperty('--zen-hue', hue.toFixed(2)); }
+    function startHue(){
+      if (timer) return;
+      timer = setInterval(() => {
+        hue += speed; if (hue >= 360) hue -= 360;
+        applyHue();
+      }, tickMs);
+    }
+    function stopHue(){ if (!timer) return; clearInterval(timer); timer = null; }
+    function manageHue(){
+      const y = window.scrollY || document.documentElement.scrollTop || 0;
+      if (y > startAfterPx) startHue(); else stopHue();
+    }
+
+    window.addEventListener('scroll', manageHue, { passive: true });
+    document.addEventListener('visibilitychange', () => { if (document.hidden) stopHue(); else manageHue(); });
+
+    applyHue(); manageHue();
+  })();
 </script>
+<!-- =========================
+     PASTE ADSNORD AI SCRIPT HERE
+     ========================= -->
+<script>
+  const ADSNORD_WORKER_URL='https://adsnordai.md-motiur52.workers.dev';
+  let adsNordWelcomeSent=false;
+
+  function toggleAdsNordAI(){
+    const w=document.getElementById('adsnord-ai-window');
+    const open=(w.style.display==='none'||w.style.display==='');
+    w.style.display=open?'flex':'none';
+    if(open&&!adsNordWelcomeSent){
+      adsNordWelcomeSent=true;
+      setTimeout(()=>{
+        const b=document.getElementById('adsnord-ai-messages');
+        if(!b) return;
+        b.innerHTML+=`<div style="background:rgba(66,133,244,.1);padding:12px;border-radius:15px;align-self:flex-start;max-width:85%"><b>AdsNord AI:</b> Welcome! Would you like a <b>Free Audit</b> or strategy help?</div>`;
+        b.scrollTop=b.scrollHeight;
+      },600);
+    }
+  }
+
+  async function sendAdsNordAIMsg(){
+    const i=document.getElementById('adsnord-ai-input');
+    const b=document.getElementById('adsnord-ai-messages');
+    if(!i||!b) return;
+    const m=i.value.trim(); if(!m) return;
+
+    b.innerHTML+=`<div style="background:#4285F4;color:#fff;padding:12px;border-radius:15px;align-self:flex-end;max-width:85%">${esc(m)}</div>`;
+    i.value='';
+    const id='l-'+Date.now();
+    b.innerHTML+=`<div id="${id}" style="color:#94a3b8;font-size:12px">Typing...</div>`;
+    b.scrollTop=b.scrollHeight;
+
+    try{
+      const r=await fetch(ADSNORD_WORKER_URL,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({message:m})});
+      const d=await r.json(); const el=document.getElementById(id); if(el) el.remove();
+      const rep=(d&&d.reply)?String(d.reply):'Sorry, please try again.';
+      b.innerHTML+=`<div style="background:rgba(0,0,0,.05);padding:12px;border-radius:15px;align-self:flex-start;max-width:85%;border:1px solid rgba(0,0,0,.05)"><b>AI:</b> ${esc(rep)}</div>`;
+    }catch{
+      const el=document.getElementById(id); if(el) el.innerText='Error.';
+    }
+    b.scrollTop=b.scrollHeight;
+  }
+
+  function esc(s){return s.replaceAll('&','&amp;').replaceAll('<','&lt;').replaceAll('>','&gt;').replaceAll('"','&quot;').replaceAll("'","&#039;");}
+
+  document.addEventListener('keydown',e=>{
+    if(e.key==='Enter'){
+      const el=document.getElementById('adsnord-ai-input');
+      if(el&&document.activeElement===el){e.preventDefault();sendAdsNordAIMsg();}
+    }
+  });
+</script>
+
