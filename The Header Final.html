@@ -295,8 +295,9 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     <a href="https://adsnord.com/case-studies/ads-audit-and-analysis/">Ads audit and Analysis</a>
   </div>
 </div>
+
 <!-- =========================
-     PASTE ADSNORD AI HTML + CSS HERE
+     ADSNORD AI (FIXED: single welcome + triggers + form)
      ========================= -->
 
 <style>
@@ -343,6 +344,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     <span onclick="toggleAdsNordAI()" style="cursor:pointer;font-size:24px">&times;</span>
   </div>
 
+  <!-- ✅ FIX: no hardcoded welcome bubble here (prevents double message) -->
   <div id="adsnord-ai-messages" style="flex:1;padding:20px;overflow-y:auto;font-size:14px;display:flex;flex-direction:column;gap:12px;color:#0f172a"></div>
 
   <div style="padding:10px;display:flex;gap:8px;overflow-x:auto;background:rgba(0,0,0,.02);border-top:1px solid rgba(0,0,0,.05)">
@@ -357,7 +359,6 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     </button>
   </div>
 </div>
-
 
 <script>
   const mToggle = document.getElementById('mToggle');
@@ -398,7 +399,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     }
 
     window.addEventListener('scroll', () => {
-      if(!ticking){ ticking = true; requestAnimationFrame(updateScrollState); }
+      if(!ticking){ ticking = true; request AnimationFrame(updateScrollState); }
     }, { passive: true });
 
     updateScrollState();
@@ -428,58 +429,206 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     applyHue(); manageHue();
   })();
 </script>
+
 <!-- =========================
-     PASTE ADSNORD AI SCRIPT HERE
+     ADSNORD AI SCRIPT (FIXED)
      ========================= -->
 <script>
-  const ADSNORD_WORKER_URL='https://adsnordai.md-motiur52.workers.dev';
-  let adsNordWelcomeSent=false;
+  const ADSNORD_WORKER_URL = 'https://adsnordai.md-motiur52.workers.dev';
+  const FORMSPREE_URL = 'https://formspree.io/f/xvzaeokv';
+  let adsNordWelcomeSent = false;
+
+  function esc(s){
+    return String(s || "")
+      .replaceAll('&','&amp;')
+      .replaceAll('<','&lt;')
+      .replaceAll('>','&gt;')
+      .replaceAll('"','&quot;')
+      .replaceAll("'","&#039;");
+  }
+
+  function isFreeAuditTrigger(text){
+    const t = String(text || "").toLowerCase().trim();
+    const clean = t.replace(/[^\w\s]/g, " ").replace(/\s+/g, " ").trim();
+
+    const triggers = [
+      "get my free audit",
+      "i want my free audit",
+      "i want a free audit",
+      "i need a free audit",
+      "want free audit",
+      "need free audit",
+      "get free audit",
+      "free audit",
+      "free audits",
+      "audit please",
+      "i need an audit",
+      "send audit",
+      "send me an audit",
+      "free audit report",
+      "audit report",
+      "google ads audit",
+      "ppc audit",
+      "check my ads",
+      "review my ads",
+      "audit my ads",
+      "i want audit",
+      "i want audits"
+    ];
+
+    if (triggers.some(p => clean.includes(p))) return true;
+    if (clean === "audit" || clean === "audits") return true;
+
+    return false;
+  }
 
   function toggleAdsNordAI(){
-    const w=document.getElementById('adsnord-ai-window');
-    const open=(w.style.display==='none'||w.style.display==='');
-    w.style.display=open?'flex':'none';
-    if(open&&!adsNordWelcomeSent){
-      adsNordWelcomeSent=true;
-      setTimeout(()=>{
-        const b=document.getElementById('adsnord-ai-messages');
+    const w = document.getElementById('adsnord-ai-window');
+    const open = (w.style.display === 'none' || w.style.display === '');
+    w.style.display = open ? 'flex' : 'none';
+
+    if(open && !adsNordWelcomeSent){
+      adsNordWelcomeSent = true;
+      setTimeout(() => {
+        const b = document.getElementById('adsnord-ai-messages');
         if(!b) return;
-        b.innerHTML+=`<div style="background:rgba(66,133,244,.1);padding:12px;border-radius:15px;align-self:flex-start;max-width:85%"><b>AdsNord AI:</b> Welcome! Would you like a <b>Free Audit</b> or strategy help?</div>`;
-        b.scrollTop=b.scrollHeight;
-      },600);
+        b.innerHTML += `
+          <div style="background:rgba(66,133,244,.10);padding:12px;border-radius:15px;align-self:flex-start;max-width:85%">
+            <b>AdsNord AI:</b> Hi! Ask anything about Google Ads. If you want a <b>Free Audit</b>, just type <b>"get my free audit"</b>.
+          </div>
+        `;
+        b.scrollTop = b.scrollHeight;
+      }, 600);
     }
+  }
+
+  function showLeadForm(){
+    const box = document.getElementById('adsnord-ai-messages');
+    if(!box) return;
+
+    // prevent duplicate form blocks
+    if (document.getElementById('audit-form-container')) {
+      document.getElementById('audit-form-container').scrollIntoView({ behavior: 'smooth', block: 'end' });
+      return;
+    }
+
+    const formHtml = `
+      <div id="audit-form-container" style="background:white;border:1px solid #4285F4;padding:15px;border-radius:15px;margin-top:10px;box-shadow:0 4px 15px rgba(0,0,0,0.1);">
+        <form id="adsnord-lead-form">
+          <input type="hidden" name="subject" value="🚨 AdsNord Lead: New Audit Request">
+          <p style="margin:0 0 10px 0;font-size:14px;color:#4285F4;font-weight:900;">📧 Get your Free Audit Report</p>
+
+          <input type="text" name="website" id="lead-website-input"
+            placeholder="Your Website (e.g. adsnord.com)"
+            required
+            style="width:100%;padding:10px;border:1px solid #ddd;border-radius:8px;margin-bottom:10px;font-size:14px;">
+
+          <input type="email" name="email" id="lead-email-input" placeholder="Your Email Address" required
+            style="width:100%;padding:10px;border:1px solid #ddd;border-radius:8px;margin-bottom:10px;font-size:14px;">
+
+          <button type="submit" id="submit-btn"
+            style="width:100%;background:#4285F4;color:white;border:none;padding:10px;border-radius:8px;font-weight:900;cursor:pointer;">
+            Get My Audit
+          </button>
+        </form>
+      </div>
+    `;
+
+    box.innerHTML += formHtml;
+    box.scrollTop = box.scrollHeight;
+
+    const form = document.getElementById('adsnord-lead-form');
+    form.addEventListener('submit', async function(e){
+      e.preventDefault();
+
+      const website = document.getElementById('lead-website-input').value.trim();
+      const email = document.getElementById('lead-email-input').value.trim();
+      const btn = document.getElementById('submit-btn');
+
+      btn.innerText = "Sending...";
+      btn.disabled = true;
+
+      try{
+        const response = await fetch(FORMSPREE_URL, {
+          method: 'POST',
+          body: JSON.stringify({ email, website, subject: "🚨 AdsNord Lead: New Audit Request" }),
+          headers: { 'Accept': 'application/json', 'Content-Type': 'application/json' }
+        });
+
+        if (response.ok) {
+          document.getElementById('audit-form-container').innerHTML =
+            "<p style='color:#16a34a;font-weight:900;margin:0;text-align:center;'>✅ Success! Check your email soon.</p>";
+        } else {
+          btn.innerText = "Get My Audit";
+          btn.disabled = false;
+          alert("Something went wrong. Please check your internet.");
+        }
+      } catch(err){
+        console.error(err);
+        btn.innerText = "Get My Audit";
+        btn.disabled = false;
+        alert("Network error. Please try again.");
+      }
+    });
   }
 
   async function sendAdsNordAIMsg(){
-    const i=document.getElementById('adsnord-ai-input');
-    const b=document.getElementById('adsnord-ai-messages');
-    if(!i||!b) return;
-    const m=i.value.trim(); if(!m) return;
+    const i = document.getElementById('adsnord-ai-input');
+    const b = document.getElementById('adsnord-ai-messages');
+    if(!i || !b) return;
 
-    b.innerHTML+=`<div style="background:#4285F4;color:#fff;padding:12px;border-radius:15px;align-self:flex-end;max-width:85%">${esc(m)}</div>`;
-    i.value='';
-    const id='l-'+Date.now();
-    b.innerHTML+=`<div id="${id}" style="color:#94a3b8;font-size:12px">Typing...</div>`;
-    b.scrollTop=b.scrollHeight;
+    const userMsg = i.value.trim();
+    if(!userMsg) return;
+
+    // show user message
+    b.innerHTML += `<div style="background:#4285F4;color:#fff;padding:12px;border-radius:15px;align-self:flex-end;max-width:85%">${esc(userMsg)}</div>`;
+    i.value = '';
+
+    // ✅ Trigger: show form immediately
+    if (isFreeAuditTrigger(userMsg)) {
+      showLeadForm();
+    }
+
+    const loadingId = "loading-" + Date.now();
+    b.innerHTML += `<div id="${loadingId}" style="color:#94a3b8;font-size:12px">Typing...</div>`;
+    b.scrollTop = b.scrollHeight;
 
     try{
-      const r=await fetch(ADSNORD_WORKER_URL,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({message:m})});
-      const d=await r.json(); const el=document.getElementById(id); if(el) el.remove();
-      const rep=(d&&d.reply)?String(d.reply):'Sorry, please try again.';
-      b.innerHTML+=`<div style="background:rgba(0,0,0,.05);padding:12px;border-radius:15px;align-self:flex-start;max-width:85%;border:1px solid rgba(0,0,0,.05)"><b>AI:</b> ${esc(rep)}</div>`;
+      const res = await fetch(ADSNORD_WORKER_URL, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ message: userMsg })
+      });
+
+      const data = await res.json();
+      const loadingEl = document.getElementById(loadingId);
+      if(loadingEl) loadingEl.remove();
+
+      const reply = (data && data.reply) ? String(data.reply) : "Sorry, please try again.";
+
+      // ✅ Trigger: AI can also request form with [SHOW_FORM]
+      if (reply.trim().endsWith("[SHOW_FORM]")) {
+        const cleanReply = reply.replace("[SHOW_FORM]", "").trim();
+        b.innerHTML += `<div style="background:rgba(0,0,0,.05);padding:12px;border-radius:15px;align-self:flex-start;max-width:85%;border:1px solid rgba(0,0,0,.05)"><b>AdsNord AI:</b> ${esc(cleanReply)}</div>`;
+        showLeadForm();
+      } else {
+        b.innerHTML += `<div style="background:rgba(0,0,0,.05);padding:12px;border-radius:15px;align-self:flex-start;max-width:85%;border:1px solid rgba(0,0,0,.05)"><b>AdsNord AI:</b> ${esc(reply)}</div>`;
+      }
     }catch{
-      const el=document.getElementById(id); if(el) el.innerText='Error.';
+      const loadingEl = document.getElementById(loadingId);
+      if(loadingEl) loadingEl.innerText = "Error.";
     }
-    b.scrollTop=b.scrollHeight;
+
+    b.scrollTop = b.scrollHeight;
   }
 
-  function esc(s){return s.replaceAll('&','&amp;').replaceAll('<','&lt;').replaceAll('>','&gt;').replaceAll('"','&quot;').replaceAll("'","&#039;");}
-
-  document.addEventListener('keydown',e=>{
-    if(e.key==='Enter'){
-      const el=document.getElementById('adsnord-ai-input');
-      if(el&&document.activeElement===el){e.preventDefault();sendAdsNordAIMsg();}
+  document.addEventListener('keydown', (e) => {
+    if(e.key === 'Enter'){
+      const el = document.getElementById('adsnord-ai-input');
+      if(el && document.activeElement === el){
+        e.preventDefault();
+        sendAdsNordAIMsg();
+      }
     }
   });
 </script>
-
