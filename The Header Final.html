@@ -30,7 +30,10 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     --zen-stroke: .10;
   }
 
-  * { margin: 0; padding: 10; box-sizing: border-box; }
+  /* ✅ FIX 1: Your old line was: padding: 10; (invalid + breaks layout)
+     Keep margin 0 but make padding 0 */
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
   body { font-family: 'Inter', sans-serif; background: var(--bg-body); color: var(--text-main); overflow-x: hidden; }
 
   /* Progress bar */
@@ -53,10 +56,13 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     border-radius: 30px;
     padding: 16px 0;
     transition: var(--transition);
-    overflow: hidden;
+
+    /* ✅ FIX 2: THIS was breaking dropdown (clipping submenu) */
+    overflow: visible;          /* was hidden */
+
     position: relative;
 
-    /* ✅ FIX #2: remove border line + Next-Zen glass */
+    /* remove border line + Next-Zen glass */
     border: none !important;
     background: linear-gradient(
       135deg,
@@ -70,6 +76,13 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     box-shadow:
       0 16px 40px rgba(0,0,0, var(--zen-shadow)),
       inset 0 -1px 0 rgba(255,255,255, var(--zen-stroke)) !important;
+  }
+
+  /* ✅ FIX 3: Extra safety so any wrapper doesn't clip dropdown */
+  .header-flex,
+  .header-actions,
+  nav{
+    overflow: visible !important;
   }
 
   .header-flex { display:flex; justify-content:space-between; align-items:center; padding: 0 22px; }
@@ -103,14 +116,17 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     opacity:0; visibility:hidden;
     transform: translateY(10px);
     transition: var(--transition);
-    z-index: 1001;
+
+    /* ✅ Keep high z-index so it always appears above glass */
+    z-index: 99999;
+
     box-shadow: 0 10px 30px rgba(0,0,0,.10);
   }
   .dropdown:hover .dropdown-menu { opacity:1; visibility:visible; transform: translateY(0); }
   .dropdown-menu li a { padding: 12px 20px; display:block; font-size: .85rem !important; color: var(--text-main); }
   .dropdown-menu li a:hover { background: rgba(66,133,244,.10); color: var(--g-blue) !important; }
 
-  /* ✅ Micro highlight line (header) */
+  /* Micro highlight line (header) */
   header::after{
     content:"";
     position:absolute;
@@ -144,7 +160,6 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     transition: .5s cubic-bezier(.23,1,.32,1);
     overflow-y:auto;
 
-    /* ✅ FIX #3: same Next-Zen glass, not plain white */
     background: linear-gradient(
       135deg,
       rgba(255,255,255,.92),
@@ -155,7 +170,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   }
   .mobile-overlay.active { right: 0; }
 
-  /* ✅ FIX #3: force mobile menu readability */
+  /* force mobile menu readability */
   .mobile-overlay a{
     text-decoration:none;
     font-weight: 900;
@@ -344,7 +359,6 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     <span onclick="toggleAdsNordAI()" style="cursor:pointer;font-size:24px">&times;</span>
   </div>
 
-  <!-- ✅ FIX: no hardcoded welcome bubble here (prevents double message) -->
   <div id="adsnord-ai-messages" style="flex:1;padding:20px;overflow-y:auto;font-size:14px;display:flex;flex-direction:column;gap:12px;color:#0f172a"></div>
 
   <div style="padding:10px;display:flex;gap:8px;overflow-x:auto;background:rgba(0,0,0,.02);border-top:1px solid rgba(0,0,0,.05)">
@@ -399,7 +413,11 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     }
 
     window.addEventListener('scroll', () => {
-      if(!ticking){ ticking = true; request AnimationFrame(updateScrollState); }
+      if(!ticking){
+        ticking = true;
+        /* ✅ FIX 4: correct function name */
+        requestAnimationFrame(updateScrollState);
+      }
     }, { passive: true });
 
     updateScrollState();
@@ -506,7 +524,6 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     const box = document.getElementById('adsnord-ai-messages');
     if(!box) return;
 
-    // prevent duplicate form blocks
     if (document.getElementById('audit-form-container')) {
       document.getElementById('audit-form-container').scrollIntoView({ behavior: 'smooth', block: 'end' });
       return;
@@ -580,11 +597,9 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     const userMsg = i.value.trim();
     if(!userMsg) return;
 
-    // show user message
     b.innerHTML += `<div style="background:#4285F4;color:#fff;padding:12px;border-radius:15px;align-self:flex-end;max-width:85%">${esc(userMsg)}</div>`;
     i.value = '';
 
-    // ✅ Trigger: show form immediately
     if (isFreeAuditTrigger(userMsg)) {
       showLeadForm();
     }
@@ -606,7 +621,6 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 
       const reply = (data && data.reply) ? String(data.reply) : "Sorry, please try again.";
 
-      // ✅ Trigger: AI can also request form with [SHOW_FORM]
       if (reply.trim().endsWith("[SHOW_FORM]")) {
         const cleanReply = reply.replace("[SHOW_FORM]", "").trim();
         b.innerHTML += `<div style="background:rgba(0,0,0,.05);padding:12px;border-radius:15px;align-self:flex-start;max-width:85%;border:1px solid rgba(0,0,0,.05)"><b>AdsNord AI:</b> ${esc(cleanReply)}</div>`;
