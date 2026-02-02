@@ -170,6 +170,39 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   }
   .mobile-overlay.active { right: 0; }
 
+  /* ✅ Mobile menu close button */
+.mobile-overlay{ position: fixed; } /* keep as-is, just ensuring positioning */
+
+.m-close{
+  position: absolute;
+  top: calc(18px + env(safe-area-inset-top));
+  right: 18px;
+
+  width: 44px;
+  height: 44px;
+  border: none;
+  border-radius: 14px;
+  cursor: pointer;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  background: rgba(255,255,255,.85);
+  border: 1px solid rgba(0,0,0,.08);
+  backdrop-filter: blur(14px) saturate(150%);
+  -webkit-backdrop-filter: blur(14px) saturate(150%);
+  box-shadow: 0 10px 25px rgba(0,0,0,.10);
+
+  z-index: 2010;
+}
+
+.m-close i{
+  font-size: 18px;
+  color: #0f172a;
+}
+
+
   /* force mobile menu readability */
   .mobile-overlay a{
     text-decoration:none;
@@ -282,6 +315,10 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 </div>
 
 <div class="mobile-overlay" id="mMenu">
+    <button class="m-close" id="mClose" aria-label="Close menu">
+    <i class="fa-solid fa-xmark"></i>
+  </button>
+
   <a href="https://adsnord.com/" class="m-link-main">Home</a>
   <a href="https://adsnord.com/contact" class="m-link-main">Contact</a>
   <a href="https://adsnord.com/about" class="m-link-main">About</a>
@@ -377,12 +414,31 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <script>
   const mToggle = document.getElementById('mToggle');
   const mMenu = document.getElementById('mMenu');
+  const mClose = document.getElementById('mClose');
+
+if (mClose) {
+  mClose.addEventListener('click', () => {
+    mMenu.classList.remove('active');
+    mToggle.classList.remove('open');
+    document.body.classList.remove('menu-open');
+  });
+}
+
 
   mToggle.addEventListener('click', () => {
     mMenu.classList.toggle('active');
     mToggle.classList.toggle('open');
     document.body.classList.toggle('menu-open');
   });
+
+  mMenu.addEventListener('click', (e) => {
+  if (e.target === mMenu) {
+    mMenu.classList.remove('active');
+    mToggle.classList.remove('open');
+    document.body.classList.remove('menu-open');
+  }
+});
+
 
   document.querySelectorAll('.mobile-overlay a').forEach(link => {
     link.addEventListener('click', () => {
