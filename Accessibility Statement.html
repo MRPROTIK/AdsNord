@@ -1,0 +1,331 @@
+<style>
+  /* =========================================================
+     ADSNORD LEGAL PAGES — MATCHED STYLE (Privacy / Terms / Accessibility)
+     - Same spacing, type, glass, callouts, link + focus behavior
+     ========================================================= */
+
+  :root{
+    --primary-blue:#2563eb;
+    --primary-blue-2:#1d4ed8;
+
+    --text-main:#0f172a;
+    --text-muted:#475569;               /* stronger contrast on glass */
+    --border-light:rgba(15,23,42,.10);
+    --bg-glass:rgba(255,255,255,.82);
+
+    /* Optional: if your other legal pages use a soft page tint */
+    --page-tint: radial-gradient(900px 500px at 15% 10%, rgba(37,99,235,.10), transparent 55%),
+                 radial-gradient(900px 500px at 85% 20%, rgba(99,102,241,.08), transparent 55%),
+                 radial-gradient(900px 500px at 50% 95%, rgba(16,185,129,.06), transparent 55%);
+  }
+
+  .adsnord-access-wrap,
+  .adsnord-access-wrap *{ box-sizing:border-box; }
+
+  /* Page container (matches legal pages) */
+  .adsnord-access-wrap{
+    max-width:1100px;
+    margin:40px auto;
+    padding:0 20px;
+    font-family:'Inter',system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
+    color:var(--text-main);
+    line-height:1.75;
+
+    display:grid;
+    grid-template-columns:1fr;
+    gap:30px;
+  }
+
+  /* If your Privacy/Terms pages have a subtle background, uncomment this:
+  body{ background: var(--page-tint); }
+  */
+
+  @media(min-width:992px){
+    .adsnord-access-wrap{ grid-template-columns:280px 1fr; }
+  }
+
+  /* Shared Card Style (same “glass” system) */
+  .adsnord-access-card{
+    background:var(--bg-glass);
+    border:1px solid var(--border-light);
+    border-radius:24px;
+    padding:clamp(24px,5vw,50px);
+    box-shadow:0 25px 50px -12px rgba(0,0,0,.08);
+    backdrop-filter:blur(12px);
+    -webkit-backdrop-filter:blur(12px);
+  }
+
+  /* Typography */
+  .adsnord-access-card h1{
+    font-size:clamp(32px,4vw,48px);
+    font-weight:900;
+    margin:0 0 10px;
+    letter-spacing:-.02em;
+  }
+
+  .adsnord-access-card h2{
+    font-size:24px;
+    margin:34px 0 12px;
+  }
+
+  .adsnord-access-card h3{
+    font-size:18px;
+    margin:18px 0 10px;
+    color:var(--primary-blue);
+  }
+
+  .adsnord-access-card p,
+  .adsnord-access-card li{
+    max-width:72ch;
+  }
+
+  .adsnord-access-card ul{
+    padding-left: 18px;
+  }
+
+  .adsnord-access-card li{
+    margin:8px 0;
+  }
+
+  /* Callouts */
+  .adsnord-callout{
+    background:#f1f5f9;
+    border-left:4px solid var(--primary-blue);
+    padding:18px;
+    border-radius:0 12px 12px 0;
+    margin:18px 0;
+  }
+
+  /* Badge */
+  .adsnord-badge{
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+    background:#ecfdf5;
+    color:#065f46;
+    padding:6px 14px;
+    border-radius:99px;
+    font-size:13px;
+    font-weight:700;
+    margin-bottom:14px;
+  }
+
+  /* Links: always underlined + strong focus */
+  .adsnord-access-card a{
+    color:var(--primary-blue);
+    text-decoration:underline;
+    text-underline-offset:3px;
+    text-decoration-thickness:2px;
+  }
+  .adsnord-access-card a:hover{ color:var(--primary-blue-2); }
+  .adsnord-access-card a:focus-visible{
+    outline:3px solid rgba(37,99,235,.45);
+    outline-offset:3px;
+    border-radius:6px;
+  }
+
+  /* Skip link */
+  .adsnord-skip{
+    position:absolute;
+    left:-999px;
+    top:auto;
+    width:1px;
+    height:1px;
+    overflow:hidden;
+  }
+  .adsnord-skip:focus{
+    position:static;
+    width:auto;
+    height:auto;
+    display:inline-block;
+    margin:0 0 14px;
+    padding:10px 14px;
+    border-radius:12px;
+    background:#0f172a;
+    color:#fff;
+    text-decoration:none;
+  }
+
+  /* Desktop TOC (same card style) */
+  .adsnord-toc{
+    position:sticky;
+    top:24px;
+    align-self:start;
+  }
+  .adsnord-toc h2{
+    font-size:16px;
+    margin:0 0 10px;
+    letter-spacing:.2px;
+  }
+  .adsnord-toc nav a{
+    display:block;
+    padding:10px 12px;
+    border-radius:14px;
+    border:1px solid transparent;
+    text-decoration:none;
+    color:var(--text-main);
+  }
+  .adsnord-toc nav a:hover{
+    background:rgba(37,99,235,.08);
+    border-color:rgba(37,99,235,.20);
+  }
+  .adsnord-toc nav a:focus-visible{
+    outline:3px solid rgba(37,99,235,.45);
+    outline-offset:3px;
+  }
+  @media(max-width:991px){
+    .adsnord-toc{ display:none; }
+  }
+
+  .adsnord-divider{
+    height:1px;
+    width:100%;
+    background:rgba(15,23,42,.10);
+    margin:22px 0 0;
+  }
+
+  @media (prefers-reduced-motion: reduce){
+    *{ scroll-behavior:auto !important; }
+  }
+</style>
+
+<div class="adsnord-access-wrap">
+
+  <!-- Desktop Table of Contents -->
+  <aside class="adsnord-access-card adsnord-toc" aria-label="On this page">
+    <h2>On this page</h2>
+    <nav>
+      <a href="#commitment">Statement of commitment</a>
+      <a href="#conformance">Conformance status</a>
+      <a href="#measures">Measures we take</a>
+      <a href="#assessment">Assessment approach</a>
+      <a href="#known-limitations">Known limitations</a>
+      <a href="#compatibility">Compatibility</a>
+      <a href="#feedback">Feedback & contact</a>
+      <a href="#formal-complaints">Escalation</a>
+    </nav>
+    <div class="adsnord-divider" aria-hidden="true"></div>
+    <p style="margin:14px 0 0; color:var(--text-muted); font-size:14px;">
+      Tip: Use <strong>Tab</strong> to move through interactive elements.
+    </p>
+  </aside>
+
+  <!-- Main content -->
+  <main class="adsnord-access-card" id="main-content">
+    <a class="adsnord-skip" href="#main-content">Skip to Accessibility Statement</a>
+
+    <header>
+      <div class="adsnord-badge" aria-label="Accessibility commitment badge">✓ Accessibility Commitment</div>
+      <h1>Accessibility Statement</h1>
+      <p style="color:var(--text-muted); margin:0;">Last Updated: February 2026</p>
+    </header>
+
+    <section id="commitment">
+      <h2>Statement of Commitment</h2>
+      <p>
+        AdsNord is committed to ensuring digital accessibility for people with disabilities.
+        We aim to provide an inclusive experience for all visitors and continually improve our website
+        and content based on recognized accessibility standards and user feedback.
+      </p>
+    </section>
+
+    <section id="conformance">
+      <h2>Conformance Status</h2>
+      <p>
+        The
+        <a href="https://www.w3.org/WAI/standards-guidelines/wcag/" target="_blank" rel="noopener noreferrer">
+          Web Content Accessibility Guidelines (WCAG)
+        </a>
+        define requirements for designers and developers to improve accessibility for people with disabilities.
+        AdsNord strives to conform to <strong>WCAG 2.1 Level AA</strong>.
+      </p>
+
+      <div class="adsnord-callout" role="note" aria-label="Conformance note">
+        <strong>Current status:</strong> AdsNord is <strong>partially conformant</strong> with WCAG 2.1 Level AA.
+        Partial conformance means that some content may not fully meet the standard yet.
+      </div>
+    </section>
+
+    <section id="measures">
+      <h2>Measures We Take to Support Accessibility</h2>
+      <p>We take the following measures to improve accessibility and maintain progress:</p>
+      <ul>
+        <li><strong>Inclusive design practices:</strong> We consider accessibility during layout, typography, and interaction design.</li>
+        <li><strong>Keyboard navigation support:</strong> We aim to ensure core website functions are usable without a mouse.</li>
+        <li><strong>Readable content:</strong> We use clear language, consistent headings, and spacing for better scanning and comprehension.</li>
+        <li><strong>Color contrast and focus visibility:</strong> We maintain visible focus indicators and avoid using color alone to convey information.</li>
+        <li><strong>Ongoing improvements:</strong> We address reported barriers and prioritize fixes that impact core user journeys.</li>
+      </ul>
+    </section>
+
+    <section id="assessment">
+      <h2>Assessment Approach</h2>
+      <p>We evaluate accessibility using a combination of methods, such as:</p>
+      <ul>
+        <li><strong>Self-evaluation:</strong> Reviewing pages against WCAG 2.1 AA success criteria.</li>
+        <li><strong>Automated checks:</strong> Using accessibility testing tools to detect common issues (e.g., missing labels, contrast risks).</li>
+        <li><strong>Manual testing:</strong> Keyboard-only navigation checks and screen reader spot checks on key pages.</li>
+      </ul>
+
+      <div class="adsnord-callout" role="note" aria-label="Assessment note">
+        <strong>Note:</strong> Automated tests do not catch everything. Manual testing and user feedback are essential parts of our process.
+      </div>
+    </section>
+
+    <section id="known-limitations">
+      <h2>Known Limitations</h2>
+      <p>
+        While we work toward full WCAG 2.1 AA conformance, some areas may still present barriers, including:
+      </p>
+      <ul>
+        <li><strong>Legacy PDFs:</strong> Some older PDF audits or downloadable materials may not be fully accessible.</li>
+        <li><strong>Older media:</strong> Some older videos may not have captions or full transcripts.</li>
+        <li><strong>Third-party embeds:</strong> Certain third-party widgets or embedded content may not fully meet accessibility standards.</li>
+      </ul>
+      <p>
+        If you need an alternative format or assistance accessing content, please contact us and we’ll do our best to help.
+      </p>
+    </section>
+
+    <section id="compatibility">
+      <h2>Compatibility</h2>
+      <p>
+        Accessibility of AdsNord relies on the following technologies and is designed to work with modern browsers
+        and assistive technologies:
+      </p>
+      <ul>
+        <li>HTML</li>
+        <li>CSS</li>
+        <li>JavaScript</li>
+      </ul>
+      <p style="color:var(--text-muted);">
+        Best results are typically achieved using the latest versions of major browsers and updated assistive technologies.
+      </p>
+    </section>
+
+    <section id="feedback">
+      <h2>Feedback & Contact</h2>
+      <p>
+        We welcome your feedback on the accessibility of AdsNord. If you encounter accessibility barriers,
+        tell us what page you were on and what you were trying to do—we’ll use that to investigate and improve.
+      </p>
+      <ul>
+        <li><strong>Email:</strong> <a href="mailto:info@adsnord.com">info@adsnord.com</a></li>
+        <li><strong>Address:</strong> Nyckelpigevägen 162B, 54965 Skövde, Sweden</li>
+      </ul>
+      <p>We aim to respond within <strong>5 business days</strong>.</p>
+    </section>
+
+    <section id="formal-complaints">
+      <h2>Escalation</h2>
+      <p>
+        If you contact us and are not satisfied with our response, you may request escalation and we will review
+        your case internally. We will also provide alternative ways to access information when feasible.
+      </p>
+      <div class="adsnord-callout" role="note" aria-label="Escalation note">
+        <strong>Tip:</strong> Include your device, browser, and any assistive technology you use (if applicable).
+        This helps us reproduce and resolve the issue faster.
+      </div>
+    </section>
+  </main>
+</div>
