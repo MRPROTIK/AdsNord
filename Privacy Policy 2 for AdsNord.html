@@ -1,0 +1,366 @@
+<style>
+  :root {
+    --primary-blue: #2563eb;
+    --text-main: #0f172a;
+    --text-muted: #64748b;
+    --border-light: rgba(15, 23, 42, 0.1);
+    --bg-glass: rgba(255, 255, 255, 0.82);
+  }
+
+  /* ====== GLOBAL SAFETY (scoped) ====== */
+  .adsnord-legal-wrap,
+  .adsnord-legal-wrap *{
+    box-sizing: border-box;
+  }
+
+  /* Prevent any inherited Elementor/theme overlap styles */
+  .adsnord-legal-wrap{
+    isolation: isolate;
+  }
+
+  .adsnord-legal-wrap {
+    max-width: 1100px;
+    margin: 40px auto;
+    padding: 0 20px;
+    font-family: 'Inter', system-ui, -apple-system, sans-serif;
+    color: var(--text-main);
+    line-height: 1.7;
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 30px;
+  }
+
+  @media (min-width: 992px) {
+    .adsnord-legal-wrap { grid-template-columns: 280px 1fr; }
+  }
+
+  /* Sticky Navigation */
+  .adsnord-nav-card {
+    position: sticky;
+    top: 100px;
+    height: fit-content;
+    display: none;
+    background: var(--bg-glass);
+    border: 1px solid var(--border-light);
+    border-radius: 20px;
+    padding: 24px;
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+  }
+
+  @media (min-width: 992px) { .adsnord-nav-card { display: block; } }
+
+  .adsnord-nav-card h4 {
+    font-size: 14px;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin: 0 0 15px;
+    color: var(--text-muted);
+  }
+  .adsnord-nav-card ul { list-style: none; padding: 0; margin: 0; }
+  .adsnord-nav-card li { margin: 0 0 10px; }
+  .adsnord-nav-card a {
+    text-decoration: none;
+    color: var(--text-main);
+    font-size: 14px;
+    transition: color 0.2s;
+    display: inline-block;
+    overflow-wrap: anywhere;
+    word-break: break-word;
+  }
+  .adsnord-nav-card a:hover { color: var(--primary-blue); }
+
+  /* Main Content Card */
+  .adsnord-main-card {
+    background: var(--bg-glass);
+    border: 1px solid var(--border-light);
+    border-radius: 24px;
+    padding: clamp(24px, 5vw, 50px);
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.08);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+
+    /* Overlap-killer: stop weird inherited transforms/positioning */
+    position: relative;
+    z-index: 1;
+  }
+
+  /* ====== TYPOGRAPHY RESET (scoped, fixes overlap) ====== */
+  .adsnord-main-card,
+  .adsnord-main-card p,
+  .adsnord-main-card li,
+  .adsnord-main-card td,
+  .adsnord-main-card th,
+  .adsnord-main-card a,
+  .adsnord-main-card strong,
+  .adsnord-main-card em{
+    line-height: 1.7 !important;              /* prevents theme overrides causing overlap */
+    letter-spacing: normal;
+    text-transform: none;
+  }
+
+  /* Make all text wrap safely (long words/links = common overlap cause) */
+  .adsnord-main-card *{
+    overflow-wrap: anywhere;
+    word-break: break-word;
+  }
+
+  /* Normalize margins (Elementor themes often set weird negative margins) */
+  .adsnord-main-card p{ margin: 0 0 14px !important; }
+  .adsnord-main-card ul{
+    margin: 10px 0 14px 20px !important;
+    padding: 0 !important;
+  }
+  .adsnord-main-card li{ margin: 6px 0 !important; }
+
+  /* Ensure headings never collide */
+  .adsnord-main-card h1,
+  .adsnord-main-card h2,
+  .adsnord-main-card h3{
+    clear: both;
+    display: block;
+    position: relative;
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+  }
+
+  .policy-header {
+    margin-bottom: 40px;
+    border-bottom: 1px solid var(--border-light);
+    padding-bottom: 30px;
+  }
+
+  .adsnord-title {
+    font-size: clamp(32px, 4vw, 48px);
+    font-weight: 800;
+    letter-spacing: -0.03em;
+    margin: 10px 0 10px !important;
+  }
+
+  .trust-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: #ecfdf5;
+    color: #065f46;
+    padding: 6px 14px;
+    border-radius: 99px;
+    font-size: 13px;
+    font-weight: 600;
+    margin: 0 0 20px !important;
+  }
+
+  .section-anchor { scroll-margin-top: 120px; }
+
+  /* IMPORTANT: Scope heading styles to card to avoid global theme CSS collisions */
+  .adsnord-main-card h2 {
+    font-size: 24px;
+    margin-top: 40px !important;
+    margin-bottom: 15px !important;
+    letter-spacing: -0.01em;
+  }
+  .adsnord-main-card h3 {
+    font-size: 18px;
+    margin-top: 25px !important;
+    margin-bottom: 10px !important;
+    color: var(--primary-blue);
+  }
+
+  /* Data Table */
+  .data-table-wrapper {
+    overflow-x: auto;
+    margin: 20px 0;
+    border-radius: 12px;
+    border: 1px solid var(--border-light);
+  }
+  .data-table {
+    width: 100%;
+    border-collapse: collapse;
+    background: white;
+    font-size: 14px;
+    table-layout: auto;
+  }
+  .data-table th {
+    background: #f8fafc;
+    padding: 15px;
+    text-align: left;
+    border-bottom: 1px solid var(--border-light);
+    white-space: normal;
+    vertical-align: top;
+  }
+  .data-table td {
+    padding: 15px;
+    border-bottom: 1px solid var(--border-light);
+    white-space: normal;
+    vertical-align: top;
+  }
+
+  .highlight-box {
+    background: #f1f5f9;
+    border-left: 4px solid var(--primary-blue);
+    padding: 20px;
+    border-radius: 0 12px 12px 0;
+    margin: 20px 0;
+    position: relative;
+  }
+
+  .contact-footer {
+    margin-top: 50px;
+    padding-top: 30px;
+    border-top: 2px dashed var(--border-light);
+  }
+
+  /* Links (scoped so theme link styles don't break layout) */
+  .adsnord-main-card a {
+    color: var(--primary-blue);
+    text-decoration: none;
+    font-weight: 500;
+  }
+  .adsnord-main-card a:hover { text-decoration: underline; }
+
+  /* Mobile polish */
+  @media (max-width: 480px){
+    .adsnord-legal-wrap{ margin: 18px auto; padding: 0 14px; }
+    .adsnord-main-card{ padding: 20px; }
+    .adsnord-main-card h2{ font-size: 20px; }
+    .adsnord-main-card h3{ font-size: 16px; }
+    .data-table th, .data-table td{ padding: 12px; }
+  }
+</style>
+
+<div class="adsnord-legal-wrap">
+  <aside class="adsnord-nav-card">
+    <h4>Contents</h4>
+    <ul>
+      <li><a href="#intro">Introduction</a></li>
+      <li><a href="#controller">Data Controller</a></li>
+      <li><a href="#collection">Data Collection</a></li>
+      <li><a href="#consent-mode">Google Consent Mode</a></li>
+      <li><a href="#retention">Retention Periods</a></li>
+      <li><a href="#rights">Your Rights</a></li>
+      <li><a href="#imy">Supervisory Authority</a></li>
+    </ul>
+  </aside>
+
+  <main class="adsnord-main-card">
+    <header class="policy-header">
+      <div class="trust-badge">✓ GDPR & ePrivacy Compliant 2026</div>
+      <h1 class="adsnord-title">Privacy Policy</h1>
+      <p style="color: var(--text-muted); margin: 0 0 0 !important;"><strong>Last Verified:</strong> February 2, 2026</p>
+    </header>
+
+    <div id="intro" class="section-anchor">
+      <p>At <strong>AdsNord</strong>, managed by MD Motiur Rahman, we operate on a "Privacy by Design" principle. This policy outlines how we handle data for our website visitors and clients in compliance with the EU General Data Protection Regulation (GDPR).</p>
+    </div>
+
+    <h2 id="controller" class="section-anchor">1. Data Controller & Contact</h2>
+    <div class="highlight-box">
+      <strong>AdsNord</strong><br>
+      Nyckelpigevägen 162B, 54965 Skövde, Sweden<br>
+      Email: <a href="mailto:info@adsnord.com">info@adsnord.com</a><br>
+      Responsible Officer: MD Motiur Rahman
+    </div>
+
+    <h2 id="collection" class="section-anchor">2. Data Processing Activities</h2>
+    <div class="data-table-wrapper">
+      <table class="data-table">
+        <thead>
+          <tr>
+            <th>Activity</th>
+            <th>Type of Data</th>
+            <th>Legal Basis</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Service Inquiries</td>
+            <td>Name, Email, URL</td>
+            <td>Contractual Necessity</td>
+          </tr>
+          <tr>
+            <td>Ad Performance</td>
+            <td>IP (Anonymized), GCLID</td>
+            <td>Consent (Consent Mode v2)</td>
+          </tr>
+          <tr>
+            <td>Audit Requests</td>
+            <td>Ads Account ID, Email</td>
+            <td>Explicit Consent</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="highlight-box">
+      <strong>Tracking tools we use (only when permitted)</strong>
+      <p style="margin: 10px 0 0; color: var(--text-main);">
+        We use the following tools on this website:
+        <strong>Google Analytics 4 (GA4)</strong>, <strong>Google Tag Manager (GTM)</strong>,
+        <strong>Google Ads conversion tag</strong>, and <strong>Meta Pixel</strong>.
+        Non-essential tracking (analytics/marketing) is activated only after you give consent via our cookie banner,
+        where required by EU ePrivacy rules and the GDPR.
+      </p>
+    </div>
+
+    <h2 id="consent-mode" class="section-anchor">3. Google Consent Mode v2 & Advertising</h2>
+    <p>As a Google Ads specialist, we utilize <strong>Google Consent Mode v2</strong>. This means:</p>
+
+    <div class="highlight-box">
+      <strong>Our role vs. platform roles</strong>
+      <p style="margin: 10px 0 0; color: var(--text-main);">
+        When we deliver services to clients, AdsNord typically acts as a <strong>data processor</strong> for client campaign data.
+        However, advertising platforms such as <strong>Google</strong> and <strong>Meta</strong> may act as
+        <strong>independent controllers</strong> for certain processing under their own terms (depending on configuration and features enabled).
+      </p>
+    </div>
+
+    <ul>
+      <li>If you decline cookies, we use "pings" to model conversions without identifying you personally.</li>
+      <li>We use <strong>Enhanced Conversions</strong> only when hashed, ensuring your email address is never shared in plain text with Google.</li>
+    </ul>
+
+    <h2 id="retention" class="section-anchor">4. Data Retention Periods</h2>
+    <p>We do not hold onto data longer than legally required:</p>
+    <ul>
+      <li><strong>Inquiry Data:</strong> Deleted after 12 months if no contract is signed.</li>
+      <li><strong>Client Data:</strong> Retained for 7 years following the Swedish Accounting Act (Bokföringslagen).</li>
+      <li><strong>Analytics Data:</strong> Set to expire after 14 months (GA4 standard).</li>
+    </ul>
+
+    <div class="highlight-box">
+      <strong>International data transfers</strong>
+      <p style="margin: 10px 0 0; color: var(--text-main);">
+        Some of our service providers (such as Google and Meta) may process data outside the EU/EEA.
+        Where international transfers occur, we rely on appropriate safeguards such as
+        <strong>EU Standard Contractual Clauses (SCCs)</strong> and other legally recognized mechanisms
+        (including adequacy decisions where applicable).
+      </p>
+    </div>
+
+    <h2 id="rights" class="section-anchor">5. Your Rights Under GDPR</h2>
+    <p>You have the right to access, rectify, or erase your data. Since we are a Swedish entity, we respond to all "Subject Access Requests" (SAR) within 30 days free of charge.</p>
+
+    <h2 id="imy" class="section-anchor">6. Supervisory Authority</h2>
+    <p>If you believe we are not processing your data correctly, you have the right to lodge a complaint with the Swedish Authority for Privacy Protection:</p>
+    <p><strong>Integritetsskyddsmyndigheten (IMY)</strong><br>
+    Box 8114, 104 20 Stockholm<br>
+    <a href="https://www.imy.se" target="_blank" rel="noopener">www.imy.se</a></p>
+
+    <div class="contact-footer">
+      <h3>Ready to Secure Your Growth?</h3>
+      <p>By using this site, you acknowledge our processing practices. For a formal <strong>Data Processing Agreement (DPA)</strong> for your business, please contact our team.</p>
+    </div>
+  </main>
+</div>
+
+<script>
+  // Smooth scroll for the navigation (scoped)
+  document.querySelectorAll('.adsnord-nav-card a').forEach(anchor => {
+    anchor.addEventListener('click', function(e) {
+      e.preventDefault();
+      const el = document.querySelector(this.getAttribute('href'));
+      if (!el) return;
+      el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    });
+  });
+</script>
