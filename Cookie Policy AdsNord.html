@@ -1,0 +1,447 @@
+<style>
+  :root{
+    --primary-blue:#2563eb;
+    --text-main:#0f172a;
+    --text-muted:#64748b;
+    --border-light:rgba(15,23,42,.10);
+    --bg-glass:rgba(255,255,255,.82);
+  }
+
+  .adsnord-cookie-wrap,
+  .adsnord-cookie-wrap *{ box-sizing:border-box; }
+
+  .adsnord-cookie-wrap{
+    max-width:1100px;
+    margin:40px auto;
+    padding:0 20px;
+    font-family:'Inter',system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
+    color:var(--text-main);
+    line-height:1.75;
+    display:grid;
+    grid-template-columns:1fr;
+    gap:30px;
+    isolation:isolate;
+  }
+
+  @media(min-width:992px){
+    .adsnord-cookie-wrap{ grid-template-columns:280px 1fr; }
+  }
+
+  /* Left navigation */
+  .adsnord-cookie-nav{
+    position:sticky;
+    top:100px;
+    height:fit-content;
+    display:none;
+    background:var(--bg-glass);
+    border:1px solid var(--border-light);
+    border-radius:20px;
+    padding:24px;
+    backdrop-filter:blur(12px);
+    -webkit-backdrop-filter:blur(12px);
+  }
+  @media(min-width:992px){ .adsnord-cookie-nav{ display:block; } }
+
+  .adsnord-cookie-nav h4{
+    font-size:14px;
+    text-transform:uppercase;
+    letter-spacing:.05em;
+    margin:0 0 14px;
+    color:var(--text-muted);
+  }
+  .adsnord-cookie-nav ul{ list-style:none; padding:0; margin:0; }
+  .adsnord-cookie-nav li{ margin:0 0 10px; }
+  .adsnord-cookie-nav a{
+    text-decoration:none;
+    color:var(--text-main);
+    font-size:14px;
+    transition:color .2s;
+    display:inline-block;
+    overflow-wrap:anywhere;
+    word-break:break-word;
+  }
+  .adsnord-cookie-nav a:hover{ color:var(--primary-blue); }
+
+  /* Main card */
+  .adsnord-cookie-card{
+    background:var(--bg-glass);
+    border:1px solid var(--border-light);
+    border-radius:24px;
+    padding:clamp(24px,5vw,50px);
+    box-shadow:0 25px 50px -12px rgba(0,0,0,.08);
+    backdrop-filter:blur(12px);
+    -webkit-backdrop-filter:blur(12px);
+    position:relative;
+    z-index:1;
+  }
+
+  /* Typography safety (Elementor overlap killer) */
+  .adsnord-cookie-card *{
+    overflow-wrap:anywhere;
+    word-break:break-word;
+  }
+  .adsnord-cookie-card p{ margin:0 0 14px !important; }
+  .adsnord-cookie-card ul{ margin:10px 0 14px 20px !important; padding:0 !important; }
+  .adsnord-cookie-card li{ margin:6px 0 !important; }
+  .adsnord-cookie-card h1,
+  .adsnord-cookie-card h2,
+  .adsnord-cookie-card h3{ clear:both; display:block; position:relative; }
+
+  .adsnord-cookie-head{
+    margin-bottom:34px;
+    border-bottom:1px solid var(--border-light);
+    padding-bottom:26px;
+  }
+  .adsnord-cookie-badge{
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+    background:#ecfdf5;
+    color:#065f46;
+    padding:6px 14px;
+    border-radius:99px;
+    font-size:13px;
+    font-weight:600;
+    margin:0 0 16px !important;
+  }
+  .adsnord-cookie-title{
+    font-size:clamp(32px,4vw,48px);
+    font-weight:800;
+    letter-spacing:-.03em;
+    margin:0 0 10px !important;
+  }
+  .adsnord-cookie-meta{ color:var(--text-muted); margin:0 !important; }
+
+  .adsnord-anchor{ scroll-margin-top:120px; }
+
+  .adsnord-cookie-card h2{
+    font-size:24px;
+    margin-top:38px !important;
+    margin-bottom:12px !important;
+    letter-spacing:-.01em;
+  }
+  .adsnord-cookie-card h3{
+    font-size:18px;
+    margin-top:22px !important;
+    margin-bottom:10px !important;
+    color:var(--primary-blue);
+  }
+
+  .adsnord-callout{
+    background:#f1f5f9;
+    border-left:4px solid var(--primary-blue);
+    padding:18px 18px;
+    border-radius:0 12px 12px 0;
+    margin:18px 0;
+  }
+
+  .adsnord-cookie-card a{
+    color:var(--primary-blue);
+    text-decoration:none;
+    font-weight:600;
+  }
+  .adsnord-cookie-card a:hover{ text-decoration:underline; }
+
+  /* Preference button */
+  .adsnord-btn-secondary{
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+    gap:10px;
+    padding:10px 18px;
+    background:var(--primary-blue);
+    color:#fff !important;
+    border-radius:10px;
+    font-weight:700;
+    font-size:14px;
+    cursor:pointer;
+    border:none;
+    margin:10px 0 14px;
+    transition:opacity .2s, transform .2s;
+  }
+  .adsnord-btn-secondary:hover{ opacity:.92; text-decoration:none !important; }
+  .adsnord-btn-secondary:active{ transform:scale(.99); }
+
+  /* Simple table */
+  .adsnord-table-wrap{
+    overflow-x:auto;
+    margin:16px 0;
+    border-radius:12px;
+    border:1px solid var(--border-light);
+    background:rgba(255,255,255,.65);
+  }
+  .adsnord-table{
+    width:100%;
+    border-collapse:collapse;
+    font-size:14px;
+    table-layout:auto;
+  }
+  .adsnord-table th{
+    background:rgba(2,6,23,.03);
+    padding:12px;
+    text-align:left;
+    border-bottom:1px solid var(--border-light);
+    color:rgba(15,23,42,.75);
+    white-space:normal;
+    vertical-align:top;
+  }
+  .adsnord-table td{
+    padding:12px;
+    border-bottom:1px solid var(--border-light);
+    white-space:normal;
+    vertical-align:top;
+  }
+  .adsnord-table tr:last-child td{ border-bottom:0; }
+
+  @media(max-width:480px){
+    .adsnord-cookie-wrap{ margin:18px auto; padding:0 14px; }
+    .adsnord-cookie-card{ padding:20px; }
+    .adsnord-cookie-card h2{ font-size:20px; }
+    .adsnord-cookie-card h3{ font-size:16px; }
+    .adsnord-table th, .adsnord-table td{ padding:10px; }
+  }
+</style>
+
+<div class="adsnord-cookie-wrap">
+
+  <aside class="adsnord-cookie-nav">
+    <h4>Contents</h4>
+    <ul>
+      <li><a href="#what">1. What are cookies?</a></li>
+      <li><a href="#why">2. Why we use cookies</a></li>
+      <li><a href="#types">3. Types of cookies</a></li>
+      <li><a href="#tools">4. Tools we use</a></li>
+      <li><a href="#manage">5. Manage preferences</a></li>
+      <li><a href="#transfers">6. International transfers</a></li>
+      <li><a href="#updates">7. Updates</a></li>
+      <li><a href="#contact">8. Contact</a></li>
+    </ul>
+  </aside>
+
+  <main class="adsnord-cookie-card">
+    <header class="adsnord-cookie-head">
+      <div class="adsnord-cookie-badge">✓ Cookie Policy • EU ePrivacy + GDPR</div>
+      <h1 class="adsnord-cookie-title">Cookie Policy</h1>
+
+      <!-- Change the date before publishing -->
+      <p class="adsnord-cookie-meta"><strong>Last updated:</strong> February 2, 2026</p>
+
+      <p style="font-size:14px; color:var(--text-muted); margin-top:10px !important;">
+        For more information, please see our
+        <a href="https://adsnord.com/privacy-policy/" target="_blank" rel="noopener">Privacy Policy</a>
+        and
+        <a href="https://adsnord.com/terms-of-service/" target="_blank" rel="noopener">Terms of Service</a>.
+      </p>
+    </header>
+
+    <section id="what" class="adsnord-anchor">
+      <h2>1. What are cookies?</h2>
+      <p>
+        Cookies are small text files stored on your device when you visit a website. Similar technologies (such as pixels and tags)
+        can also store or access information on your device.
+      </p>
+    </section>
+
+    <section id="why" class="adsnord-anchor">
+      <h2>2. Why we use cookies</h2>
+      <p>We use cookies and similar technologies to:</p>
+      <ul>
+        <li>Make the website work properly (essential functions)</li>
+        <li>Remember preferences (where enabled)</li>
+        <li>Measure and improve website performance (analytics)</li>
+        <li>Measure marketing performance and conversions (marketing), only when you consent</li>
+      </ul>
+    </section>
+
+    <section id="types" class="adsnord-anchor">
+      <h2>3. Types of cookies we use</h2>
+
+      <h3>Essential cookies (always on)</h3>
+      <p>
+        These cookies are necessary for the website to function (security, core features, and storing consent choices).
+        They do not require consent under EU rules.
+      </p>
+
+      <h3>Analytics cookies (optional)</h3>
+      <p>
+        Used to understand how visitors use our website and improve performance. Activated only after you consent where required.
+      </p>
+
+      <h3>Marketing cookies (optional)</h3>
+      <p>
+        Used to measure ad performance, conversions, and in some cases support remarketing. Activated only after you consent where required.
+      </p>
+
+      <div class="adsnord-callout">
+        <strong>Important:</strong> If you decline analytics/marketing cookies, we will not load those tags.
+        Where applicable (e.g., Google Consent Mode), limited “consent signals/pings” may be sent to respect your choice while enabling aggregated measurement.
+      </div>
+    </section>
+
+    <section id="tools" class="adsnord-anchor">
+      <h2>4. Tools we use on this website</h2>
+
+      <div class="adsnord-table-wrap" role="region" aria-label="Cookie tools table">
+        <table class="adsnord-table">
+          <thead>
+            <tr>
+              <th>Tool</th>
+              <th>Category</th>
+              <th>Purpose</th>
+              <th>Typical duration</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>Google Tag Manager (GTM)</strong></td>
+              <td>Tag management</td>
+              <td>Used to deploy tags based on your consent preferences (GTM itself may not set cookies depending on configuration).</td>
+              <td>Session</td>
+            </tr>
+            <tr>
+              <td><strong>Google Analytics 4 (GA4)</strong></td>
+              <td>Analytics (optional)</td>
+              <td>Helps us understand website usage (pages visited, interactions, device/browser).</td>
+              <td>Up to 14 months (configurable)</td>
+            </tr>
+            <tr>
+              <td><strong>Google Ads tag</strong></td>
+              <td>Marketing (optional)</td>
+              <td>Conversion tracking and attribution to measure advertising performance.</td>
+              <td>Typically up to 90 days (varies)</td>
+            </tr>
+            <tr>
+              <td><strong>Meta Pixel</strong></td>
+              <td>Marketing (optional)</td>
+              <td>Conversion measurement and (if enabled) remarketing/audience building.</td>
+              <td>Typically up to 180 days (varies)</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <p style="font-size:14px; color:var(--text-muted);">
+        Durations can vary based on provider settings and updates. For exact cookie lists, use your consent platform’s cookie scan/declaration feature.
+      </p>
+    </section>
+
+    <section id="manage" class="adsnord-anchor">
+      <h2>5. How to manage your preferences</h2>
+      <p>You can control cookies in these ways:</p>
+
+      <button class="adsnord-btn-secondary" type="button" id="adsnord-cookie-settings-btn">
+        Update Cookie Preferences
+      </button>
+
+      <ul>
+        <li>Use our cookie banner to <strong>Accept</strong>, <strong>Reject</strong>, or <strong>Customize</strong> cookies.</li>
+        <li>Change your browser settings to block or delete cookies.</li>
+        <li>Withdraw consent at any time via the button above or a “Cookie Settings” link in the footer (recommended).</li>
+      </ul>
+
+      <div class="adsnord-callout" style="margin-top:14px;">
+        <strong>Tip:</strong> If the button doesn’t open settings, your consent plugin may use a different method.
+        The script below supports common platforms (Complianz, Cookiebot, Usercentrics, OneTrust). If you tell me which one you installed, I’ll tailor it 100%.
+      </div>
+    </section>
+
+    <section id="transfers" class="adsnord-anchor">
+      <h2>6. International data transfers</h2>
+      <p>
+        Some providers may process data outside the EU/EEA. Where international transfers occur, we rely on appropriate safeguards
+        such as EU Standard Contractual Clauses (SCCs) and other legally recognized mechanisms, where applicable.
+      </p>
+    </section>
+
+    <section id="updates" class="adsnord-anchor">
+      <h2>7. Updates to this Cookie Policy</h2>
+      <p>
+        We may update this Cookie Policy from time to time. When we do, we will revise the “Last updated” date at the top of this page.
+      </p>
+    </section>
+
+    <section id="contact" class="adsnord-anchor">
+      <h2>8. Contact</h2>
+      <div class="adsnord-callout">
+        <strong>AdsNord</strong><br>
+        Nyckelpigevägen 162B, 54965 Skövde, Sweden<br>
+        Email: <a href="mailto:info@adsnord.com">info@adsnord.com</a>
+      </div>
+    </section>
+
+  </main>
+</div>
+
+<script>
+  // Smooth scroll for nav (desktop)
+  document.querySelectorAll('.adsnord-cookie-nav a').forEach(a => {
+    a.addEventListener('click', (e) => {
+      e.preventDefault();
+      const el = document.querySelector(a.getAttribute('href'));
+      if (!el) return;
+      el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    });
+  });
+
+  // Open cookie settings for common CMPs (Complianz/Cookiebot/Usercentrics/OneTrust + fallback)
+  (function(){
+    function clickFirstSelector(selectors){
+      for (var i=0; i<selectors.length; i++){
+        var el = document.querySelector(selectors[i]);
+        if (el){ el.click(); return true; }
+      }
+      return false;
+    }
+
+    function openCookieSettings(){
+      try{
+        // 1) Complianz (common hooks + UI selectors)
+        if (typeof window.cmplz_open_settings === 'function'){ window.cmplz_open_settings(); return true; }
+        if (clickFirstSelector([
+          '#cmplz-manage-consent',
+          '.cmplz-manage-consent',
+          'button[data-cmplz="manage-consent"]',
+          'a[data-cmplz="manage-consent"]'
+        ])) return true;
+
+        // 2) Cookiebot
+        if (window.Cookiebot && typeof window.Cookiebot.renew === 'function'){ window.Cookiebot.renew(); return true; }
+
+        // 3) Usercentrics
+        if (window.UC_UI && typeof window.UC_UI.showSecondLayer === 'function'){ window.UC_UI.showSecondLayer(); return true; }
+        if (window.usercentrics && typeof window.usercentrics.showSecondLayer === 'function'){ window.usercentrics.showSecondLayer(); return true; }
+
+        // 4) OneTrust
+        if (window.OneTrust && typeof window.OneTrust.ToggleInfoDisplay === 'function'){ window.OneTrust.ToggleInfoDisplay(); return true; }
+        if (clickFirstSelector([
+          '#ot-sdk-btn',
+          '.ot-sdk-show-settings',
+          'button[aria-label*="Cookie"]',
+          'a[aria-label*="Cookie"]'
+        ])) return true;
+
+        // 5) Generic fallback: click any footer "Cookie Settings" link if present
+        if (clickFirstSelector([
+          'a[href*="cookie"][href*="settings"]',
+          'button[id*="cookie"][id*="settings"]',
+          'a[data-cookie-settings]',
+          'button[data-cookie-settings]'
+        ])) return true;
+
+        return false;
+      }catch(e){
+        return false;
+      }
+    }
+
+    var btn = document.getElementById('adsnord-cookie-settings-btn');
+    if (!btn) return;
+
+    btn.addEventListener('click', function(){
+      var ok = openCookieSettings();
+      if (!ok){
+        alert("Cookie settings could not be opened. Please use the cookie banner or the Cookie Settings link in the footer.");
+      }
+    });
+  })();
+</script>
