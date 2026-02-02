@@ -49,6 +49,17 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     padding: 0 18px;
     padding-top: env(safe-area-inset-top);
   }
+/* ✅ Fix: WordPress admin bar overlap with fixed header */
+body.admin-bar .header-wrapper{
+  top: calc(18px + 32px) !important; /* 32px = desktop admin bar height */
+}
+
+/* WP admin bar is taller on small screens */
+@media (max-width: 782px){
+  body.admin-bar .header-wrapper{
+    top: calc(18px + 46px) !important; /* 46px = mobile admin bar height */
+  }
+}
 
   header{
     max-width: 1300px;
