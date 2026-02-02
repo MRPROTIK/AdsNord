@@ -1,0 +1,389 @@
+<style>
+  :root{
+    --primary-blue:#2563eb;
+    --text-main:#0f172a;
+    --text-muted:#64748b;
+    --border-light:rgba(15,23,42,.10);
+    --bg-glass:rgba(255,255,255,.82);
+  }
+
+  .adsnord-terms-wrap,
+  .adsnord-terms-wrap *{ box-sizing:border-box; }
+
+  .adsnord-terms-wrap{
+    max-width:1100px;
+    margin:40px auto;
+    padding:0 20px;
+    font-family:'Inter',system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
+    color:var(--text-main);
+    line-height:1.75;
+    display:grid;
+    grid-template-columns:1fr;
+    gap:30px;
+    isolation:isolate;
+  }
+  @media(min-width:992px){
+    .adsnord-terms-wrap{ grid-template-columns:280px 1fr; }
+  }
+
+  /* Nav */
+  .adsnord-terms-nav{
+    position:sticky;
+    top:100px;
+    height:fit-content;
+    display:none;
+    background:var(--bg-glass);
+    border:1px solid var(--border-light);
+    border-radius:20px;
+    padding:24px;
+    backdrop-filter:blur(12px);
+    -webkit-backdrop-filter:blur(12px);
+  }
+  @media(min-width:992px){ .adsnord-terms-nav{ display:block; } }
+  .adsnord-terms-nav h4{
+    font-size:14px;
+    text-transform:uppercase;
+    letter-spacing:.05em;
+    margin:0 0 14px;
+    color:var(--text-muted);
+  }
+  .adsnord-terms-nav ul{ list-style:none; padding:0; margin:0; }
+  .adsnord-terms-nav li{ margin:0 0 10px; }
+  .adsnord-terms-nav a{
+    text-decoration:none;
+    color:var(--text-main);
+    font-size:14px;
+    transition:color .2s;
+    display:inline-block;
+    overflow-wrap:anywhere;
+    word-break:break-word;
+  }
+  .adsnord-terms-nav a:hover{ color:var(--primary-blue); }
+
+  /* Main card */
+  .adsnord-terms-card{
+    background:var(--bg-glass);
+    border:1px solid var(--border-light);
+    border-radius:24px;
+    padding:clamp(24px,5vw,50px);
+    box-shadow:0 25px 50px -12px rgba(0,0,0,.08);
+    backdrop-filter:blur(12px);
+    -webkit-backdrop-filter:blur(12px);
+    position:relative;
+    z-index:1;
+  }
+
+  /* Typography safety inside card */
+  .adsnord-terms-card *{ overflow-wrap:anywhere; word-break:break-word; }
+  .adsnord-terms-card p{ margin:0 0 14px !important; }
+  .adsnord-terms-card ul{ margin:10px 0 14px 20px !important; padding:0 !important; }
+  .adsnord-terms-card li{ margin:6px 0 !important; }
+  .adsnord-terms-card h1,
+  .adsnord-terms-card h2,
+  .adsnord-terms-card h3{ clear:both; display:block; position:relative; }
+
+  .adsnord-terms-head{
+    margin-bottom:34px;
+    border-bottom:1px solid var(--border-light);
+    padding-bottom:26px;
+  }
+  .adsnord-terms-badge{
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+    background:#ecfdf5;
+    color:#065f46;
+    padding:6px 14px;
+    border-radius:99px;
+    font-size:13px;
+    font-weight:600;
+    margin:0 0 16px !important;
+  }
+  .adsnord-terms-title{
+    font-size:clamp(32px,4vw,48px);
+    font-weight:800;
+    letter-spacing:-.03em;
+    margin:0 0 10px !important;
+  }
+  .adsnord-terms-meta{
+    color:var(--text-muted);
+    margin:0 !important;
+  }
+
+  .adsnord-anchor{ scroll-margin-top:120px; }
+
+  .adsnord-terms-card h2{
+    font-size:24px;
+    margin-top:38px !important;
+    margin-bottom:12px !important;
+    letter-spacing:-.01em;
+  }
+  .adsnord-terms-card h3{
+    font-size:18px;
+    margin-top:22px !important;
+    margin-bottom:10px !important;
+    color:var(--primary-blue);
+  }
+
+  .adsnord-callout{
+    background:#f1f5f9;
+    border-left:4px solid var(--primary-blue);
+    padding:18px 18px;
+    border-radius:0 12px 12px 0;
+    margin:18px 0;
+  }
+
+  .adsnord-terms-card a{
+    color:var(--primary-blue);
+    text-decoration:none;
+    font-weight:600;
+  }
+  .adsnord-terms-card a:hover{ text-decoration:underline; }
+
+  @media(max-width:480px){
+    .adsnord-terms-wrap{ margin:18px auto; padding:0 14px; }
+    .adsnord-terms-card{ padding:20px; }
+    .adsnord-terms-card h2{ font-size:20px; }
+    .adsnord-terms-card h3{ font-size:16px; }
+  }
+</style>
+
+<div class="adsnord-terms-wrap">
+
+  <aside class="adsnord-terms-nav">
+    <h4>Contents</h4>
+    <ul>
+      <li><a href="#intro">1. Introduction</a></li>
+      <li><a href="#about">2. About AdsNord</a></li>
+      <li><a href="#eligibility">3. Eligibility</a></li>
+      <li><a href="#changes">4. Changes to the Terms</a></li>
+      <li><a href="#info-only">5. Website content (information only)</a></li>
+      <li><a href="#client-services">6. Client services & separate agreements</a></li>
+      <li><a href="#accounts">7. Accounts & security</a></li>
+      <li><a href="#acceptable">8. Acceptable use</a></li>
+      <li><a href="#ip">9. Intellectual property</a></li>
+      <li><a href="#third-party">10. Third-party tools & links</a></li>
+      <li><a href="#fees">11. Fees & payment</a></li>
+      <li><a href="#confidentiality">12. Confidentiality</a></li>
+      <li><a href="#disclaimers">13. Disclaimers</a></li>
+      <li><a href="#liability">14. Limitation of liability</a></li>
+      <li><a href="#indemnity">15. Indemnification</a></li>
+      <li><a href="#law">16. Governing law & disputes</a></li>
+      <li><a href="#termination">17. Termination</a></li>
+      <li><a href="#contact">18. Contact</a></li>
+    </ul>
+  </aside>
+
+  <main class="adsnord-terms-card">
+    <header class="adsnord-terms-head">
+      <div class="adsnord-terms-badge">✓ Business Terms • Website Use + Services</div>
+      <h1 class="adsnord-terms-title">Terms of Service</h1>
+      <p class="adsnord-terms-meta"><strong>Last updated:</strong> [Add date]</p>
+    </header>
+
+    <section id="intro" class="adsnord-anchor">
+      <h2>1. Introduction</h2>
+      <p>
+        These Terms of Service (“Terms”) govern your access to and use of the website <strong>adsnord.com</strong>,
+        including any content, resources, blog posts, and features we make available (collectively, the “Website”),
+        as well as any services provided by AdsNord (collectively, the “Services”).
+      </p>
+      <p>
+        By accessing or using the Website or Services, you agree to be bound by these Terms. If you do not agree, you must not use the Website or Services.
+      </p>
+    </section>
+
+    <section id="about" class="adsnord-anchor">
+      <h2>2. About AdsNord</h2>
+      <p>
+        AdsNord (“AdsNord”, “we”, “us”, “our”) is a digital marketing provider specializing in Google Ads and paid media strategy, optimization, audits, and consulting.
+        Company details and contact information are available on this page and on our Website.
+      </p>
+    </section>
+
+    <section id="eligibility" class="adsnord-anchor">
+      <h2>3. Eligibility</h2>
+      <p>
+        You may use the Website and Services only if you are at least the age of majority in your jurisdiction and have the legal capacity to enter into a binding contract.
+        If you use the Services on behalf of a company or another entity, you represent that you have authority to bind that entity to these Terms.
+      </p>
+    </section>
+
+    <section id="changes" class="adsnord-anchor">
+      <h2>4. Changes to the Terms</h2>
+      <p>
+        We may update these Terms from time to time. When we do, we will revise the “Last updated” date above and may provide additional notice where appropriate.
+        Your continued use of the Website or Services after changes become effective means you accept the updated Terms.
+      </p>
+    </section>
+
+    <section id="info-only" class="adsnord-anchor">
+      <h2>5. Website content (information only)</h2>
+      <p>
+        Content on our Website (including blog posts and updates about advertising platforms) is provided for general informational and educational purposes only.
+        It does not constitute legal, financial, tax, or professional advice. You remain responsible for how you use any information obtained through the Website.
+      </p>
+      <div class="adsnord-callout">
+        <strong>No guarantee of results:</strong> Advertising outcomes depend on many factors outside our control (market conditions, competition, budgets, website performance, product-market fit, tracking configuration, and platform policy changes). We do not guarantee specific results.
+      </div>
+    </section>
+
+    <section id="client-services" class="adsnord-anchor">
+      <h2>6. Client services & separate agreements</h2>
+      <p>
+        Any paid services we provide (such as account setup, campaign management, audits, or consulting) may be governed by a separate written agreement, proposal,
+        statement of work, order form, or invoice (“Client Agreement”).
+      </p>
+      <p>
+        If there is any conflict between a Client Agreement and these Terms, the Client Agreement will control with respect to that engagement.
+      </p>
+    </section>
+
+    <section id="accounts" class="adsnord-anchor">
+      <h2>7. Accounts & security</h2>
+      <p>
+        If we offer user accounts, client portals, or restricted areas, you are responsible for maintaining the confidentiality of your login credentials
+        and for all activity that occurs under your account. You must notify us promptly of any unauthorized access or security incident.
+        We may suspend or disable accounts to protect the Website, Services, you, or others.
+      </p>
+    </section>
+
+    <section id="acceptable" class="adsnord-anchor">
+      <h2>8. Acceptable use</h2>
+      <p>You agree not to:</p>
+      <ul>
+        <li>Use the Website or Services for any unlawful purpose or in violation of applicable laws or regulations.</li>
+        <li>Interfere with or disrupt the Website, servers, or networks used to make it available.</li>
+        <li>Attempt to gain unauthorized access to any portion of the Website, other accounts, or computer systems.</li>
+        <li>Use automated means (robots, scrapers, spiders) to access the Website without our prior written consent, except as permitted by law.</li>
+        <li>Upload or transmit malicious code, or use the Website to distribute spam or harmful content.</li>
+      </ul>
+    </section>
+
+    <section id="ip" class="adsnord-anchor">
+      <h2>9. Intellectual property</h2>
+      <p>
+        The Website and its content (including text, graphics, logos, icons, images, templates, and blog posts) are owned by or licensed to AdsNord
+        and are protected by intellectual property laws.
+      </p>
+      <p>
+        You may view, share, and link to our publicly available content for personal or internal business use. You may not reproduce, modify, distribute,
+        sell, or create derivative works from our content without our prior written permission, except where permitted by law.
+      </p>
+    </section>
+
+    <section id="third-party" class="adsnord-anchor">
+      <h2>10. Third-party tools & links</h2>
+      <p>
+        The Website and Services may reference or link to third-party websites, tools, or platforms (including Google, Google Ads, Google Analytics, Meta, and others).
+        These are provided for convenience only. We do not control third-party services and are not responsible for their content, availability, or practices.
+        Your use of third-party services may be subject to additional terms and policies.
+      </p>
+    </section>
+
+    <section id="fees" class="adsnord-anchor">
+      <h2>11. Fees & payment</h2>
+      <p>
+        If you purchase services from us, you agree to pay the fees described in the applicable Client Agreement, proposal, order form, or invoice.
+        Payment terms, invoicing, and any performance-based fees will be set out in that document.
+      </p>
+      <p>
+        We may suspend services for late or unpaid invoices, subject to any applicable Client Agreement and mandatory law.
+      </p>
+    </section>
+
+    <section id="confidentiality" class="adsnord-anchor">
+      <h2>12. Confidentiality</h2>
+      <p>
+        In the course of providing Services, either party may share non-public business, technical, or commercial information (“Confidential Information”).
+        Each party agrees to protect the other party’s Confidential Information using reasonable care and to use it only for purposes of performing the Services.
+        Confidentiality obligations do not apply to information that is public through no fault of the receiving party, independently developed,
+        or lawfully obtained from a third party.
+      </p>
+    </section>
+
+    <section id="disclaimers" class="adsnord-anchor">
+      <h2>13. Disclaimers</h2>
+      <p>
+        The Website and Services are provided on an “as-is” and “as-available” basis. To the fullest extent permitted by law, AdsNord disclaims all warranties
+        of any kind, whether express or implied, including implied warranties of merchantability, fitness for a particular purpose, and non-infringement.
+      </p>
+      <p>
+        We do not guarantee that the Website or Services will be uninterrupted, secure, or error-free, or that any particular results will be achieved from the use of
+        advertising platforms or marketing strategies.
+      </p>
+    </section>
+
+    <section id="liability" class="adsnord-anchor">
+      <h2>14. Limitation of liability</h2>
+      <p>
+        To the fullest extent permitted by law, AdsNord and its owners, employees, and partners will not be liable for any indirect, incidental, consequential,
+        special, punitive, or exemplary damages, or for any loss of profits, revenue, data, or goodwill, arising out of or in connection with your use of the Website
+        or Services, even if we have been advised of the possibility of such damages.
+      </p>
+      <p>
+        To the extent liability cannot be excluded, our aggregate liability for claims arising out of or related to the Services will be limited to the amount paid
+        by you to AdsNord for the Services during the <strong>three (3) months</strong> immediately preceding the event giving rise to the claim.
+        Nothing in these Terms limits liability where such limitation is not permitted by applicable law.
+      </p>
+    </section>
+
+    <section id="indemnity" class="adsnord-anchor">
+      <h2>15. Indemnification</h2>
+      <p>
+        You agree to indemnify, defend, and hold harmless AdsNord and its owners, employees, and partners from and against any claims, liabilities, damages, losses,
+        and expenses (including reasonable legal fees) arising out of or related to your misuse of the Website or Services, your violation of these Terms,
+        or your infringement of any third-party rights.
+      </p>
+    </section>
+
+    <section id="law" class="adsnord-anchor">
+      <h2>16. Governing law & disputes</h2>
+      <p>
+        These Terms and any dispute or claim arising out of or in connection with them or the Website/Services will be governed by the laws of <strong>Sweden</strong>,
+        without regard to conflict-of-law rules, except where mandatory law provides otherwise.
+      </p>
+      <p>
+        Any disputes shall be subject to the exclusive jurisdiction of the courts of Sweden, except where mandatory consumer protection rules provide otherwise.
+      </p>
+    </section>
+
+    <section id="termination" class="adsnord-anchor">
+      <h2>17. Termination</h2>
+      <p>
+        We may suspend or terminate your access to the Website or Services if we reasonably believe you have violated these Terms, caused harm, or used the Website
+        in a way that may expose us or others to liability. You may stop using the Website at any time.
+      </p>
+      <p>
+        Sections that by their nature should survive termination (including intellectual property, disclaimers, limitation of liability, governing law, and indemnification)
+        will continue to apply.
+      </p>
+    </section>
+
+    <section id="contact" class="adsnord-anchor">
+      <h2>18. Contact</h2>
+      <p>
+        If you have questions about these Terms or the Services, contact us at:
+      </p>
+      <div class="adsnord-callout">
+        <strong>AdsNord</strong><br>
+        Nyckelpigevägen 162B, 54965 Skövde, Sweden<br>
+        Email: <a href="mailto:info@adsnord.com">info@adsnord.com</a>
+      </div>
+    </section>
+
+  </main>
+</div>
+
+<script>
+  // Smooth scroll (desktop nav) - safe
+  document.querySelectorAll('.adsnord-terms-nav a').forEach(a => {
+    a.addEventListener('click', (e) => {
+      e.preventDefault();
+      const id = a.getAttribute('href');
+      const el = document.querySelector(id);
+      if (!el) return;
+      el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    });
+  });
+</script>
