@@ -30,14 +30,36 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     --zen-stroke: .10;
   }
 
-  * { margin: 0; padding: 0; box-sizing: border-box; }
+  /* =========================
+     ✅ PATCH: CSS scoping hardening (header-only)
+     ========================= */
+  .adsnord-header,
+  .adsnord-header *{ box-sizing: border-box; margin: 0; padding: 0; }
 
-  body { font-family: 'Inter', sans-serif; background: var(--bg-body); color: var(--text-main); overflow-x: hidden; }
+  .adsnord-header{
+    font-family: 'Inter', sans-serif;
+    color: var(--text-main);
+  }
+
+  /* ✅ PATCH: Body scroll lock when mobile menu open */
+  body.menu-open{
+    overflow: hidden;
+    height: 100vh;
+    touch-action: none;
+  }
+
+  /* ✅ PATCH: Focus-visible (keyboard accessibility) */
+  .adsnord-header a:focus-visible,
+  .adsnord-header button:focus-visible{
+    outline: 3px solid rgba(66,133,244,.45);
+    outline-offset: 4px;
+    border-radius: 12px;
+  }
 
   /* Progress bar */
-  .scroll-progress { position: fixed; top: 0; left: 0; width: 0%; height: 4px; background: var(--g-blue); z-index: 1001; }
+  .adsnord-header .scroll-progress { position: fixed; top: 0; left: 0; width: 0%; height: 4px; background: var(--g-blue); z-index: 1001; }
 
-  .header-wrapper{
+  .adsnord-header .header-wrapper{
     position: fixed;
     top: 18px;
     left: 0;
@@ -47,16 +69,17 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     padding-top: env(safe-area-inset-top);
   }
 
-  body.admin-bar .header-wrapper{
+  body.admin-bar .adsnord-header .header-wrapper{
     top: calc(18px + 32px) !important;
   }
+
   @media (max-width: 782px){
-    body.admin-bar .header-wrapper{
+    body.admin-bar .adsnord-header .header-wrapper{
       top: calc(18px + 46px) !important;
     }
   }
 
-  header{
+  .adsnord-header header{
     max-width: 1300px;
     margin: 0 auto;
     border-radius: 30px;
@@ -80,31 +103,31 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
       inset 0 -1px 0 rgba(255,255,255, var(--zen-stroke)) !important;
   }
 
-  .header-flex,
-  .header-actions,
-  nav{
+  .adsnord-header .header-flex,
+  .adsnord-header .header-actions,
+  .adsnord-header nav{
     overflow: visible !important;
   }
 
-  .header-flex { display:flex; justify-content:space-between; align-items:center; padding: 0 22px; }
-  .logo-holder { display:flex; align-items:center; gap:12px; text-decoration:none; }
-  .logo-text { font-size:1.5rem; font-weight:900; color: var(--g-blue); letter-spacing:-0.5px; }
-  .logo-text span { color: var(--g-yellow); }
+  .adsnord-header .header-flex { display:flex; justify-content:space-between; align-items:center; padding: 0 22px; }
+  .adsnord-header .logo-holder { display:flex; align-items:center; gap:12px; text-decoration:none; }
+  .adsnord-header .logo-text { font-size:1.5rem; font-weight:900; color: var(--g-blue); letter-spacing:-0.5px; }
+  .adsnord-header .logo-text span { color: var(--g-yellow); }
 
-  .nav-links { display:flex; list-style:none; gap: 32px; align-items:center; }
-  .nav-links a { text-decoration:none; color: var(--text-main); font-weight: 600; font-size: .95rem; transition: .3s; }
-  .nav-links a:hover { color: var(--g-blue); }
+  .adsnord-header .nav-links { display:flex; list-style:none; gap: 32px; align-items:center; }
+  .adsnord-header .nav-links a { text-decoration:none; color: var(--text-main); font-weight: 600; font-size: .95rem; transition: .3s; }
+  .adsnord-header .nav-links a:hover { color: var(--g-blue); }
 
-  .header-actions { display:flex; align-items:center; gap: 20px; }
+  .adsnord-header .header-actions { display:flex; align-items:center; gap: 20px; }
 
-  .menu-btn { display:none; background:none; border:none; cursor:pointer; padding: 6px; z-index: 2100; }
-  .menu-btn span { display:block; width: 26px; height: 2px; background: var(--text-main); margin: 6px 0; transition: var(--transition); }
-  .menu-btn.open span:nth-child(1) { transform: translateY(4px) rotate(45deg); }
-  .menu-btn.open span:nth-child(2) { transform: translateY(-4px) rotate(-45deg); }
+  .adsnord-header .menu-btn { display:none; background:none; border:none; cursor:pointer; padding: 6px; z-index: 2100; }
+  .adsnord-header .menu-btn span { display:block; width: 26px; height: 2px; background: var(--text-main); margin: 6px 0; transition: var(--transition); }
+  .adsnord-header .menu-btn.open span:nth-child(1) { transform: translateY(4px) rotate(45deg); }
+  .adsnord-header .menu-btn.open span:nth-child(2) { transform: translateY(-4px) rotate(-45deg); }
 
   /* Dropdown desktop */
-  .dropdown { position: relative; }
-  .dropdown-menu{
+  .adsnord-header .dropdown { position: relative; }
+  .adsnord-header .dropdown-menu{
     position:absolute; top:100%; left:0;
     background: rgba(255,255,255,.92);
     backdrop-filter: blur(18px) saturate(150%);
@@ -120,12 +143,11 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     z-index: 99999;
     box-shadow: 0 10px 30px rgba(0,0,0,.10);
   }
-  .dropdown:hover .dropdown-menu { opacity:1; visibility:visible; transform: translateY(0); }
-  .dropdown-menu li a { padding: 12px 20px; display:block; font-size: .85rem !important; color: var(--text-main); }
-  .dropdown-menu li a:hover { background: rgba(66,133,244,.10); color: var(--g-blue) !important; }
+  .adsnord-header .dropdown:hover .dropdown-menu { opacity:1; visibility:visible; transform: translateY(0); }
+  .adsnord-header .dropdown-menu li a { padding: 12px 20px; display:block; font-size: .85rem !important; color: var(--text-main); }
+  .adsnord-header .dropdown-menu li a:hover { background: rgba(66,133,244,.10); color: var(--g-blue) !important; }
 
-  /* Micro highlight line (header) */
-  header::after{
+  .adsnord-header header::after{
     content:"";
     position:absolute;
     left:16px; right:16px; top:0;
@@ -144,7 +166,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   }
 
   /* Mobile overlay */
-  .mobile-overlay{
+  .adsnord-header .mobile-overlay{
     position: fixed;
     top: 0; right: -100%;
     width: 100%;
@@ -166,62 +188,74 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     backdrop-filter: blur(18px) saturate(150%);
     -webkit-backdrop-filter: blur(18px) saturate(150%);
   }
-  .mobile-overlay.active { right: 0; }
+  .adsnord-header .mobile-overlay.active { right: 0; }
 
-  .mobile-overlay{ position: fixed; }
-
-  .m-close{
+  .adsnord-header .m-close{
     position: absolute;
     top: calc(18px + env(safe-area-inset-top));
     right: 18px;
-
     width: 44px;
     height: 44px;
     border: none;
     border-radius: 14px;
     cursor: pointer;
-
     display: flex;
     align-items: center;
     justify-content: center;
-
     background: rgba(255,255,255,.85);
     border: 1px solid rgba(0,0,0,.08);
     backdrop-filter: blur(14px) saturate(150%);
     -webkit-backdrop-filter: blur(14px) saturate(150%);
     box-shadow: 0 10px 25px rgba(0,0,0,.10);
-
     z-index: 2010;
   }
-  .m-close i{
-    font-size: 18px;
-    color: #0f172a;
-  }
+  .adsnord-header .m-close i{ font-size: 18px; color: #0f172a; }
 
-  /* force mobile menu readability */
-  .mobile-overlay a{
+  .adsnord-header .mobile-overlay a{
     text-decoration:none;
     font-weight: 900;
     letter-spacing: .2px;
     opacity: 1 !important;
   }
-  .m-link-main{
+  .adsnord-header .m-link-main{
     color: #0f172a !important;
     font-size: 1.55rem !important;
     margin-bottom: 14px !important;
   }
+  .adsnord-header .m-link-parent{
+    color: var(--g-blue) !important;
+    font-size: 1.65rem !important;
+    margin-top: 18px !important;
+    margin-bottom: 10px !important;
 
-  /* Responsive */
+    /* ✅ PATCH: make room for arrow button */
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap: 12px;
+  }
+  .adsnord-header .mobile-sub-links{
+    display:flex; flex-direction:column;
+    padding-left: 14px;
+    margin-bottom: 18px;
+    border-left: 2px solid rgba(66,133,244,.30);
+  }
+  .adsnord-header .mobile-sub-links a{
+    font-size: 1.05rem !important;
+    font-weight: 700 !important;
+    color: #334155 !important;
+    margin-bottom: 10px !important;
+  }
+
   @media (max-width: 1024px){
-    .header-wrapper { top: 14px; padding: 0 12px; }
+    .adsnord-header .header-wrapper { top: 14px; padding: 0 12px; }
   }
   @media (max-width: 768px){
-    .nav-links{ display:none; }
-    .menu-btn{ display:block; }
-    .header-flex{ padding: 0 16px; }
+    .adsnord-header .nav-links{ display:none; }
+    .adsnord-header .menu-btn{ display:block; }
+    .adsnord-header .header-flex{ padding: 0 16px; }
   }
 
-  /* Scroll enhancement */
   body.is-scrolled{
     --zen-blur: 24px;
     --zen-sat: 165%;
@@ -229,222 +263,161 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     --zen-shadow: .18;
     --zen-stroke: .12;
   }
-  body.is-scrolled header::after{ opacity: .95; transform: translateY(0); }
+  body.is-scrolled .adsnord-header header::after{ opacity: .95; transform: translateY(0); }
 
   @media (prefers-reduced-motion: reduce){
-    header::after{ transition:none !important; }
+    .adsnord-header header::after{ transition:none !important; }
   }
 
   /* =========================
-     MOBILE ACCORDION (Services/Blog/Case Studies/Free Tools)
+     ✅ PATCH: Mobile submenu accordion (arrow toggles, text navigates)
      ========================= */
-  .m-acc{
-    width: 100%;
-    margin-top: 18px;
-  }
 
-  .m-acc-btn{
-    width: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
+  /* default closed */
+  .adsnord-header #mMenu .mobile-sub-links{ display:none; }
+  /* open state */
+  .adsnord-header #mMenu .m-link-parent.is-open + .mobile-sub-links{ display:flex; }
 
-    background: transparent;
-    border: none;
-    cursor: pointer;
-
-    padding: 10px 0;
-    text-align: left;
-
-    color: var(--g-blue) !important;
-    font-size: 1.65rem !important;
-    font-weight: 900 !important;
-  }
-
-  .m-acc-btn .m-acc-left{
-    display:flex;
+  /* arrow button */
+  .adsnord-header #mMenu .m-sub-toggle{
+    background: rgba(255,255,255,.65);
+    border: 1px solid rgba(0,0,0,.06);
+    box-shadow: 0 8px 20px rgba(0,0,0,.06);
+    width: 38px;
+    height: 38px;
+    border-radius: 14px;
+    display:inline-flex;
     align-items:center;
-    gap:10px;
+    justify-content:center;
+    cursor:pointer;
+    flex: 0 0 auto;
   }
-
-  .m-acc-btn .m-acc-chevron{
-    font-size: 18px;
+  .adsnord-header #mMenu .m-sub-toggle i{
+    font-size: 14px;
     color: #0f172a;
-    opacity: .7;
-    transition: transform .25s ease;
+    transition: transform .18s ease;
   }
-
-  .m-acc-panel{
-    display: none;
-    flex-direction: column;
-    padding-left: 14px;
-    margin-bottom: 18px;
-    border-left: 2px solid rgba(66,133,244,.30);
-  }
-
-  .m-acc-panel a{
-    font-size: 1.05rem !important;
-    font-weight: 700 !important;
-    color: #334155 !important;
-    margin-bottom: 10px !important;
-  }
-
-  .m-acc.is-open .m-acc-panel{ display:flex; }
-  .m-acc.is-open .m-acc-chevron{ transform: rotate(180deg); }
-
-  /* =========================
-     ACTIVE NAV INDICATOR (Desktop)
-     ========================= */
-  .nav-links a.is-active{
-    color: var(--g-blue);
-    position: relative;
-  }
-  .nav-links a.is-active::after{
-    content:"";
-    position:absolute;
-    left:0;
-    bottom:-6px;
-    width:100%;
-    height:2px;
-    background: linear-gradient(90deg, #4285F4, #34A853);
-    border-radius: 2px;
+  .adsnord-header #mMenu .m-link-parent.is-open .m-sub-toggle i{
+    transform: rotate(180deg);
   }
 </style>
 
-<div class="scroll-progress" id="progressBar"></div>
+<div class="adsnord-header">
+  <div class="scroll-progress" id="progressBar"></div>
 
-<div class="header-wrapper">
-  <header>
-    <div class="header-flex">
-      <a href="https://adsnord.com/" class="logo-holder">
-        <img src="https://adsnord.com/wp-content/uploads/2026/01/my-new-logo-AdsNord-1.png" alt="AdsNord Logo" style="height: 38px; width: auto;">
-        <div class="logo-text">Ads<span>Nord</span></div>
-      </a>
+  <div class="header-wrapper">
+    <header>
+      <div class="header-flex">
+        <a href="https://adsnord.com/" class="logo-holder">
+          <img src="https://adsnord.com/wp-content/uploads/2026/01/my-new-logo-AdsNord-1.png" alt="AdsNord Logo" style="height: 38px; width: auto;">
+          <div class="logo-text">Ads<span>Nord</span></div>
+        </a>
 
-      <div class="header-actions">
-        <nav>
-          <ul class="nav-links">
-            <li><a href="https://adsnord.com/">Home</a></li>
-            <li><a href="https://adsnord.com/contact">Contact</a></li>
-            <li><a href="https://adsnord.com/about">About</a></li>
+        <div class="header-actions">
+          <!-- ✅ PATCH: accessibility label -->
+          <nav aria-label="Primary">
+            <ul class="nav-links">
+              <li><a href="https://adsnord.com/">Home</a></li>
+              <li><a href="https://adsnord.com/contact">Contact</a></li>
+              <li><a href="https://adsnord.com/about">About</a></li>
 
-            <!-- ✅ ADDED: Free Tools dropdown (desktop) -->
-            <li class="dropdown">
-              <a href="https://adsnord.com/tools">Free Tools <i class="fa-solid fa-chevron-down"></i></a>
-              <ul class="dropdown-menu">
-                <li><a href="https://adsnord.com/tools/keyword-analyzer">Keyword Analyzer</a></li>
-                <li><a href="https://adsnord.com/tools/campaign-health-score">Campaign Health Score</a></li>
-                <li><a href="https://adsnord.com/tools/ai-ad-copy-generator">AI Ad Copy Generator</a></li>
-                <li><a href="https://adsnord.com/tools/ppc-performance-dashboard">PPC Performance Dashboard</a></li>
-                <li><a href="https://adsnord.com/tools/landing-page-behavior-analysis">Landing Page Behavior Analysis</a></li>
-                <li><a href="https://adsnord.com/tools/ai-google-ads-self-audit">AI Google Ads Self-Audit</a></li>
-              </ul>
-            </li>
+              <!-- ✅ ADDED: Free Tools (desktop dropdown) -->
+              <li class="dropdown">
+                <!-- ✅ PATCH: aria attributes -->
+                <a href="https://adsnord.com/tools" aria-haspopup="true" aria-expanded="false">Free Tools <i class="fa-solid fa-chevron-down"></i></a>
+                <ul class="dropdown-menu" role="menu">
+                  <li><a role="menuitem" href="https://adsnord.com/tools/keyword-analyzer">Keyword Analyzer</a></li>
+                  <li><a role="menuitem" href="https://adsnord.com/tools/campaign-health-score">Campaign Health Score</a></li>
+                  <li><a role="menuitem" href="https://adsnord.com/tools/ai-ad-copy-generator">AI Ad Copy Generator</a></li>
+                  <li><a role="menuitem" href="https://adsnord.com/tools/ppc-performance-dashboard">PPC Performance Dashboard</a></li>
+                  <li><a role="menuitem" href="https://adsnord.com/tools/landing-page-behavior-analysis">Landing Page Behavior Analysis</a></li>
+                  <li><a role="menuitem" href="https://adsnord.com/tools/ai-google-ads-self-audit">AI Google Ads Self-Audit</a></li>
+                </ul>
+              </li>
 
-            <li class="dropdown">
-              <a href="https://adsnord.com/services">Services <i class="fa-solid fa-chevron-down"></i></a>
-              <ul class="dropdown-menu">
-                <li><a href="https://adsnord.com/services/google-ads-management/">Google Ads Management</a></li>
-                <li><a href="https://adsnord.com/services/ppc-keyword-research/">Keyword research and planning</a></li>
-                <li><a href="https://adsnord.com/services/conversion-rate-optimization/">Landing page optimization</a></li>
-                <li><a href="https://adsnord.com/services/ppc-audit-service/">Ads audit and analysis</a></li>
-              </ul>
-            </li>
+              <li class="dropdown">
+                <a href="https://adsnord.com/services" aria-haspopup="true" aria-expanded="false">Services <i class="fa-solid fa-chevron-down"></i></a>
+                <ul class="dropdown-menu" role="menu">
+                  <li><a role="menuitem" href="https://adsnord.com/services/google-ads-management/">Google Ads Management</a></li>
+                  <li><a role="menuitem" href="https://adsnord.com/services/ppc-keyword-research/">Keyword research and planning</a></li>
+                  <li><a role="menuitem" href="https://adsnord.com/services/conversion-rate-optimization/">Landing page optimization</a></li>
+                  <li><a role="menuitem" href="https://adsnord.com/services/ppc-audit-service/">Ads audit and analysis</a></li>
+                </ul>
+              </li>
 
-            <li class="dropdown">
-              <a href="https://adsnord.com/blog">Blog <i class="fa-solid fa-chevron-down"></i></a>
-              <ul class="dropdown-menu">
-                <li><a href="https://adsnord.com/category/google-ads-optimization">Google Ads Optimization</a></li>
-                <li><a href="https://adsnord.com/category/landing-page-optimization">Landing Page Optimization</a></li>
-                <li><a href="https://adsnord.com/category/keyword-planning">Keyword planning</a></li>
-                <li><a href="https://adsnord.com/category/google-ads-audit">Google Ads Audit</a></li>
-              </ul>
-            </li>
+              <li class="dropdown">
+                <a href="https://adsnord.com/blog" aria-haspopup="true" aria-expanded="false">Blog <i class="fa-solid fa-chevron-down"></i></a>
+                <ul class="dropdown-menu" role="menu">
+                  <li><a role="menuitem" href="https://adsnord.com/category/google-ads-optimization">Google Ads Optimization</a></li>
+                  <li><a role="menuitem" href="https://adsnord.com/category/landing-page-optimization">Landing Page Optimization</a></li>
+                  <li><a role="menuitem" href="https://adsnord.com/category/keyword-planning">Keyword planning</a></li>
+                  <li><a role="menuitem" href="https://adsnord.com/category/google-ads-audit">Google Ads Audit</a></li>
+                </ul>
+              </li>
 
-            <li class="dropdown">
-              <a href="https://adsnord.com/case-studies">Case Studies <i class="fa-solid fa-chevron-down"></i></a>
-              <ul class="dropdown-menu">
-                <li><a href="https://adsnord.com/case-studies/google-ads-management/">Google Ads Management</a></li>
-                <li><a href="https://adsnord.com/case-studies/keyword-research-and-planning/">Keyword research and Planning</a></li>
-                <li><a href="https://adsnord.com/case-studies/landing-page-optimization/">Landing page Optimization</a></li>
-                <li><a href="https://adsnord.com/case-studies/ads-audit-and-analysis/">Ads audit and Analysis</a></li>
-              </ul>
-            </li>
-          </ul>
-        </nav>
+              <li class="dropdown">
+                <a href="https://adsnord.com/case-studies" aria-haspopup="true" aria-expanded="false">Case Studies <i class="fa-solid fa-chevron-down"></i></a>
+                <ul class="dropdown-menu" role="menu">
+                  <li><a role="menuitem" href="https://adsnord.com/case-studies/google-ads-management/">Google Ads Management</a></li>
+                  <li><a role="menuitem" href="https://adsnord.com/case-studies/keyword-research-and-planning/">Keyword research and Planning</a></li>
+                  <li><a role="menuitem" href="https://adsnord.com/case-studies/landing-page-optimization/">Landing page Optimization</a></li>
+                  <li><a role="menuitem" href="https://adsnord.com/case-studies/ads-audit-and-analysis/">Ads audit and Analysis</a></li>
+                </ul>
+              </li>
+            </ul>
+          </nav>
 
-        <button class="menu-btn" id="mToggle"><span></span><span></span></button>
+          <!-- ✅ PATCH: aria for toggle -->
+          <button class="menu-btn" id="mToggle" aria-controls="mMenu" aria-expanded="false" aria-label="Open menu">
+            <span></span><span></span>
+          </button>
+        </div>
       </div>
-    </div>
-  </header>
-</div>
-
-<div class="mobile-overlay" id="mMenu">
-  <button class="m-close" id="mClose" aria-label="Close menu">
-    <i class="fa-solid fa-xmark"></i>
-  </button>
-
-  <a href="https://adsnord.com/" class="m-link-main">Home</a>
-  <a href="https://adsnord.com/contact" class="m-link-main">Contact</a>
-  <a href="https://adsnord.com/about" class="m-link-main">About</a>
-
-  <!-- ✅ MOBILE ACCORDION MENUS -->
-
-  <!-- Services -->
-  <div class="m-acc" data-acc>
-    <button class="m-acc-btn" type="button" aria-expanded="false">
-      <span class="m-acc-left"><span>Services</span></span>
-      <i class="fa-solid fa-chevron-down m-acc-chevron"></i>
-    </button>
-    <div class="m-acc-panel">
-      <a href="https://adsnord.com/services/google-ads-management/">Google Ads Management</a>
-      <a href="https://adsnord.com/services/ppc-keyword-research/">Keyword research and planning</a>
-      <a href="https://adsnord.com/services/conversion-rate-optimization/">Landing page optimization</a>
-      <a href="https://adsnord.com/services/ppc-audit-service/">Ads audit and analysis</a>
-    </div>
+    </header>
   </div>
 
-  <!-- Blog -->
-  <div class="m-acc" data-acc>
-    <button class="m-acc-btn" type="button" aria-expanded="false">
-      <span class="m-acc-left"><span>Blog</span></span>
-      <i class="fa-solid fa-chevron-down m-acc-chevron"></i>
+  <div class="mobile-overlay" id="mMenu" aria-hidden="true">
+    <button class="m-close" id="mClose" aria-label="Close menu">
+      <i class="fa-solid fa-xmark"></i>
     </button>
-    <div class="m-acc-panel">
-      <a href="https://adsnord.com/category/google-ads-optimization">Google Ads Optimization</a>
-      <a href="https://adsnord.com/category/landing-page-optimization">Landing Page Optimization</a>
-      <a href="https://adsnord.com/category/keyword-planning">Keyword planning</a>
-      <a href="https://adsnord.com/category/google-ads-audit">Google Ads Audit</a>
-    </div>
-  </div>
 
-  <!-- Case Studies -->
-  <div class="m-acc" data-acc>
-    <button class="m-acc-btn" type="button" aria-expanded="false">
-      <span class="m-acc-left"><span>Case Studies</span></span>
-      <i class="fa-solid fa-chevron-down m-acc-chevron"></i>
-    </button>
-    <div class="m-acc-panel">
-      <a href="https://adsnord.com/case-studies/google-ads-management/">Google Ads Management</a>
-      <a href="https://adsnord.com/case-studies/keyword-research-and-planning/">Keyword research and Planning</a>
-      <a href="https://adsnord.com/case-studies/landing-page-optimization/">Landing page Optimization</a>
-      <a href="https://adsnord.com/case-studies/ads-audit-and-analysis/">Ads audit and Analysis</a>
-    </div>
-  </div>
+    <a href="https://adsnord.com/" class="m-link-main">Home</a>
+    <a href="https://adsnord.com/contact" class="m-link-main">Contact</a>
+    <a href="https://adsnord.com/about" class="m-link-main">About</a>
 
-  <!-- Free Tools -->
-  <div class="m-acc" data-acc>
-    <button class="m-acc-btn" type="button" aria-expanded="false">
-      <span class="m-acc-left"><span>Free Tools</span></span>
-      <i class="fa-solid fa-chevron-down m-acc-chevron"></i>
-    </button>
-    <div class="m-acc-panel">
+    <!-- ✅ ADDED: Free Tools (mobile) -->
+    <a href="https://adsnord.com/tools" class="m-link-parent">Free Tools</a>
+    <div class="mobile-sub-links">
       <a href="https://adsnord.com/tools/keyword-analyzer">Keyword Analyzer</a>
       <a href="https://adsnord.com/tools/campaign-health-score">Campaign Health Score</a>
       <a href="https://adsnord.com/tools/ai-ad-copy-generator">AI Ad Copy Generator</a>
       <a href="https://adsnord.com/tools/ppc-performance-dashboard">PPC Performance Dashboard</a>
       <a href="https://adsnord.com/tools/landing-page-behavior-analysis">Landing Page Behavior Analysis</a>
       <a href="https://adsnord.com/tools/ai-google-ads-self-audit">AI Google Ads Self-Audit</a>
+    </div>
+
+    <a href="https://adsnord.com/services" class="m-link-parent">Services</a>
+    <div class="mobile-sub-links">
+      <a href="https://adsnord.com/services/google-ads-management/">Google Ads Management</a>
+      <a href="https://adsnord.com/services/ppc-keyword-research/">Keyword research and planning</a>
+      <a href="https://adsnord.com/services/conversion-rate-optimization/">Landing page optimization</a>
+      <a href="https://adsnord.com/services/ppc-audit-service/">Ads audit and analysis</a>
+    </div>
+
+    <a href="https://adsnord.com/blog" class="m-link-parent">Blog</a>
+    <div class="mobile-sub-links">
+      <a href="https://adsnord.com/category/google-ads-optimization">Google Ads Optimization</a>
+      <a href="https://adsnord.com/category/landing-page-optimization">Landing Page Optimization</a>
+      <a href="https://adsnord.com/category/keyword-planning">Keyword planning</a>
+      <a href="https://adsnord.com/category/google-ads-audit">Google Ads Audit</a>
+    </div>
+
+    <a href="https://adsnord.com/case-studies" class="m-link-parent">Case Studies</a>
+    <div class="mobile-sub-links">
+      <a href="https://adsnord.com/case-studies/google-ads-management/">Google Ads Management</a>
+      <a href="https://adsnord.com/case-studies/keyword-research-and-planning/">Keyword research and Planning</a>
+      <a href="https://adsnord.com/case-studies/landing-page-optimization/">Landing page Optimization</a>
+      <a href="https://adsnord.com/case-studies/ads-audit-and-analysis/">Ads audit and Analysis</a>
     </div>
   </div>
 </div>
@@ -517,43 +490,103 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   const mMenu = document.getElementById('mMenu');
   const mClose = document.getElementById('mClose');
 
-  if (mClose) {
-    mClose.addEventListener('click', () => {
-      mMenu.classList.remove('active');
-      mToggle.classList.remove('open');
-      document.body.classList.remove('menu-open');
+  /* ✅ PATCH: close all mobile submenus */
+  function closeAllMobileSubmenus(){
+    document.querySelectorAll('#mMenu .m-link-parent.is-open').forEach(a => {
+      a.classList.remove('is-open');
+      a.setAttribute('aria-expanded','false');
     });
   }
 
+  /* ✅ PATCH: inject arrow button inside parent link (arrow toggles, text navigates) */
+  (function initMobileAccordion(){
+    const parents = document.querySelectorAll('#mMenu .m-link-parent');
+    parents.forEach(parent => {
+      const next = parent.nextElementSibling;
+      if(!next || !next.classList.contains('mobile-sub-links')) return;
+
+      parent.setAttribute('aria-haspopup','true');
+      parent.setAttribute('aria-expanded','false');
+
+      if(!parent.querySelector('button.m-sub-toggle')){
+        const btn = document.createElement('button');
+        btn.type = 'button';
+        btn.className = 'm-sub-toggle';
+        btn.setAttribute('aria-label','Toggle submenu');
+        btn.innerHTML = '<i class="fa-solid fa-chevron-down" aria-hidden="true"></i>';
+
+        /* critical: stop navigation on arrow click */
+        btn.addEventListener('click', (e) => {
+          e.preventDefault();
+          e.stopPropagation();
+
+          const isOpen = parent.classList.contains('is-open');
+
+          /* accordion: close others */
+          document.querySelectorAll('#mMenu .m-link-parent.is-open').forEach(a => {
+            if(a !== parent){
+              a.classList.remove('is-open');
+              a.setAttribute('aria-expanded','false');
+            }
+          });
+
+          parent.classList.toggle('is-open', !isOpen);
+          parent.setAttribute('aria-expanded', String(!isOpen));
+        });
+
+        parent.appendChild(btn);
+      }
+    });
+
+    closeAllMobileSubmenus();
+  })();
+
+  /* ✅ PATCH: desktop dropdown aria-expanded sync (no behavior change) */
+  (function initDesktopDropdownAria(){
+    document.querySelectorAll('.nav-links .dropdown').forEach(dd => {
+      const trigger = dd.querySelector(':scope > a');
+      if(!trigger) return;
+
+      const setExpanded = (v) => trigger.setAttribute('aria-expanded', v ? 'true' : 'false');
+
+      dd.addEventListener('mouseenter', () => setExpanded(true));
+      dd.addEventListener('mouseleave', () => setExpanded(false));
+      dd.addEventListener('focusin', () => setExpanded(true));
+      dd.addEventListener('focusout', (e) => {
+        if(!dd.contains(e.relatedTarget)) setExpanded(false);
+      });
+    });
+  })();
+
+  /* ✅ PATCH: menu open/close helpers (aria + scroll lock) */
+  function setMenuState(isOpen){
+    mMenu.classList.toggle('active', isOpen);
+    mToggle.classList.toggle('open', isOpen);
+    document.body.classList.toggle('menu-open', isOpen);
+
+    mToggle.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+    mMenu.setAttribute('aria-hidden', isOpen ? 'false' : 'true');
+    mToggle.setAttribute('aria-label', isOpen ? 'Close menu' : 'Open menu');
+
+    if(isOpen) closeAllMobileSubmenus();
+  }
+
+  if (mClose) {
+    mClose.addEventListener('click', () => setMenuState(false));
+  }
+
   mToggle.addEventListener('click', () => {
-    mMenu.classList.toggle('active');
-    mToggle.classList.toggle('open');
-    document.body.classList.toggle('menu-open');
+    const isOpen = !mMenu.classList.contains('active');
+    setMenuState(isOpen);
   });
 
   mMenu.addEventListener('click', (e) => {
-    if (e.target === mMenu) {
-      mMenu.classList.remove('active');
-      mToggle.classList.remove('open');
-      document.body.classList.remove('menu-open');
-    }
+    if (e.target === mMenu) setMenuState(false);
   });
 
-  document.querySelectorAll('.mobile-overlay a').forEach(link => {
-    link.addEventListener('click', () => {
-      mMenu.classList.remove('active');
-      mToggle.classList.remove('open');
-      document.body.classList.remove('menu-open');
-    });
-  });
-
-  /* ✅ Added: Mobile accordion toggle */
-  document.querySelectorAll('[data-acc] .m-acc-btn').forEach(btn => {
-    btn.addEventListener('click', () => {
-      const acc = btn.closest('[data-acc]');
-      const isOpen = acc.classList.toggle('is-open');
-      btn.setAttribute('aria-expanded', String(isOpen));
-    });
+  /* ✅ PATCH: close menu ONLY on main links + submenu links (parent text navigates normally) */
+  document.querySelectorAll('#mMenu a.m-link-main, #mMenu .mobile-sub-links a').forEach(link => {
+    link.addEventListener('click', () => setMenuState(false));
   });
 
   // progress bar
@@ -608,22 +641,6 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     document.addEventListener('visibilitychange', () => { if (document.hidden) stopHue(); else manageHue(); });
 
     applyHue(); manageHue();
-  })();
-
-  /* ✅ Added: Active menu detection (desktop) */
-  (function(){
-    const currentURL = window.location.href.replace(/\/$/, '');
-    document.querySelectorAll('.nav-links a').forEach(link => {
-      const linkURL = link.href.replace(/\/$/, '');
-      if (currentURL === linkURL || currentURL.startsWith(linkURL + '/')) {
-        link.classList.add('is-active');
-        const dropdown = link.closest('.dropdown');
-        if (dropdown) {
-          const parentLink = dropdown.querySelector(':scope > a');
-          if (parentLink) parentLink.classList.add('is-active');
-        }
-      }
-    });
   })();
 </script>
 
